@@ -2,6 +2,7 @@
 <html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Склад халатов</title>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1f6f5c"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js"></script>
@@ -177,4 +178,4 @@ onAuthStateChanged(auth,u=>{unsubs.forEach(f=>f());unsubs=[];
  unsubs.push(onSnapshot(collection(db,'prods'),s=>window.setProds(s.docs.map(x=>({...x.data(),code:x.id}))),er));
  unsubs.push(onSnapshot(query(collection(db,'log'),orderBy('ts','desc'),limit(200)),s=>window.setLogs(s.docs.map(x=>x.data())),er));
 });
-</script></body></html>
+</script><script>if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{})</script></body></html>
