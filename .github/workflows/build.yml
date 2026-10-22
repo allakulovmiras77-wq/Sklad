@@ -20,7 +20,7 @@ jobs:
           npm init -y
           npm i @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
           mkdir www
-          cp ../index.html ../manifest.json ../icon-192.png ../icon-512.png www/
+          cp ../index.html ../manifest.json ../icon-192-1.png ../icon-512-1.png www/
           echo '{"appId":"uz.lidertekstil.sklad","appName":"Склад","webDir":"www","server":{"url":"https://allakulovmiras77-wq.github.io/Sklad/","androidScheme":"https"}}' > capacitor.config.json
           npx cap add android
           sed -i 's|<application|<uses-permission android:name="android.permission.CAMERA" />\n    <uses-feature android:name="android.hardware.camera" android:required="false" />\n    <application|' android/app/src/main/AndroidManifest.xml
