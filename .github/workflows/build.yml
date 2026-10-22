@@ -20,8 +20,9 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-
-      - name: Build APK
+      - name: Install Python dependencies
+        run: |
+          python -m pip install Pillow
         run: |
           mkdir app
           cd app
