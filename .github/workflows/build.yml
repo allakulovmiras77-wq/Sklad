@@ -1,32 +1,79 @@
+
 name: Build APK
+
 on:
   push:
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
+
       - name: Build APK
         run: |
-          mkdir app && cd app
+          mkdir app
+          cd app
+
           npm init -y
           npm i @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
+
           mkdir www
           cp ../index.html ../manifest.json ../icon-192-1.png ../icon-512-1.png www/
-          echo '{"appId":"uz.lidertekstil.sklad","appName":"Склад","webDir":"www","server":{"url":"https://allakulovmiras77-wq.github.io/Sklad/","androidScheme":"https"}}' > capacitor.config.json
+
+          echo '{"appId":"uz.lidertekstil.sklad","appName":"Склад LT","webDir":"www","server":{"url":"https://allakulovmiras77-wq.github.io/Sklad/","androidScheme":"https"}}' > capacitor.config.json
+
           npx cap add android
+
+          mkdir -p android/app/src/main/res/mipmap-mdpi
+          mkdir -p android/app/src/main/res/mipmap-hdpi
+          mkdir -p android/app/src/main/res/mipmap-xhdpi
+          mkdir -p android/app/src/main/res/mipmap-xxhdpi
+          mkdir -p android/app/src/main/res/mipmap-xxxhdpi
+
+          python3 - <<'PY'
+          from PIL import Image
+          import os
+
+          source = "../sklad_lt_icon.png"
+          if not os.path.exists(source):
+              raise SystemExit("ОШИБКА: файл sklad_lt_icon.png не найден в корне репозитория")
+
+          img = Image.open(source).convert("RGBA")
+          sizes = {
+              "mdpi": 48,
+              "hdpi": 72,
+              "xhdpi": 96,
+              "xxhdpi": 144,
+              "xxxhdpi": 192
+          }
+
+          for density, size in sizes.items():
+              output = f"android/app/src/main/res/mipmap-{density}/ic_launcher.png"
+              img.resize((size, size), Image.Resampling.LANCZOS).save(output)
+
+          print("Иконки приложения созданы.")
+          PY
+
+          sed -i 's|android:icon="@mipmap/ic_launcher"|android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher"|' android/app/src/main/AndroidManifest.xml
+
           sed -i 's|<application|<uses-permission android:name="android.permission.CAMERA" />\n    <uses-feature android:name="android.hardware.camera" android:required="false" />\n    <application|' android/app/src/main/AndroidManifest.xml
+
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
+
       - uses: actions/upload-artifact@v4
         with:
           name: Sklad-apk
