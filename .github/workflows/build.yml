@@ -5,23 +5,30 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - uses: actions/setup-java@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
@@ -30,36 +37,53 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install Pillow
 
+      - name: Check required files
+        run: |
+          set -euo pipefail
+          test -f index.html || { echo "ERROR: index.html not found"; exit 1; }
+          test -f manifest.json || { echo "ERROR: manifest.json not found"; exit 1; }
+          test -f icon-192-1.png || { echo "ERROR: icon-192-1.png not found"; exit 1; }
+          test -f Icon-512-1.png || { echo "ERROR: Icon-512-1.png not found"; exit 1; }
+          echo "All required files found."
+
       - name: Build APK
         run: |
+          set -euo pipefail
+
           mkdir app
           cd app
 
           npm init -y
-          npm i @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
+          npm install @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
 
           mkdir www
-          cp ../index.html ../manifest.json ../icon-192-1.png ../icon-512-1.png www/
+          cp ../index.html ../manifest.json ../icon-192-1.png ../Icon-512-1.png www/
 
-          echo '{"appId":"uz.lidertekstil.sklad","appName":"Склад LT","webDir":"www","server":{"url":"https://allakulovmiras77-wq.github.io/Sklad/","androidScheme":"https"}}' > capacitor.config.json
+          cat > capacitor.config.json <<'EOF'
+          {
+            "appId": "uz.lidertekstil.sklad",
+            "appName": "Склад LT",
+            "webDir": "www",
+            "server": {
+              "url": "https://allakulovmiras77-wq.github.io/Sklad/",
+              "androidScheme": "https"
+            }
+          }
+          EOF
 
           npx cap add android
 
-          mkdir -p android/app/src/main/res/mipmap-mdpi
-          mkdir -p android/app/src/main/res/mipmap-hdpi
-          mkdir -p android/app/src/main/res/mipmap-xhdpi
-          mkdir -p android/app/src/main/res/mipmap-xxhdpi
-          mkdir -p android/app/src/main/res/mipmap-xxxhdpi
-
           python3 - <<'PY'
           from PIL import Image
-          import os
+          from pathlib import Path
 
-          source = "../sklad_lt_icon.png"
-          if not os.path.exists(source):
-              raise SystemExit("ОШИБКА: файл sklad_lt_icon.png не найден в корне репозитория")
+          source = Path("../icon-192-1.png")
 
-          img = Image.open(source).convert("RGBA")
+          if not source.is_file():
+              raise SystemExit("ERROR: icon-192-1.png not found")
+
+          image = Image.open(source).convert("RGBA")
+
           sizes = {
               "mdpi": 48,
               "hdpi": 72,
@@ -69,22 +93,61 @@ jobs:
           }
 
           for density, size in sizes.items():
-              output = f"android/app/src/main/res/mipmap-{density}/ic_launcher.png"
-              img.resize((size, size), Image.Resampling.LANCZOS).save(output)
+              folder = Path("android/app/src/main/res") / f"mipmap-{density}"
+              folder.mkdir(parents=True, exist_ok=True)
 
-          print("Иконки приложения созданы.")
+              output = folder / "ic_launcher.png"
+              resized = image.resize(
+                  (size, size),
+                  Image.Resampling.LANCZOS
+              )
+              resized.save(output)
+
+          print("Application icons generated successfully.")
           PY
 
-          sed -i 's|android:icon="@mipmap/ic_launcher"|android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher"|' android/app/src/main/AndroidManifest.xml
+          python3 - <<'PY'
+          from pathlib import Path
 
-          sed -i 's|<application|<uses-permission android:name="android.permission.CAMERA" />\n    <uses-feature android:name="android.hardware.camera" android:required="false" />\n    <application|' android/app/src/main/AndroidManifest.xml
+          manifest = Path("android/app/src/main/AndroidManifest.xml")
+          content = manifest.read_text(encoding="utf-8")
+
+          if 'android.permission.CAMERA' not in content:
+              permission = (
+                  '    <uses-permission android:name="android.permission.CAMERA" />\n'
+                  '    <uses-feature android:name="android.hardware.camera" '
+                  'android:required="false" />\n'
+              )
+
+              if "<application" not in content:
+                  raise SystemExit("ERROR: application tag not found in AndroidManifest.xml")
+
+              content = content.replace(
+                  "<application",
+                  permission + "    <application",
+                  1
+              )
+
+              manifest.write_text(content, encoding="utf-8")
+
+          print("Camera permission configured.")
+          PY
+
+          npx cap sync android
 
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew --no-daemon assembleDebug
 
-      - uses: actions/upload-artifact@v4
+          test -f app/build/outputs/apk/debug/app-debug.apk
+          echo "APK built successfully."
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: Sklad-apk
           path: app/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
+          
           
