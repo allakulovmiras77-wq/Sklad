@@ -11,28 +11,29 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171716;--card:#232322;--tx:#f0efea;--mu:#9a988f;--ac:#4fb59c;--acx:#0d1f1a;--bd:#363532;--rd:#ef7b70}}
 :root[data-theme="dark"]{--bg:#171716;--card:#232322;--tx:#f0efea;--mu:#9a988f;--ac:#4fb59c;--acx:#0d1f1a;--bd:#363532;--rd:#ef7b70}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif;padding-bottom:90px}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif;padding-bottom:110px}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
 main{max-width:640px;margin:0 auto;padding:14px}
-h1{font-size:20px;margin:4px 0 12px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;margin-bottom:10px}
+h1{font-size:26px;font-weight:800;letter-spacing:-.5px;margin:4px 0 14px}
+.card{background:var(--card);border:0;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .row{display:flex;align-items:center;gap:8px}.sp{flex:1}
-.mu{color:var(--mu);font-size:14px}.big{font-size:28px;font-weight:700}
-button{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;padding:10px 14px;cursor:pointer}
-button.p{background:var(--ac);color:var(--acx);border-color:var(--ac);font-weight:600}
-button.d{color:var(--rd)}
-input{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:10px;width:100%;min-width:0}
-nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
-nav button{flex:1;border:0;border-radius:0;background:none;padding:12px 4px;font-size:13px;color:var(--mu)}
+.mu{color:var(--mu);font-size:14px}.big{font-size:32px;font-weight:700}
+button{font:inherit;font-weight:600;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:14px;padding:12px 20px;min-height:52px;cursor:pointer;transition:transform .1s}
+button:active{transform:scale(.96)}
+button.p{background:var(--ac);color:var(--acx);border-color:var(--ac);box-shadow:0 4px 14px rgba(31,111,92,.35)}
+button.d{color:var(--rd);background:rgba(179,55,44,.1);border-color:transparent}
+input{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;min-height:52px;width:100%;min-width:0}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-radius:22px 22px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.1);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;border:0;border-radius:0;background:none;padding:12px 4px;min-height:60px;font-size:14px;color:var(--mu)}
 nav button.on{color:var(--ac);font-weight:700}
 .sizes{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.chip{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:3px 8px;font-size:14px}
+.chip{background:var(--bg);border:1px solid var(--bd);border-radius:999px;padding:4px 12px;font-size:14px}
 #sheet{position:fixed;inset:0;background:var(--bg);z-index:20;overflow:auto;padding:calc(14px + env(safe-area-inset-top,0px)) 14px 40px;display:none}
 #sheet.show{display:block}
 .qr{width:150px;height:150px;background:#fff;padding:6px;border-radius:10px}
 .qr svg{width:100%;height:100%;display:block}
 video{width:100%;border-radius:14px;background:#000;max-height:55vh;object-fit:cover}
-#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:90px;background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:20px;z-index:30;display:none;max-width:90%}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:100px;background:var(--tx);color:var(--bg);padding:12px 18px;border-radius:20px;z-index:30;display:none;max-width:90%}
 #camov{position:fixed;inset:0;background:#000;z-index:25;display:none;flex-direction:column;padding:env(safe-area-inset-top,0px) 0 0}#camov.show{display:flex}#camov video{flex:1;max-height:none;border-radius:0;min-height:0}#camov .bar{padding:12px 12px calc(12px + env(safe-area-inset-bottom,0px));background:var(--card);color:var(--tx)}
 #print{display:none}
 .lab{border:1px dashed #000;padding:8px;width:48mm;display:inline-block;margin:2mm;text-align:center;color:#000;background:#fff;font:700 16px sans-serif}
@@ -59,86 +60,86 @@ async function addLog(e){e.ts=Date.now();e.u=FB.email();logs.unshift(e);try{awai
 function nextId(){let m=0;for(const k in bags){const r=/^MIX-(\d+)$/.exec(k);if(r)m=Math.max(m,+r[1])}return 'MIX-'+String(m+1).padStart(3,'0')}
 function newBag(){const id=nextId();saveBag({id,items:[],created:Date.now()});addLog({bag:id,type:'new',a:'',s:'',d:0});openBag(id)}
 async function change(id,a,s,d){try{const r=await FB.change(id,a,s,d);if(r==='low'){toast('В мешке столько нет');return}if(r==='none'){toast('Мешок не найден');return}
- addLog({bag:id,type:d>0?'in':'out',a,s,d:Math.abs(d)});toast((d>0?'Добавлено ':'Списано ')+Math.abs(d)+' шт.')}catch(e){toast('Ошибка: нет связи или прав')}}
+addLog({bag:id,type:d>0?'in':'out',a,s,d:Math.abs(d)});toast((d>0?'Добавлено ':'Списано ')+Math.abs(d)+' шт.')}catch(e){toast('Ошибка: нет связи или прав')}}
 const bagTotal=b=>b.items.reduce((n,i)=>n+i.q,0);
 function totals(){const m={};for(const k in bags)for(const i of bags[k].items){(m[i.a]=m[i.a]||{s:{},t:0,w:[]});m[i.a].s[i.s]=(m[i.a].s[i.s]||0)+i.q;m[i.a].t+=i.q;m[i.a].w.push({id:k,s:i.s,q:i.q})}return m}
 function qrSvg(t){const c=qrcode(0,'M');c.addData(t);c.make();const n=c.getModuleCount();let p='';for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(c.isDark(r,k))p+=`M${k+2},${r+2}h1v1h-1z`;
- return `<svg viewBox="0 0 ${n+4} ${n+4}" shape-rendering="crispEdges"><path d="${p}" fill="#000"/></svg>`}
+return `<svg viewBox="0 0 ${n+4} ${n+4}" shape-rendering="crispEdges"><path d="${p}" fill="#000"/></svg>`}
 function printLabels(ids){$('#print').innerHTML=ids.map(i=>`<div class="lab">${qrSvg(i)}<div>${esc(i)}</div></div>`).join('');setTimeout(()=>{try{window.print()}catch(e){toast('Печать недоступна здесь')}},100)}
 function openBag(id){openId=id;delArm=false;render()}
 function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===tab));
- const m=$('#main');
- if(tab==='stock')m.innerHTML=vStock();else if(tab==='bags')m.innerHTML=vBags();else if(tab==='scan')vScan();else if(tab==='prods')m.innerHTML=vProds();else m.innerHTML=vLog();
- const sh=$('#sheet');if(openId&&bags[openId]){sh.classList.add('show');sh.innerHTML=vSheet(bags[openId])}else{openId=null;sh.classList.remove('show');sh.innerHTML=''}}
+const m=$('#main');
+if(tab==='stock')m.innerHTML=vStock();else if(tab==='bags')m.innerHTML=vBags();else if(tab==='scan')vScan();else if(tab==='prods')m.innerHTML=vProds();else m.innerHTML=vLog();
+const sh=$('#sheet');if(openId&&bags[openId]){sh.classList.add('show');sh.innerHTML=vSheet(bags[openId])}else{openId=null;sh.classList.remove('show');sh.innerHTML=''}}
 function vStock(){const t=totals(),all=Object.values(t).reduce((n,x)=>n+x.t,0),nb=Object.keys(bags).length;
- const arts=Object.keys(t).sort().filter(a=>a.includes(q.toUpperCase()));
- return `<div class="row"><h1 class="sp">Склад</h1><button data-act="logout">Выйти</button></div><div class="card row"><div><div class="big">${all}</div><div class="mu">халатов всего</div></div><div class="sp"></div><div style="text-align:right"><div class="big">${nb}</div><div class="mu">мешков</div></div></div>
- <input id="q" placeholder="Поиск по артикулу, например ХМ11" value="${esc(q)}" style="margin-bottom:10px">`+
- (arts.length?arts.map(a=>`<div class="card" data-art="${esc(a)}"><div class="row"><b>${esc(a)}</b><div class="sp"></div><b>${t[a].t} шт.</b></div><div class="sizes">${Object.keys(t[a].s).sort((x,y)=>SIZES.indexOf(x)-SIZES.indexOf(y)).map(s=>`<span class="chip">${esc(s)}: ${t[a].s[s]}</span>`).join('')}</div>
- ${expand===a?`<div style="margin-top:8px" class="mu">Где лежит:</div>`+t[a].w.map(w=>`<div class="row" style="padding:6px 0"><button data-open="${esc(w.id)}">${esc(w.id)}</button><span>${esc(w.s)} — ${w.q} шт.</span></div>`).join(''):`<div class="mu" style="margin-top:6px">нажмите, чтобы увидеть мешки</div>`}</div>`).join(''):`<div class="card mu">${nb?'Ничего не найдено':'Склад пуст. Откройте «Мешки» → «Новый мешок» и добавьте товар.'}</div>`)}
+const arts=Object.keys(t).sort().filter(a=>a.includes(q.toUpperCase()));
+return `<div class="row"><h1 class="sp">Склад</h1><button data-act="logout">Выйти</button></div><div class="card row"><div><div class="big">${all}</div><div class="mu">халатов всего</div></div><div class="sp"></div><div style="text-align:right"><div class="big">${nb}</div><div class="mu">мешков</div></div></div>
+<input id="q" placeholder="Поиск по артикулу, например ХМ11" value="${esc(q)}" style="margin-bottom:10px">`+
+(arts.length?arts.map(a=>`<div class="card" data-art="${esc(a)}"><div class="row"><b>${esc(a)}</b><div class="sp"></div><b>${t[a].t} шт.</b></div><div class="sizes">${Object.keys(t[a].s).sort((x,y)=>SIZES.indexOf(x)-SIZES.indexOf(y)).map(s=>`<span class="chip">${esc(s)}: ${t[a].s[s]}</span>`).join('')}</div>
+${expand===a?`<div style="margin-top:8px" class="mu">Где лежит:</div>`+t[a].w.map(w=>`<div class="row" style="padding:6px 0"><button data-open="${esc(w.id)}">${esc(w.id)}</button><span>${esc(w.s)} — ${w.q} шт.</span></div>`).join(''):`<div class="mu" style="margin-top:6px">нажмите, чтобы увидеть мешки</div>`}</div>`).join(''):`<div class="card mu">${nb?'Ничего не найдено':'Склад пуст. Откройте «Мешки» → «Новый мешок» и добавьте товар.'}</div>`)}
 function vBags(){const ids=Object.keys(bags).sort();
- return `<h1>Мешки</h1><div class="row" style="margin-bottom:10px"><button class="p sp" data-act="new">+ Новый мешок</button><button data-act="printall">Печать всех QR</button></div>`+
- (ids.map(id=>{const b=bags[id];return `<div class="card" data-open="${esc(id)}"><div class="row"><b>${esc(id)}</b><div class="sp"></div><span>${bagTotal(b)} шт.</span></div><div class="sizes">${b.items.map(i=>`<span class="chip">${esc(i.a)} ${esc(i.s)}: ${i.q}</span>`).join('')||'<span class="mu">пустой</span>'}</div></div>`}).join('')||'<div class="card mu">Мешков пока нет</div>')}
+return `<h1>Мешки</h1><div class="row" style="margin-bottom:10px"><button class="p sp" data-act="new">+ Новый мешок</button><button data-act="printall">Печать всех QR</button></div>`+
+(ids.map(id=>{const b=bags[id];return `<div class="card" data-open="${esc(id)}"><div class="row"><b>${esc(id)}</b><div class="sp"></div><span>${bagTotal(b)} шт.</span></div><div class="sizes">${b.items.map(i=>`<span class="chip">${esc(i.a)} ${esc(i.s)}: ${i.q}</span>`).join('')||'<span class="mu">пустой</span>'}</div></div>`}).join('')||'<div class="card mu">Мешков пока нет</div>')}
 function vLog(){return `<h1>История</h1>`+(logs.slice(0,200).map(l=>`<div class="card"><div class="row"><b>${esc(l.bag)}</b><div class="sp"></div><span class="mu">${esc((l.u||'').split('@')[0])} · ${new Date(l.ts).toLocaleString('ru',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</span></div><div>${l.type==='in'?'➕ добавлено':l.type==='out'?'➖ списано':'🆕 создан мешок'} ${l.type==='new'?'':esc(l.a)+' '+esc(l.s)+' × '+l.d}</div></div>`).join('')||'<div class="card mu">Пока пусто</div>')}
 function vScan(){const m=$('#main');if(m.dataset.scan==='1')return;m.dataset.scan='1';
- m.innerHTML=`<h1>Сканировать</h1><div class="card"><div class="mu" style="margin-bottom:8px">Наведите камеру на QR мешка или штрихкод халата</div><button class="p" style="width:100%" data-act="cam">📷 Включить камеру</button></div>
- <div class="card"><div class="mu" style="margin-bottom:6px">Или введите номер / считайте ручным сканером</div><div class="row"><input id="man" placeholder="MIX-001 или штрихкод" autocapitalize="characters"><button class="p" data-act="go">Открыть</button></div></div>`}
+m.innerHTML=`<h1>Сканировать</h1><div class="card"><div class="mu" style="margin-bottom:8px">Наведите камеру на QR мешка или штрихкод халата</div><button class="p" style="width:100%" data-act="cam">📷 Включить камеру</button></div>
+<div class="card"><div class="mu" style="margin-bottom:6px">Или введите номер / считайте ручным сканером</div><div class="row"><input id="man" placeholder="MIX-001 или штрихкод" autocapitalize="characters"><button class="p" data-act="go">Открыть</button></div></div>`}
 function vProds(){const L=Object.values(prods).sort((x,y)=>(x.a+x.s).localeCompare(y.a+y.s));
- return `<h1>Штрихкоды халатов</h1><div class="card"><b>Добавить штрихкод</b><div class="row" style="margin-top:8px"><input id="pa" placeholder="Артикул (ХМ11)" autocapitalize="characters"><input id="ps" placeholder="Размер" style="width:100px"></div><div class="row" style="margin-top:8px"><input id="pc" inputmode="numeric" placeholder="Штрихкод"><button data-act="pscan">📷</button></div><button class="p" style="width:100%;margin-top:8px" data-act="padd">Сохранить</button></div>`+
- (L.map(p=>`<div class="card row"><b>${esc(p.a)}</b><span>${esc(p.s)}</span><div class="sp"></div><span class="mu">${esc(p.code)}</span><button class="d" data-pdel="${esc(p.code)}">✕</button></div>`).join('')||'<div class="card mu">Штрихкодов пока нет</div>')}
+return `<h1>Штрихкоды халатов</h1><div class="card"><b>Добавить штрихкод</b><div class="row" style="margin-top:8px"><input id="pa" placeholder="Артикул (ХМ11)" autocapitalize="characters"><input id="ps" placeholder="Размер" style="width:100px"></div><div class="row" style="margin-top:8px"><input id="pc" inputmode="numeric" placeholder="Штрихкод"><button data-act="pscan">📷</button></div><button class="p" style="width:100%;margin-top:8px" data-act="padd">Сохранить</button></div>`+
+(L.map(p=>`<div class="card row"><b>${esc(p.a)}</b><span>${esc(p.s)}</span><div class="sp"></div><span class="mu">${esc(p.code)}</span><button class="d" data-pdel="${esc(p.code)}">✕</button></div>`).join('')||'<div class="card mu">Штрихкодов пока нет</div>')}
 function lookup(t){const raw=String(t).trim(),id=raw.toUpperCase();if(bags[id])return{bag:id};
- const mm=/^MIX-?(\d+)$/.exec(id);if(mm){const c='MIX-'+mm[1].padStart(3,'0');if(bags[c])return{bag:c}}
- const k=raw.replace(/[^A-Za-z0-9_-]/g,'');if(prods[k])return{prod:prods[k]};return{none:raw}}
+const mm=/^MIX-?(\d+)$/.exec(id);if(mm){const c='MIX-'+mm[1].padStart(3,'0');if(bags[c])return{bag:c}}
+const k=raw.replace(/[^A-Za-z0-9_-]/g,'');if(prods[k])return{prod:prods[k]};return{none:raw}}
 function setCam(t){const e=$('#cs');if(e)e.textContent=t}
 function foundCode(t){if(mode==='reg'){const i=$('#pc');stopCam();if(i)i.value=String(t).trim().replace(/[^A-Za-z0-9_-]/g,'');return}
- const r=lookup(t);
- if(mode==='in'||mode==='out'){if(r.prod){const n=Math.max(1,parseInt(($('#cn')||{}).value)||1);change(openId,r.prod.a,r.prod.s,mode==='in'?n:-n);setCam((mode==='in'?'➕ ':'➖ ')+r.prod.a+' '+r.prod.s+' × '+n)}else if(r.bag)setCam('Это QR мешка, нужен штрихкод халата');else setCam('Штрихкод не найден: '+r.none+'. Добавьте его во вкладке «Штрихкоды»');return}
- stopCam();
- if(r.bag)openBag(r.bag);
- else if(r.prod){tab='stock';expand=r.prod.a;q='';$('#main').dataset.scan='';render();toast(r.prod.a+' '+r.prod.s+': '+(((totals()[r.prod.a]||{s:{}}).s[r.prod.s])||0)+' шт. на складе')}
- else toast('Не найдено: '+r.none)}
+const r=lookup(t);
+if(mode==='in'||mode==='out'){if(r.prod){const n=Math.max(1,parseInt(($('#cn')||{}).value)||1);change(openId,r.prod.a,r.prod.s,mode==='in'?n:-n);setCam((mode==='in'?'➕ ':'➖ ')+r.prod.a+' '+r.prod.s+' × '+n)}else if(r.bag)setCam('Это QR мешка, нужен штрихкод халата');else setCam('Штрихкод не найден: '+r.none+'. Добавьте его во вкладке «Штрихкоды»');return}
+stopCam();
+if(r.bag)openBag(r.bag);
+else if(r.prod){tab='stock';expand=r.prod.a;q='';$('#main').dataset.scan='';render();toast(r.prod.a+' '+r.prod.s+': '+(((totals()[r.prod.a]||{s:{}}).s[r.prod.s])||0)+' шт. на складе')}
+else toast('Не найдено: '+r.none)}
 function openCam(m){mode=m;const o=$('#camov'),c=m==='in'||m==='out';
- o.innerHTML=`<video id="v" playsinline muted autoplay></video><div class="bar"><div id="cs" style="font-weight:600;margin-bottom:8px">${m==='out'?'➖ Списание: сканируйте халаты':m==='in'?'➕ Добавление: сканируйте халаты':'Наведите на QR или штрихкод'}</div>${c?'<div class="row" style="margin-bottom:8px"><span class="mu">Штук за скан:</span><input id="cn" type="number" inputmode="numeric" value="1" min="1" style="width:80px"></div>':''}<button data-act="camclose" style="width:100%">Закрыть камеру</button></div>`;
- o.classList.add('show');startCam()}
+o.innerHTML=`<video id="v" playsinline muted autoplay></video><div class="bar"><div id="cs" style="font-weight:600;margin-bottom:8px">${m==='out'?'➖ Списание: сканируйте халаты':m==='in'?'➕ Добавление: сканируйте халаты':'Наведите на QR или штрихкод'}</div>${c?'<div class="row" style="margin-bottom:8px"><span class="mu">Штук за скан:</span><input id="cn" type="number" inputmode="numeric" value="1" min="1" style="width:80px"></div>':''}<button data-act="camclose" style="width:100%">Закрыть камеру</button></div>`;
+o.classList.add('show');startCam()}
 async function startCam(){const v=$('#v');scanning=true;last='';
- try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});v.srcObject=stream;await v.play()}
- catch(e){setCam('Камера недоступна. Разрешите доступ к камере в настройках браузера или введите код вручную.');scanning=false;return}
- try{det=('BarcodeDetector' in window)?new BarcodeDetector():null}catch(e){det=null}
- if(!det&&window.ZXing){try{zx=new ZXing.MultiFormatReader();const h=new Map();h.set(ZXing.DecodeHintType.TRY_HARDER,true);zx.setHints(h)}catch(e){zx=null}}
- loop()}
+try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});v.srcObject=stream;await v.play()}
+catch(e){setCam('Камера недоступна. Разрешите доступ к камере в настройках браузера или введите код вручную.');scanning=false;return}
+try{det=('BarcodeDetector' in window)?new BarcodeDetector():null}catch(e){det=null}
+if(!det&&window.ZXing){try{zx=new ZXing.MultiFormatReader();const h=new Map();h.set(ZXing.DecodeHintType.TRY_HARDER,true);zx.setHints(h)}catch(e){zx=null}}
+loop()}
 function stopCam(){scanning=false;mode=null;if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}const o=$('#camov');o.classList.remove('show');o.innerHTML=''}
 async function loop(){if(!scanning)return;const v=$('#v');let txt=null;
- try{if(det){const r=await det.detect(v);if(r[0])txt=r[0].rawValue}
- else if(v&&v.videoWidth){const cv=cvs||(cvs=document.createElement('canvas'));const w=Math.min(960,v.videoWidth);cv.width=w;cv.height=Math.round(v.videoHeight*w/v.videoWidth);const x=cv.getContext('2d',{willReadFrequently:true});x.drawImage(v,0,0,cv.width,cv.height);
-  if(zx){try{txt=zx.decode(new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(cv)))).getText()}catch(e){}}
-  if(!txt&&window.jsQR){const im=x.getImageData(0,0,cv.width,cv.height);const r=jsQR(im.data,im.width,im.height);if(r)txt=r.data}}}catch(e){}
- if(txt){const n=Date.now();if(!(txt===last&&n-lastT<1800)){last=txt;lastT=n;if(navigator.vibrate)navigator.vibrate(60);foundCode(txt)}}
- if(scanning)setTimeout(loop,150)}
+try{if(det){const r=await det.detect(v);if(r[0])txt=r[0].rawValue}
+else if(v&&v.videoWidth){const cv=cvs||(cvs=document.createElement('canvas'));const w=Math.min(960,v.videoWidth);cv.width=w;cv.height=Math.round(v.videoHeight*w/v.videoWidth);const x=cv.getContext('2d',{willReadFrequently:true});x.drawImage(v,0,0,cv.width,cv.height);
+if(zx){try{txt=zx.decode(new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(cv)))).getText()}catch(e){}}
+if(!txt&&window.jsQR){const im=x.getImageData(0,0,cv.width,cv.height);const r=jsQR(im.data,im.width,im.height);if(r)txt=r.data}}}catch(e){}
+if(txt){const n=Date.now();if(!(txt===last&&n-lastT<1800)){last=txt;lastT=n;scanFb(txt);foundCode(txt)}}
+if(scanning)setTimeout(loop,150)}
 function vSheet(b){return `<div class="row"><button data-act="close">← Назад</button><div class="sp"></div><button data-act="print1">Печать QR</button></div>
- <div class="row" style="margin:14px 0"><div class="qr">${qrSvg(b.id)}</div><div><div class="big">${esc(b.id)}</div><div class="mu">всего ${bagTotal(b)} шт.</div></div></div>
- <div class="row" style="margin-bottom:12px"><button class="d sp" data-act="scanout">📷 Списать сканером</button><button class="p sp" data-act="scanin">📷 Добавить сканером</button></div><div class="mu" style="margin-bottom:6px">Содержимое</div>`+
- (b.items.map((i,n)=>`<div class="card"><div class="row"><b>${esc(i.a)}</b><span>${esc(i.s)}</span><div class="sp"></div><span class="big">${i.q}</span></div>
- <div class="row" style="margin-top:8px"><button class="d" data-out="${n}">− Списать</button><input type="number" inputmode="numeric" min="1" value="1" id="n${n}" style="text-align:center;width:80px"><button class="p" data-in="${n}">+ Добавить</button></div></div>`).join('')||'<div class="card mu">Мешок пустой</div>')+
- `<div class="card"><b>Положить новый товар</b><div class="row" style="margin-top:8px"><input id="na" placeholder="Артикул (ХМ11)" list="al" autocapitalize="characters"><input id="ns" placeholder="Размер" list="sl" style="width:110px"></div>
- <datalist id="al">${Object.keys(totals()).map(a=>`<option value="${esc(a)}">`).join('')}</datalist><datalist id="sl">${SIZES.map(s=>`<option value="${s}">`).join('')}</datalist>
- <div class="row" style="margin-top:8px"><input type="number" inputmode="numeric" min="1" id="nq" placeholder="Сколько" style="width:110px"><button class="p sp" data-act="addnew">Добавить в мешок</button></div></div>
- <button class="d" data-act="delbag" style="margin-top:8px">${delArm?'Точно удалить мешок?':'Удалить мешок'}</button>`}
+<div class="row" style="margin:14px 0"><div class="qr">${qrSvg(b.id)}</div><div><div class="big">${esc(b.id)}</div><div class="mu">всего ${bagTotal(b)} шт.</div></div></div>
+<div class="row" style="margin-bottom:12px"><button class="d sp" data-act="scanout">📷 Списать сканером</button><button class="p sp" data-act="scanin">📷 Добавить сканером</button></div><div class="mu" style="margin-bottom:6px">Содержимое</div>`+
+(b.items.map((i,n)=>`<div class="card"><div class="row"><b>${esc(i.a)}</b><span>${esc(i.s)}</span><div class="sp"></div><span class="big">${i.q}</span></div>
+<div class="row" style="margin-top:8px"><button class="d" data-out="${n}">− Списать</button><input type="number" inputmode="numeric" min="1" value="1" id="n${n}" style="text-align:center;width:80px"><button class="p" data-in="${n}">+ Добавить</button></div></div>`).join('')||'<div class="card mu">Мешок пустой</div>')+
+`<div class="card"><b>Положить новый товар</b><div class="row" style="margin-top:8px"><input id="na" placeholder="Артикул (ХМ11)" list="al" autocapitalize="characters"><input id="ns" placeholder="Размер" list="sl" style="width:110px"></div>
+<datalist id="al">${Object.keys(totals()).map(a=>`<option value="${esc(a)}">`).join('')}</datalist><datalist id="sl">${SIZES.map(s=>`<option value="${s}">`).join('')}</datalist>
+<div class="row" style="margin-top:8px"><input type="number" inputmode="numeric" min="1" id="nq" placeholder="Сколько" style="width:110px"><button class="p sp" data-act="addnew">Добавить в мешок</button></div></div>
+<button class="d" data-act="delbag" style="margin-top:8px">${delArm?'Точно удалить мешок?':'Удалить мешок'}</button>`}
 document.addEventListener('click',e=>{const t=e.target.closest('button,[data-open],[data-art]');if(!t)return;const d=t.dataset;
- if(d.t){stopCam();$('#main').dataset.scan='';tab=d.t;openId=null;render();return}
- if(d.open){openBag(d.open);return}
- if(d.out!==undefined||d.in!==undefined){const n=+(d.out??d.in),it=bags[openId].items[n],v=Math.max(1,parseInt($('#n'+n).value)||1);change(openId,it.a,it.s,d.in!==undefined?v:-v);return}
- if(d.act==='new')newBag();
- else if(d.act==='printall')printLabels(Object.keys(bags).sort());
- else if(d.act==='print1')printLabels([openId]);
- else if(d.act==='close'){openId=null;render()}
- else if(d.act==='logout')FB.out();
- else if(d.act==='cam')openCam('find');else if(d.act==='scanin')openCam('in');else if(d.act==='scanout')openCam('out');else if(d.act==='camclose')stopCam();else if(d.act==='pscan')openCam('reg');
- else if(d.act==='padd'){const a=$('#pa').value.trim().toUpperCase(),sz=normS($('#ps').value),c=$('#pc').value.trim().replace(/[^A-Za-z0-9_-]/g,'');if(!a||!sz||!c){toast('Заполните артикул, размер и штрихкод');return}saveProd({code:c,a,s:sz});toast('Сохранено')}
- else if(d.pdel)delProd(d.pdel);
- else if(d.act==='go'){const v=$('#man').value;if(v)foundCode(v)}
- else if(d.act==='addnew'){const a=$('#na').value.trim().toUpperCase(),s=$('#ns').value.trim().toUpperCase().replace(/Х/g,'X').replace(/Л/g,'L').replace(/М/g,'M').replace(/С/g,'S'),n=parseInt($('#nq').value);if(!a||!s||!(n>0)){toast('Заполните артикул, размер и количество');return}change(openId,a,s,n)}
- else if(d.act==='delbag'){if(!delArm){delArm=true;render();return}const id=openId;openId=null;delBag(id)}
- else if(d.art){expand=expand===d.art?null:d.art;render()}});
+if(d.t){stopCam();$('#main').dataset.scan='';tab=d.t;openId=null;render();return}
+if(d.open){openBag(d.open);return}
+if(d.out!==undefined||d.in!==undefined){const n=+(d.out??d.in),it=bags[openId].items[n],v=Math.max(1,parseInt($('#n'+n).value)||1);change(openId,it.a,it.s,d.in!==undefined?v:-v);return}
+if(d.act==='new')newBag();
+else if(d.act==='printall')printLabels(Object.keys(bags).sort());
+else if(d.act==='print1')printLabels([openId]);
+else if(d.act==='close'){openId=null;render()}
+else if(d.act==='logout')FB.out();
+else if(d.act==='cam')openCam('find');else if(d.act==='scanin')openCam('in');else if(d.act==='scanout')openCam('out');else if(d.act==='camclose')stopCam();else if(d.act==='pscan')openCam('reg');
+else if(d.act==='padd'){const a=$('#pa').value.trim().toUpperCase(),sz=normS($('#ps').value),c=$('#pc').value.trim().replace(/[^A-Za-z0-9_-]/g,'');if(!a||!sz||!c){toast('Заполните артикул, размер и штрихкод');return}saveProd({code:c,a,s:sz});toast('Сохранено')}
+else if(d.pdel)delProd(d.pdel);
+else if(d.act==='go'){const v=$('#man').value;if(v)foundCode(v)}
+else if(d.act==='addnew'){const a=$('#na').value.trim().toUpperCase(),s=$('#ns').value.trim().toUpperCase().replace(/Х/g,'X').replace(/Л/g,'L').replace(/М/g,'M').replace(/С/g,'S'),n=parseInt($('#nq').value);if(!a||!s||!(n>0)){toast('Заполните артикул, размер и количество');return}change(openId,a,s,n)}
+else if(d.act==='delbag'){if(!delArm){delArm=true;render();return}const id=openId;openId=null;delBag(id)}
+else if(d.art){expand=expand===d.art?null:d.art;render()}});
 document.addEventListener('input',e=>{if(e.target.id==='q'){q=e.target.value;const p=e.target.selectionStart;render();const i=$('#q');i.focus();i.setSelectionRange(p,p)}});
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='man'){const v=e.target.value;if(v)foundCode(v)}});
 window.startApp=f=>{FB=f;render()};
@@ -147,35 +148,7 @@ window.setProds=arr=>{prods={};arr.forEach(v=>prods[v.code]=v);softRender()};
 window.setLogs=arr=>{logs=arr;if(tab==='log')render()};
 window.softRender=()=>{const ae=document.activeElement;if(!(ae&&/INPUT/.test(ae.tagName))||(tab!=='scan'&&tab!=='prods'&&!openId))render()};
 </script>
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-import {getFirestore,collection,doc,setDoc,deleteDoc,addDoc,onSnapshot,runTransaction,query,orderBy,limit} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-const firebaseConfig={
-  apiKey:"AIzaSyCf8-kD-Grk20GnJKIINPyAKSpnoJ6H3pI",
-  authDomain:"lider-tekstil.firebaseapp.com",
-  projectId:"lider-tekstil",
-  storageBucket:"lider-tekstil.firebasestorage.app",
-  messagingSenderId:"44919046709",
-  appId:"1:44919046709:web:6dd5c7d217b4bb983ce77c"
-};
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
-const FB={email:()=>(auth.currentUser&&auth.currentUser.email)||'',
- set:(c,id,v)=>setDoc(doc(db,c,id),v),del:(c,id)=>deleteDoc(doc(db,c,id)),add:(c,v)=>addDoc(collection(db,c),v),out:()=>signOut(auth),
- change:(id,a,s,d)=>runTransaction(db,async t=>{const ref=doc(db,'bags',id);const sn=await t.get(ref);if(!sn.exists())return 'none';
-  const items=(sn.data().items||[]).map(i=>({...i}));let it=items.find(i=>i.a===a&&i.s===s);
-  if(!it){if(d<0)return 'low';it={a,s,q:0};items.push(it)}if(it.q+d<0)return 'low';it.q+=d;
-  t.update(ref,{items:items.filter(i=>i.q>0)});return 'ok'})};
-window.startApp(FB);
-const $=id=>document.getElementById(id);let unsubs=[];
-async function login(){$('lm').textContent='';try{await signInWithEmailAndPassword(auth,$('le').value.trim(),$('lp').value)}catch(e){$('lm').textContent=(e.code==='auth/invalid-api-key'||e.code==='auth/api-key-not-valid.-please-pass-a-valid-api-key.')?'Ошибка настроек (apiKey)':'Неверный логин или пароль'}}
-$('lb').onclick=login;$('lp').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
-onAuthStateChanged(auth,u=>{unsubs.forEach(f=>f());unsubs=[];
- if(!u){$('login').style.display='flex';window.setBags([]);window.setProds([]);window.setLogs([]);return}
- $('login').style.display='none';
- const er=()=>{};
- unsubs.push(onSnapshot(collection(db,'bags'),s=>window.setBags(s.docs.map(x=>({...x.data(),id:x.id}))),er));
- unsubs.push(onSnapshot(collection(db,'prods'),s=>window.setProds(s.docs.map(x=>({...x.data(),code:x.id}))),er));
- unsubs.push(onSnapshot(query(collection(db,'log'),orderBy('ts','desc'),limit(200)),s=>window.setLogs(s.docs.map(x=>x.data())),er));
-});
-</script><script>if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{})</script></body></html>
+<script>
+let AC=null;
+function ac(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume()}catch(e){}return AC}
+document.addEventListener('click',ac);document.addEventLis
