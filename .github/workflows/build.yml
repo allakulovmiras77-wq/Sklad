@@ -20,9 +20,17 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
       - name: Install Python dependencies
         run: |
+          python -m pip install --upgrade pip
           python -m pip install Pillow
+
+      - name: Build APK
         run: |
           mkdir app
           cd app
@@ -79,3 +87,4 @@ jobs:
         with:
           name: Sklad-apk
           path: app/android/app/build/outputs/apk/debug/app-debug.apk
+          
