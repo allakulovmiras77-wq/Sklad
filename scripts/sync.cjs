@@ -65,7 +65,7 @@ async function run(db,FV,key,title,creds,fn){
     console.log(title,'ошибка:',errs.join('; '));return true;
   }
   await ref.set({rows:merge(stores),names:stores.map(s=>s.name),updated:Date.now(),
-    err:errs.length?errs.join('; ').slice(0,400):FV.delete()});
+    err:errs.length?errs.join('; ').slice(0,400):FV.delete()},{merge:true});
   console.log(title,'готово, магазинов:',stores.length,errs.length?'ошибки: '+errs.join('; '):'');
   return errs.length>0;
 }
