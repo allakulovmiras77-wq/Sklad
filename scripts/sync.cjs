@@ -80,4 +80,4 @@ async function main(){
   if(a||b)process.exitCode=1;
 }
 module.exports={split,merge,lat};
-if(require.main===module)main().catch(e=>{console.error(e.message);process.exit(1)});error(e.message);process.exit(1)});
+if(require.main===module)main().catch(e=>{console.error(e.message);process.exit(1)});
