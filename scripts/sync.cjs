@@ -15,6 +15,11 @@ const ozAcc = [1, 2].map(i => ({
 })).filter(a => a.id && a.key);
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function fx(url, opt) { // fetch с 3 попытками при сетевом сбое
+  for (let i = 0; i < 3; i++) {
+    try { return await fetch(url, opt); } catch (e) { if (i === 2) throw e; await sleep(3000 * (i + 1)); }
+  }
+}
 const SZ = { 'Х': 'X', 'Л': 'L', 'М': 'M', 'С': 'S' };
 const normSize = s => String(s || '').trim().toUpperCase().replace(/[ХЛМС]/g, c => SZ[c]);
 const normArt = s => String(s || '').trim().toUpperCase();
@@ -41,10 +46,37 @@ async function save(id, names, rows, err) {
 }
 
 // ---------- Wildberries ----------
+// Карточки товаров: из них берём артикул продавца и размер по chrtId / nmId (в отчёте по остаткам их нет)
+async function wbCards(token) {
+  const map = new Map(); let cursor = { limit: 100 };
+  for (let i = 0; i < 300; i++) {
+    const r = await fx('https://content-api.wildberries.ru/content/v2/get/cards/list', {
+      method: 'POST',
+      headers: { Authorization: token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ settings: { cursor, filter: { withPhoto: -1 } } })
+    });
+    if (!r.ok) {
+      const t = await r.text();
+      throw new Error('WB-контент ' + r.status + (r.status === 401 || r.status === 403 ? ': токену нужна категория «Контент» (только чтение)' : ' ' + t.slice(0, 100)));
+    }
+    const j = await r.json(); const cards = j.cards || [];
+    for (const c of cards) {
+      const v = normArt(c.vendorCode);
+      map.set('n' + c.nmID, { a: v, s: '' });
+      for (const z of c.sizes || []) map.set(Number(z.chrtID), { a: v, s: z.techSize });
+    }
+    const cur = j.cursor || {};
+    if (cards.length < 100 || !cur.nmID) break;
+    cursor = { limit: 100, updatedAt: cur.updatedAt, nmID: cur.nmID };
+    await sleep(700);
+  }
+  console.log('WB карточек (ключей):', map.size);
+  return map;
+}
 async function wbReport(token, path) {
   const out = []; const limit = 100000; let offset = 0;
   for (;;) {
-    const r = await fetch('https://seller-analytics-api.wildberries.ru/api/analytics/v1/stocks-report/' + path, {
+    const r = await fx('https://seller-analytics-api.wildberries.ru/api/analytics/v1/stocks-report/' + path, {
       method: 'POST',
       headers: { Authorization: token, 'Content-Type': 'application/json' },
       body: JSON.stringify({ limit, offset })
@@ -75,11 +107,15 @@ async function syncWB() {
   const map = new Map(); const errs = [];
   for (let idx = 0; idx < wbAcc.length; idx++) {
     const acc = wbAcc[idx];
+    let cards = new Map();
+    try { cards = await wbCards(acc.token); } catch (e) { console.error(acc.name, e.message); errs.push(acc.name + ': ' + e.message); continue; }
     for (const [path, kind] of [['wb-warehouses', 'fbo'], ['seller-warehouses', 'fbs']]) {
       try {
         for (const it of await wbReport(acc.token, path)) {
-          const a = normArt(it.vendorCode || it.supplierArticle || it.saName || it.sa);
-          const s = normSize(it.techSize || it.size || it.tech_size) || '—';
+          const c = cards.get(Number(it.chrtId)) || cards.get('n' + it.nmId) || {};
+          const a = normArt(c.a || it.vendorCode || it.supplierArticle || it.saName || it.sa);
+          let s = normSize(c.s || it.techSize || it.size || it.tech_size);
+          if (!s || s === '0') s = '—';
           const q = wbQty(it);
           if (a) add(map, wbAcc.length, a, s, idx, kind === 'fbo' ? q : 0, kind === 'fbs' ? q : 0);
         }
@@ -111,7 +147,7 @@ async function syncOzon() {
       const H = { 'Client-Id': acc.id, 'Api-Key': acc.key, 'Content-Type': 'application/json' };
       let cursor = '';
       for (let i = 0; i < 200; i++) {
-        const r = await fetch('https://api-seller.ozon.ru/v4/product/info/stocks', {
+        const r = await fx('https://api-seller.ozon.ru/v4/product/info/stocks', {
           method: 'POST', headers: H, body: JSON.stringify({ cursor, filter: { visibility: 'ALL' }, limit: 1000 })
         });
         if (!r.ok) throw new Error(acc.name + ': Ozon ' + r.status + ' ' + (await r.text()).slice(0, 150));
