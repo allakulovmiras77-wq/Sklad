@@ -5,7 +5,7 @@ const db = admin.firestore();
 const E = Object.fromEntries(Object.entries(process.env).map(([k, v]) => [k, String(v).trim()])); // убираем случайные пробелы в секретах
 
 // Названия магазинов (можно поменять на свои, они покажутся в приложении):
-const NAMES = { wb: ['Lider Tekstil', 'LT STYLE'], ozon: ['Lider Tekstil', 'LT STYLE'] };
+const NAMES = { wb: ['Lider Tekstil', 'LT STYLE'], ozon: ['Lider Tekstil', 'LT STYLE'], uzum: ['Uzum Market', 'Uzum 2'] };
 
 const wbAcc = [1, 2].map(i => ({ name: NAMES.wb[i - 1], token: E['WB_TOKEN_' + i] || (i === 1 ? E.WB_TOKEN : '') })).filter(a => a.token);
 const ozAcc = [1, 2].map(i => ({
@@ -13,6 +13,8 @@ const ozAcc = [1, 2].map(i => ({
   id: E['OZON_CLIENT_ID_' + i] || (i === 1 ? E.OZON_CLIENT_ID : ''),
   key: E['OZON_API_KEY_' + i] || (i === 1 ? E.OZON_API_KEY : '')
 })).filter(a => a.id && a.key);
+
+const uzAcc = [1, 2].map(i => ({ name: NAMES.uzum[i - 1], token: E['UZUM_TOKEN_' + i] || (i === 1 ? E.UZUM_TOKEN : '') })).filter(a => a.token);
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function fx(url, opt) { // fetch с 3 попытками при сетевом сбое
@@ -167,4 +169,127 @@ async function syncOzon() {
   } catch (e) { console.error(e.message); await save('ozon', ozAcc.map(a => a.name), [], e.message); }
 }
 
-(async () => { await syncOzon(); await syncWB(); process.exit(0); })().catch(e => { console.error(e); process.exit(1); });
+// ---------- Uzum Market: остатки ----------
+const UZ = 'https://api-seller.uzum.uz/api/seller-openapi';
+async function uzGet(path, token) {
+  for (const auth of [token, 'Bearer ' + token]) {
+    const r = await fx(UZ + path, { headers: { Authorization: auth, Accept: 'application/json' } });
+    if (r.status === 401 && auth === token) continue;
+    if (!r.ok) throw new Error('Uzum ' + r.status + (r.status === 401 || r.status === 403 ? ': проверьте токен Uzum' : ' ' + (await r.text()).slice(0, 120)));
+    return r.json();
+  }
+}
+async function syncUzum() {
+  if (!uzAcc.length) return;
+  const map = new Map();
+  try {
+    for (let idx = 0; idx < uzAcc.length; idx++) {
+      const acc = uzAcc[idx];
+      let shops = await uzGet('/v1/shops', acc.token);
+      if (!Array.isArray(shops)) shops = (shops && (shops.payload || shops.shops)) || [];
+      for (const sh of shops) {
+        for (let page = 0; page < 200; page++) {
+          const j = await uzGet('/v1/product/shop/' + sh.id + '?size=100&page=' + page + '&sortBy=DEFAULT&order=ASC', acc.token);
+          const list = j.productList || (j.payload && j.payload.productList) || [];
+          if (page === 0 && list[0]) console.log('Uzum пример товара:', JSON.stringify(list[0]).slice(0, 700));
+          for (const p of list) for (const k of p.skuList || []) {
+            const x = splitOffer(k.article || k.skuTitle || p.title);
+            let sz = x.s;
+            if (sz === '—') { const m = /(?:^|[\s,\-\/])(\d?XL|XXL|XS|S|M|L|\d{2}(?:-\d{2})?)\s*$/i.exec(String(k.skuTitle || k.skuFullTitle || '')); if (m) sz = normSize(m[1]); }
+            add(map, uzAcc.length, x.a, sz, idx, +k.quantityActive || 0, +k.quantityFbs || 0);
+          }
+          if (list.length < 100) break;
+          await sleep(300);
+        }
+      }
+    }
+    await save('uzum', uzAcc.map(a => a.name), finish(map));
+    console.log('Uzum готово, позиций:', map.size);
+  } catch (e) { console.error(e.message); await save('uzum', uzAcc.map(a => a.name), [], e.message); }
+}
+
+// ---------- Продажи по дням (последние 30 дней) -> mp/sales_wb, mp/sales_ozon ----------
+const dayKey = ts => new Date(ts + 5 * 36e5).toISOString().slice(0, 10); // по времени Ташкента
+const DAYS = Array.from({ length: 30 }, (_, i) => dayKey(Date.now() - (29 - i) * 864e5));
+function addSale(map, n, a, s, idx, day, q) {
+  const di = DAYS.indexOf(day); if (di < 0 || !a) return;
+  const k = a + '|' + s;
+  const r = map.get(k) || { a, s, st: Array.from({ length: n }, () => ({ q: Array(30).fill(0) })) };
+  r.st[idx].q[di] += q; map.set(k, r);
+}
+async function saveSales(id, names, map, errs) {
+  const d = { checked: Date.now(), names, days: DAYS };
+  const ref = db.collection('mp').doc('sales_' + id);
+  if (errs.length >= names.length) { d.err = errs.join('; ').slice(0, 450); await ref.set(d, { merge: true }); return; }
+  d.err = errs.length ? errs.join('; ').slice(0, 450) : admin.firestore.FieldValue.delete();
+  d.rows = [...map.values()].filter(r => r.st.some(x => x.q.some(v => v > 0)))
+    .sort((x, y) => x.a.localeCompare(y.a, 'ru', { numeric: true }) || x.s.localeCompare(y.s, 'ru', { numeric: true }));
+  d.updated = Date.now();
+  await ref.set(d, { merge: true });
+}
+async function syncOzonSales() {
+  if (!ozAcc.length) return;
+  const map = new Map(), errs = [];
+  const since = new Date(Date.now() - 30 * 864e5).toISOString(), to = new Date().toISOString();
+  for (let idx = 0; idx < ozAcc.length; idx++) {
+    const acc = ozAcc[idx];
+    const H = { 'Client-Id': acc.id, 'Api-Key': acc.key, 'Content-Type': 'application/json' };
+    try {
+      for (let off = 0, i = 0; i < 60; i++, off += 1000) { // FBO
+        const r = await fx('https://api-seller.ozon.ru/v2/posting/fbo/list', { method: 'POST', headers: H,
+          body: JSON.stringify({ dir: 'ASC', filter: { since, to }, limit: 1000, offset: off, with: { analytics_data: false, financial_data: false } }) });
+        if (!r.ok) throw new Error('Ozon-продажи FBO ' + r.status + ' ' + (await r.text()).slice(0, 100));
+        const j = await r.json(); const list = j.result || [];
+        if (i === 0 && list[0]) console.log('Ozon FBO заказ (пример):', JSON.stringify(list[0]).slice(0, 500));
+        for (const p of list) {
+          if (/cancel/i.test(String(p.status))) continue;
+          const day = dayKey(Date.parse(p.created_at));
+          for (const pr of p.products || []) { const x = splitOffer(pr.offer_id); addSale(map, ozAcc.length, x.a, x.s, idx, day, +pr.quantity || 1); }
+        }
+        if (list.length < 1000) break;
+        await sleep(300);
+      }
+      for (let off = 0, i = 0; i < 60; i++, off += 1000) { // FBS
+        const r = await fx('https://api-seller.ozon.ru/v3/posting/fbs/list', { method: 'POST', headers: H,
+          body: JSON.stringify({ dir: 'ASC', filter: { since, to }, limit: 1000, offset: off, with: {} }) });
+        if (!r.ok) throw new Error('Ozon-продажи FBS ' + r.status + ' ' + (await r.text()).slice(0, 100));
+        const j = await r.json(); const res = j.result || {}; const list = res.postings || [];
+        if (i === 0 && list[0]) console.log('Ozon FBS заказ (пример):', JSON.stringify(list[0]).slice(0, 500));
+        for (const p of list) {
+          if (/cancel/i.test(String(p.status))) continue;
+          const day = dayKey(Date.parse(p.in_process_at || p.shipment_date));
+          for (const pr of p.products || []) { const x = splitOffer(pr.offer_id); addSale(map, ozAcc.length, x.a, x.s, idx, day, +pr.quantity || 1); }
+        }
+        if (!res.has_next && list.length < 1000) break;
+        await sleep(300);
+      }
+    } catch (e) { console.error(acc.name, e.message); errs.push(acc.name + ': ' + e.message); }
+  }
+  await saveSales('ozon', ozAcc.map(a => a.name), map, errs);
+  console.log('Ozon продажи готово, позиций:', map.size, errs.length ? '(есть ошибка)' : '');
+}
+async function syncWBSales() {
+  if (!wbAcc.length) return;
+  const map = new Map(), errs = [];
+  const from = dayKey(Date.now() - 31 * 864e5);
+  for (let idx = 0; idx < wbAcc.length; idx++) {
+    const acc = wbAcc[idx];
+    try {
+      let r = await fx('https://statistics-api.wildberries.ru/api/v1/supplier/orders?flag=0&dateFrom=' + from, { headers: { Authorization: acc.token } });
+      if (r.status === 429) { await sleep(62000); r = await fx('https://statistics-api.wildberries.ru/api/v1/supplier/orders?flag=0&dateFrom=' + from, { headers: { Authorization: acc.token } }); }
+      if (!r.ok) throw new Error('WB-статистика ' + r.status + (r.status === 401 || r.status === 403 ? ': токену нужна категория «Статистика» (только чтение)' : ' ' + (await r.text()).slice(0, 100)));
+      const j = await r.json(); const list = Array.isArray(j) ? j : [];
+      if (list[0]) console.log('WB заказ (пример):', JSON.stringify(list[0]).slice(0, 500));
+      for (const o of list) {
+        if (o.isCancel) continue;
+        const a = normArt(o.supplierArticle), sz = normSize(o.techSize);
+        addSale(map, wbAcc.length, a, (!sz || sz === '0') ? '—' : sz, idx, String(o.date || '').slice(0, 10), 1);
+      }
+    } catch (e) { console.error(acc.name, e.message); errs.push(acc.name + ': ' + e.message); }
+    await sleep(62000);
+  }
+  await saveSales('wb', wbAcc.map(a => a.name), map, errs);
+  console.log('WB продажи готово, позиций:', map.size, errs.length ? '(есть ошибка)' : '');
+}
+
+(async () => { await syncOzon(); await syncWB(); await syncUzum(); await syncOzonSales(); await syncWBSales(); process.exit(0); })().catch(e => { console.error(e); process.exit(1); });
