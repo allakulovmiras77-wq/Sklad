@@ -24,3 +24,4 @@ jobs:
           OZON_API_KEY_1: ${{ secrets.OZON_API_KEY_1 }}
           OZON_CLIENT_ID_2: ${{ secrets.OZON_CLIENT_ID_2 }}
           OZON_API_KEY_2: ${{ secrets.OZON_API_KEY_2 }}
+          UZUM_TOKEN: ${{ secrets.UZUM_TOKEN }}
