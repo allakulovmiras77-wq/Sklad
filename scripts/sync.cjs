@@ -169,6 +169,44 @@ async function syncOzon() {
   } catch (e) { console.error(e.message); await save('ozon', ozAcc.map(a => a.name), [], e.message); }
 }
 
+
+// ---------- Uzum: замена названий (товар + цвет) на наши артикулы ----------
+// Правила хранятся в приложении (Ещё → Настройки → «Uzum: названия → наши артикулы»); если там пусто, используется этот список.
+const DEF_UZMAP = "LIDER МК4 | Темсин = МК1\nLIDER МК4 | Темсер = МК4\nLIDER МК4 | Темзел = МК5\nLIDER МК4 | серебрн = МК8\nLIDER Хм2 | Темсин = ХМ2\nLIDER Хм2 | Темсер = ХМ4\nLIDER Хм2 | Темзел = ХМ11\nLIDER Хм2 | серебрн = ХМ8\nLIDER В4 | зелен = В5\nLIDER В4 | светсер = В8\nLIDER В4 | СЕРЫЙ = КВ4\nLIDER В4 | СИНИЙ = КВ2\nLIDER В4 | ТЕМНСЕР = В4\nLIDER В4 | ТЕМЕСИН = В2\nLIDER ЖМ | ЛАВАНДА = ЖВ2\nLIDER ЖМ | КОРАЛЛМЕЛ = ЖВ6\nLIDER ЖМ | МАРСАЛ = ЖВ4\nLIDER ЖМ | АМЕТИС = ЖВ2\nLIDER ЖМ | ТЕМНРОЗ = ЖВ11\nLIDER ЖМ | АМЕТИС = ЖМШ2\nLIDER ЖМ | ПАСТКОР = ЖМШ6\nLIDER ЖМ | СИРЕН = ЖМШ4\nLIDER ЖМ | ФУКСИЯ = ЖМШ11\nLIDER ЖМК | АМЕТИС = ЖМК2\nLIDER ЖМК | ПАСТКОР = ЖМК6\nLIDER ЖМК | СИРЕН = ЖМК4\nLIDER ЖМК | ФУКСИЯ = ЖМК11\nLIDER П | ТЕМНСЕР = П4\nLIDER П | ТЕМНСИН = П2\nLITEKS-ДЕТСКИЙВАФЕЛЬНЫЙ | Светские = ДВК7\nLITEKS-ДЕТСКИЙВАФЕЛЬНЫЙ | корроз = ДВК6\nLITEKS-ДЕТСКИЙВАФЕЛЬНЫЙ | сермел = ДВК8\nLITEKS-ДЕТСКИЙВАФЕЛЬНЫЙ | темнсин = ДВК2\nLITEKS-ДЕТСКИЙВАФЕЛЬНЫЙ | темнсер = ДВК4\nLITEKS-ДЕТСКИЙМАХРОВЫЙ | фуксия = ДМК11\nLITEKS-ДЕТСКИЙМАХРОВЫЙ | ПУДР = ЖМК6\nLITEKS-ДЕТСКИЙМАХРОВЫЙ | СЕРЫЙ = ДМК8";
+const GLY = { 'Х': 'X', 'М': 'M', 'К': 'K', 'В': 'B', 'Е': 'E', 'С': 'C', 'Т': 'T', 'А': 'A', 'Р': 'P', 'О': 'O', 'Н': 'H' };
+const nmS = s => String(s || '').toUpperCase().replace(/Ё/g, 'Е').replace(/[ХМКВЕСТАРОН]/g, c => GLY[c]).replace(/[^A-Z0-9А-Я]+/g, ' ').trim();
+const hasSeq = (hay, needle) => !!needle && (' ' + hay + ' ').includes(' ' + needle + ' ');
+function lev(a, b) {
+  const d = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++)
+    d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[a.length][b.length];
+}
+function parseUz(txt) {
+  const out = [];
+  for (const line of String(txt || '').split(/\n/)) {
+    const eq = line.lastIndexOf('='); if (eq < 0) continue;
+    const art = line.slice(eq + 1).trim(), parts = line.slice(0, eq).split('|').map(x => x.trim());
+    if (!art || parts.length < 2) continue;
+    out.push({ p: nmS(parts[0]), c: nmS(parts[1]), h: parts[2] ? nmS(parts[2]) : '', art: art.toUpperCase() });
+  }
+  return out;
+}
+function uzMatch(rules, full) {
+  let hits = rules.filter(r => hasSeq(full, r.p) && hasSeq(full, r.c) && (!r.h || hasSeq(full, r.h)));
+  if (!hits.length) { // опечатка в цвете на 1 букву
+    const words = full.split(' ');
+    hits = rules.filter(r => hasSeq(full, r.p) && (!r.h || hasSeq(full, r.h)) && r.c.length >= 5 && !r.c.includes(' ') && words.some(w => w.length >= 5 && lev(w, r.c) <= 1));
+    if (hits.length > 1) { const same = new Set(hits.map(h => h.art)); if (same.size > 1) return { art: hits[0].art, amb: true }; }
+  }
+  if (!hits.length) return null;
+  hits.sort((a, b) => (b.h ? 1 : 0) - (a.h ? 1 : 0) || b.p.length - a.p.length);
+  const best = hits[0];
+  const amb = hits.some(h => h.p === best.p && h.c === best.c && !!h.h === !!best.h && h.art !== best.art);
+  return { art: best.art, amb };
+}
+
 // ---------- Uzum Market: остатки ----------
 const UZ = 'https://api-seller.uzum.uz/api/seller-openapi';
 async function uzGet(path, token) {
@@ -181,8 +219,10 @@ async function uzGet(path, token) {
 }
 async function syncUzum() {
   if (!uzAcc.length) return;
-  const map = new Map();
+  const map = new Map(), meta = new Map();
   try {
+    const st = await db.collection('settings').doc('main').get();
+    const rules = parseUz(st.exists && st.data().uzmap !== undefined ? st.data().uzmap : DEF_UZMAP);
     for (let idx = 0; idx < uzAcc.length; idx++) {
       const acc = uzAcc[idx];
       let shops = await uzGet('/v1/shops', acc.token);
@@ -196,15 +236,23 @@ async function syncUzum() {
             const x = splitOffer(k.article || k.skuTitle || p.title);
             let sz = x.s;
             if (sz === '—') { const m = /(?:^|[\s,\-\/])(\d?XL|XXL|XS|S|M|L|\d{2}(?:-\d{2})?)\s*$/i.exec(String(k.skuTitle || k.skuFullTitle || '')); if (m) sz = normSize(m[1]); }
-            add(map, uzAcc.length, x.a, sz, idx, +k.quantityActive || 0, +k.quantityFbs || 0);
+            const chars = (k.characteristics || []).map(c => [c.charValue, c.value, c.title, c.name].filter(Boolean).join(' ')).join(' ');
+            const full = nmS([p.title, k.article, k.skuTitle, k.skuFullTitle, chars].join(' '));
+            const hit = uzMatch(rules, full), art = hit ? hit.art : x.a;
+            const key = art + '|' + sz;
+            if (!meta.has(key)) meta.set(key, { m: hit ? (hit.amb ? 2 : 1) : 0, raw: (String(p.title || '') + ' | ' + String(k.article || k.skuTitle || '')).slice(0, 120) });
+            else if (hit && hit.amb) meta.get(key).m = 2;
+            add(map, uzAcc.length, art, sz, idx, +k.quantityActive || 0, +k.quantityFbs || 0);
           }
           if (list.length < 100) break;
           await sleep(300);
         }
       }
     }
-    await save('uzum', uzAcc.map(a => a.name), finish(map));
-    console.log('Uzum готово, позиций:', map.size);
+    const rows = finish(map).map(r => ({ ...r, ...(meta.get(r.a + '|' + r.s) || {}) }));
+    await save('uzum', uzAcc.map(a => a.name), rows);
+    console.log('Uzum готово, позиций:', map.size, 'не сопоставлено:', rows.filter(r => r.m === 0).length, 'неоднозначно:', rows.filter(r => r.m === 2).length);
+    rows.filter(r => r.m !== 1).slice(0, 15).forEach(r => console.log('  Uzum', r.m === 2 ? 'неоднозначно' : 'не сопоставлено', '->', r.raw));
   } catch (e) { console.error(e.message); await save('uzum', uzAcc.map(a => a.name), [], e.message); }
 }
 
