@@ -157,14 +157,14 @@ async function main() {
 
   // Place the original reference header/footer around the live table. Cover only the static month/date fields.
   const monthOverlay = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="470" height="126"><rect x="0" y="0" width="470" height="126" rx="24" fill="#f8fbff" stroke="#d9e2ec" stroke-width="1.5"/><text x="235" y="59" text-anchor="middle" fill="#a50e21" font-size="43" font-weight="bold" font-family="DejaVu Sans, sans-serif">${escapeXml(monthTitle)}</text><text x="235" y="91" text-anchor="middle" fill="#315477" font-size="20" font-family="DejaVu Sans, sans-serif">Период: ${escapeXml(period)}</text></svg>`);
-  const footerDate = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="520" height="78"><text x="14" y="46" fill="#fff" font-size="18" font-family="DejaVu Sans, sans-serif">Сформировано: ${escapeXml(timestamp)}</text></svg>`);
+  const footerDate = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="455" height="48"><rect x="0" y="0" width="455" height="48" rx="4" fill="#082f5b"/><text x="8" y="30" fill="#fff" font-size="17" font-family="DejaVu Sans, sans-serif">Сформировано: ${escapeXml(timestamp)}</text></svg>`);
   const image = await sharp({ create: { width: WIDTH, height, channels: 4, background: '#ffffff' } })
     .composite([
       { input: header, top: 0, left: 0 },
       { input: body, top: 0, left: 0 },
       { input: monthOverlay, top: 7, left: 555 },
       { input: footer, top: height - FOOTER_HEIGHT, left: 0 },
-      { input: footerDate, top: height - FOOTER_HEIGHT + 2, left: 64 }
+      { input: footerDate, top: height - FOOTER_HEIGHT + 26, left: 78 }
     ])
     .png()
     .toBuffer();
