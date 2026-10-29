@@ -1,0 +1,152 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email.lower() == 'lidertekstil10@gmail.com';
+    }
+
+    function isAcc() {
+      return request.auth != null
+        && request.auth.token.email.lower() == 'lidertekstil4@gmail.com';
+    }
+
+    function hasProfile() {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function udoc() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function blocked() {
+      return hasProfile() && udoc().data.get('blocked', false) == true;
+    }
+
+    function ok() {
+      return request.auth != null && (isAdmin() || !blocked());
+    }
+
+    function canDel() {
+      return isAdmin() || (
+        ok() && hasProfile() && udoc().data.get('canDel', false) == true
+      );
+    }
+
+    // Финансовые права: владелец и бухгалтер имеют полный доступ.
+    // Сотрудник с hr='view' только читает; hr='edit' читает и изменяет.
+    function hrRead() {
+      return isAdmin() || (
+        ok() && (
+          isAcc() || (
+            hasProfile() && udoc().data.get('hr', '') in ['view', 'edit']
+          )
+        )
+      );
+    }
+
+    function hrWrite() {
+      return isAdmin() || (
+        ok() && (
+          isAcc() || (
+            hasProfile() && udoc().data.get('hr', '') == 'edit'
+          )
+        )
+      );
+    }
+
+    match /users/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || ok());
+      allow create: if isAdmin() || (
+        request.auth != null && request.auth.uid == uid
+        && !('blocked' in request.resource.data)
+        && !('canDel' in request.resource.data)
+        && !('hr' in request.resource.data)
+      );
+      allow update: if isAdmin() || (
+        request.auth != null && request.auth.uid == uid
+        && request.resource.data.get('blocked', false) == resource.data.get('blocked', false)
+        && request.resource.data.get('canDel', false) == resource.data.get('canDel', false)
+        && request.resource.data.get('hr', '') == resource.data.get('hr', '')
+      );
+      allow delete: if isAdmin();
+    }
+
+    match /bags/{id} {
+      allow read, create, update: if ok();
+      allow delete: if canDel();
+    }
+
+    match /prods/{id} {
+      allow read, create, update: if ok();
+      allow delete: if canDel();
+    }
+
+    match /log/{id} {
+      allow read, create: if ok();
+      allow update, delete: if false;
+    }
+
+    match /mp/{id} {
+      allow read: if ok();
+      allow write: if false;
+    }
+
+    match /settings/{id} {
+      allow read: if ok();
+      allow write: if isAdmin();
+    }
+
+    match /backups/{id} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /hr_staff/{id} {
+      allow read: if hrRead();
+      allow create, update: if hrWrite();
+      allow delete: if isAdmin();
+    }
+
+    match /hr_att/{id} {
+      allow read: if hrRead();
+      allow write: if hrWrite();
+    }
+
+    match /hr_log/{id} {
+      allow read: if hrRead();
+      allow create: if hrWrite();
+      allow update, delete: if false;
+    }
+
+    // QR attendance is written only by trusted Cloud Functions (Admin SDK).
+    match /hr_qr_attendance/{id} {
+      allow read: if hrRead() || (request.auth != null && resource.data.uid == request.auth.uid);
+      allow create, update, delete: if false;
+    }
+    match /hr_qr_events/{id} {
+      allow read: if hrRead();
+      allow create, update, delete: if false;
+    }
+    match /hr_qr_audit/{id} {
+      allow read: if hrRead();
+      allow create, update, delete: if false;
+    }
+    match /hr_manager_digest_runs/{id} {
+      allow read: if hrRead();
+      allow write: if false;
+      match /managers/{managerId} {
+        allow read: if hrRead();
+        allow write: if false;
+      }
+    }
+    match /hr_reminder_runs/{id} {
+      allow read: if hrRead();
+      allow write: if false;
+      match /workers/{workerId} {
+        allow read: if hrRead();
+        allow write: if false;
+      }
+    }
+  }
+}
