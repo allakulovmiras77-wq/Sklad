@@ -1,0 +1,28 @@
+// REVIEW BEFORE MERGING into the existing Firestore rules.
+// Add these match blocks inside match /databases/{database}/documents.
+// Keep all existing match blocks and helper functions intact.
+
+match /hr_qr_attendance/{id} {
+  // Managers can review; each sewing worker can read only records linked to their auth UID.
+  allow read: if hrRead() || (request.auth != null && resource.data.uid == request.auth.uid);
+  // Client must never write check-ins or approvals directly. Cloud Functions Admin SDK bypasses rules.
+  allow create, update, delete: if false;
+}
+match /hr_qr_events/{id} {
+  allow read: if hrRead();
+  allow create, update, delete: if false;
+}
+match /hr_reminder_runs/{id} {
+  allow read: if hrRead();
+  allow write: if false;
+  match /workers/{workerId} {
+    allow read: if hrRead();
+    allow write: if false;
+  }
+}
+
+match /hr_qr_audit/{id} {
+  allow read: if hrRead();
+  // Audit records are written only by trusted Cloud Functions using Admin SDK.
+  allow create, update, delete: if false;
+}
