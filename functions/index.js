@@ -819,7 +819,7 @@ exports.sewingAttendanceManagerDigest = onSchedule({
         throw new Error('Secret TELEGRAM_BOT_TOKEN не настроен');
       }
 
-      const response = await fetch(
+            const response = await fetch(
         `https://api.telegram.org/bot${token}/sendMessage`,
         {
           method: 'POST',
@@ -829,4 +829,37 @@ exports.sewingAttendanceManagerDigest = onSchedule({
             text: message
           })
         }
-      
+      );
+
+      const payload = await response.json();
+
+      if (!response.ok || !payload.ok) {
+        throw new Error(
+          payload.description || `Telegram HTTP ${response.status}`
+        );
+      }
+
+      await logRef.set({
+        status: 'sent',
+        sentAt: FieldValue.serverTimestamp()
+      });
+
+      sent++;
+    } catch (e) {
+      await logRef.set({
+        status: 'failed',
+        error: String(e.message || e).slice(0, 300),
+        attemptedAt: FieldValue.serverTimestamp()
+      });
+
+      failed++;
+    }
+  }
+
+  await runRef.set({
+    status: failed ? 'completed_with_errors' : 'completed',
+    sent,
+    failed,
+    completedAt: FieldValue.serverTimestamp()
+  }, { merge: true });
+});
