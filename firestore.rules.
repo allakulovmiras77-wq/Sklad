@@ -1,4 +1,5 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
     function isAdmin() {
@@ -33,8 +34,6 @@ service cloud.firestore {
       );
     }
 
-    // Финансовые права: владелец и бухгалтер имеют полный доступ.
-    // Сотрудник с hr='view' только читает; hr='edit' читает и изменяет.
     function hrRead() {
       return isAdmin() || (
         ok() && (
@@ -119,19 +118,21 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
-    // QR attendance is written only by trusted Cloud Functions (Admin SDK).
     match /hr_qr_attendance/{id} {
       allow read: if hrRead() || (request.auth != null && resource.data.uid == request.auth.uid);
       allow create, update, delete: if false;
     }
+
     match /hr_qr_events/{id} {
       allow read: if hrRead();
       allow create, update, delete: if false;
     }
+
     match /hr_qr_audit/{id} {
       allow read: if hrRead();
       allow create, update, delete: if false;
     }
+
     match /hr_manager_digest_runs/{id} {
       allow read: if hrRead();
       allow write: if false;
@@ -140,6 +141,7 @@ service cloud.firestore {
         allow write: if false;
       }
     }
+
     match /hr_reminder_runs/{id} {
       allow read: if hrRead();
       allow write: if false;
