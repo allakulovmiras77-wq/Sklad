@@ -1,0 +1,27 @@
+name: Attendance notify
+on:
+  schedule:
+    - cron: '30 3 * * 1-6'   # 08:30 Ташкент (UTC+5), пн–сб
+    - cron: '40 12 * * 1-6'  # 17:40 Ташкент
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: morning или evening
+        default: morning
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm install firebase-admin@12 --no-save
+      - name: Run
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_OWNER_CHAT: ${{ secrets.TELEGRAM_OWNER_CHAT }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then M="${{ inputs.mode }}";
+          elif [ "${{ github.event.schedule }}" = "30 3 * * 1-6" ]; then M=morning; else M=evening; fi
+          node attendance-cron.cjs $M
