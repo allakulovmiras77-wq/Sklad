@@ -1,0 +1,304 @@
+
+name: Build APK
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install Pillow
+
+      - name: Validate repository files
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          root = Path(".")
+          required = ["index.html", "manifest.json"]
+
+          for name in required:
+              if not (root / name).is_file():
+                  raise SystemExit(f"ERROR: Missing required file: {name}")
+
+          def find_icons(stem):
+              return sorted(
+                  [
+                      p for p in root.iterdir()
+                      if p.is_file() and p.name.lower() == stem.lower()
+                  ],
+                  key=lambda p: (p.name != stem, p.name)
+              )
+
+          icons = (
+              find_icons("icon-192-1.png")
+              + find_icons("icon-512-1.png")
+          )
+
+          if not icons:
+              raise SystemExit(
+                  "ERROR: Neither icon-192-1.png nor "
+                  "Icon-512-1.png was found."
+              )
+
+          for path in icons:
+              try:
+                  with Image.open(path) as img:
+                      img.verify()
+              except Exception as exc:
+                  raise SystemExit(
+                      f"ERROR: Invalid image {path.name}: {exc}"
+                  )
+
+              print(f"Valid image: {path.name}")
+
+          print("Repository validation passed.")
+          PY
+
+      - name: Build APK
+        run: |
+          set -euo pipefail
+
+          mkdir app
+          cd app
+
+          npm init -y
+          npm install @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
+
+          mkdir www
+
+          cp ../index.html ../manifest.json www/
+
+          # Find icons without depending on filename capitalization.
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import shutil
+
+          root = Path("..")
+          www = Path("www")
+
+          def find_icon(stem):
+              candidates = sorted(
+                  [
+                      p for p in root.iterdir()
+                      if p.is_file() and p.name.lower() == stem.lower()
+                  ],
+                  key=lambda p: (p.name != stem, p.name)
+              )
+              return candidates[0] if candidates else None
+
+          icon192 = find_icon("icon-192-1.png")
+          icon512 = find_icon("icon-512-1.png")
+
+          if icon192 is None and icon512 is None:
+              raise SystemExit("ERROR: No application icon was found.")
+
+          # Use the available image if one of the two sizes is missing.
+          if icon192 is None:
+              icon192 = icon512
+          if icon512 is None:
+              icon512 = icon192
+
+          # Preserve original filenames in www for existing references.
+          for source in {icon192, icon512}:
+              shutil.copy2(source, www / source.name)
+              print(f"Copied original icon: {source.name}")
+
+          # Also create consistent lowercase filenames.
+          for source, filename, size in [
+              (icon192, "icon-192-1.png", 192),
+              (icon512, "icon-512-1.png", 512),
+          ]:
+              with Image.open(source) as img:
+                  img = img.convert("RGBA")
+                  img = img.resize(
+                      (size, size),
+                      Image.Resampling.LANCZOS
+                  )
+                  img.save(www / filename)
+
+              print(f"Created {filename}: {size}x{size}")
+
+          print("Web icons prepared.")
+          PY
+
+          cat > capacitor.config.json <<'EOF'
+          {
+            "appId": "uz.lidertekstil.sklad",
+            "appName": "Склад LT",
+            "webDir": "www",
+            "server": {
+              "url": "https://allakulovmiras77-wq.github.io/Sklad/",
+              "androidScheme": "https"
+            }
+          }
+          EOF
+
+          npx cap add android
+          npx cap sync android
+
+          # Route Android system Back presses through the app's safe navigation.
+          # This changes only the generated Android MainActivity in the APK build.
+          python3 - <<'PY'
+          from pathlib import Path
+
+          candidates = list(Path("android/app/src/main/java").rglob("MainActivity.java"))
+          if len(candidates) != 1:
+              raise SystemExit(f"Expected one MainActivity.java, found {len(candidates)}")
+          path = candidates[0]
+          source = path.read_text(encoding="utf-8")
+          if "window.handleNativeBack" not in source:
+              method = """
+
+              @Override
+              public void onBackPressed() {
+                  if (getBridge() != null && getBridge().getWebView() != null) {
+                      getBridge().getWebView().evaluateJavascript(
+                          \"(function(){return window.handleNativeBack?window.handleNativeBack():false;})()\",
+                          value -> {
+                              if (\"\\\"EXIT\\\"\".equals(value)) {
+                                  finishAndRemoveTask();
+                              }
+                          }
+                      );
+                      return;
+                  }
+                  super.onBackPressed();
+              }
+          """
+              pos = source.rfind("}")
+              if pos < 0:
+                  raise SystemExit("MainActivity.java has no closing brace")
+              source = source[:pos] + method + source[pos:]
+              path.write_text(source, encoding="utf-8")
+          print(f"Android Back handler configured: {path}")
+          PY
+
+          # Generate all Android launcher icon sizes.
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          source = Path("www/icon-192-1.png")
+          resources = Path("android/app/src/main/res")
+
+          sizes = {
+              "mdpi": 48,
+              "hdpi": 72,
+              "xhdpi": 96,
+              "xxhdpi": 144,
+              "xxxhdpi": 192,
+          }
+
+          with Image.open(source) as original:
+              image = original.convert("RGBA")
+
+              for density, size in sizes.items():
+                  folder = resources / f"mipmap-{density}"
+                  folder.mkdir(parents=True, exist_ok=True)
+
+                  output = folder / "ic_launcher.png"
+                  image.resize(
+                      (size, size),
+                      Image.Resampling.LANCZOS
+                  ).save(output)
+
+                  print(f"Created {output}: {size}x{size}")
+
+          print("Android launcher icons generated.")
+          PY
+
+          # Add camera declarations without duplicating existing ones.
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("android/app/src/main/AndroidManifest.xml")
+          content = path.read_text(encoding="utf-8")
+
+          additions = []
+
+          if "android.permission.CAMERA" not in content:
+              additions.append(
+                  '    <uses-permission '
+                  'android:name="android.permission.CAMERA" />'
+              )
+
+          if "android.hardware.camera" not in content:
+              additions.append(
+                  '    <uses-feature '
+                  'android:name="android.hardware.camera" '
+                  'android:required="false" />'
+              )
+
+          if additions:
+              if "<application" not in content:
+                  raise SystemExit(
+                      "ERROR: application tag missing from AndroidManifest.xml"
+                  )
+
+              content = content.replace(
+                  "<application",
+                  "\n".join(additions) + "\n    <application",
+                  1
+              )
+
+              path.write_text(content, encoding="utf-8")
+
+          print("Camera manifest declarations checked.")
+          PY
+
+          cd android
+
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleDebug
+
+          APK="app/build/outputs/apk/debug/app-debug.apk"
+
+          if [ ! -s "$APK" ]; then
+            echo "ERROR: APK was not created or is empty."
+            exit 1
+          fi
+
+          echo "APK build completed successfully."
+          ls -lh "$APK"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sklad-apk
+          path: app/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
+          
