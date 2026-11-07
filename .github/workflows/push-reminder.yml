@@ -1,0 +1,29 @@
+name: Push reminder
+on:
+  # Запасной вариант: GitHub иногда опаздывает со schedule на 10–60 минут.
+  # Основной запуск ровно в 08:40 делает cron-job.org (см. инструкцию) через workflow_dispatch.
+  schedule:
+    - cron: '40 3 * * 1-6'   # 08:40 Ташкент (UTC+5), пн–сб
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Тест: отправить сейчас всем, у кого включены напоминания (true/false)'
+        default: 'false'
+concurrency:
+  group: push-reminder
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm install firebase-admin@12 web-push@3 --no-save
+      - name: Send reminders
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force || 'false' }}
+        run: node scripts/push-reminder.cjs
