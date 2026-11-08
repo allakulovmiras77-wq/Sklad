@@ -66,7 +66,8 @@ export async function call(name, data) {
   try { const r = await httpsCallable(fns, name)(data); return r.data; }
   catch (e) {
     const known = e && e.code && ERR[e.code];
-    const msg = e && e.code === "functions/internal" ? t("err_server") : (e && e.message && !/^(internal|unavailable)$/i.test(e.message) ? e.message : (known ? t(known) : t("err_server")));
+    const real = e && e.message && !/^(internal|unavailable|not_found|unknown)$/i.test(String(e.message).trim());
+    const msg = real ? e.message : (known ? t(known) : (e && e.code === "functions/not-found" ? t("err_notdeployed") : t("err_server")));
     const er = new Error(msg); er.code = e && e.code; throw er;
   }
 }
@@ -255,99 +256,4 @@ export const IC = {
   set: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
   user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>',
   plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
-  minus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14"/></svg>',
-  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
-  cam: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',
-  box: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>',
-  out: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/></svg>',
-  send: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>'
-};
-
-// ---------- крупная подпись «Created by Miras» ----------
-export const byline = () => '<div class="byline"><div class="ln"></div><div class="by">Created by <em>Miras</em></div><div class="by2">Склад LT · Москва</div></div>';
-
-// ---------- иллюстрация современного склада ----------
-export function heroArt() {
-  return `<svg class="art" viewBox="0 0 800 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-<defs>
-<linearGradient id="hg-w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b2239"/><stop offset="1" stop-color="#16456b"/></linearGradient>
-<linearGradient id="hg-f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b5a86" stop-opacity=".0"/><stop offset="1" stop-color="#071a2c" stop-opacity=".9"/></linearGradient>
-<linearGradient id="hg-r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9140"/><stop offset="1" stop-color="#e8610f"/></linearGradient>
-<linearGradient id="hg-l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6d6" stop-opacity=".95"/><stop offset="1" stop-color="#fff6d6" stop-opacity="0"/></linearGradient>
-<linearGradient id="hg-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9edf2"/><stop offset="1" stop-color="#b8c4d2"/></linearGradient>
-<linearGradient id="hg-c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9a066"/><stop offset="1" stop-color="#b67a43"/></linearGradient>
-</defs>
-<rect width="800" height="360" fill="url(#hg-w)"/>
-<!-- окно с видом на Москву -->
-<g opacity=".55"><rect x="560" y="40" width="190" height="110" rx="10" fill="#244f78"/>
-<path d="M565 150v-34h14v-14h10v14h12v-22l6-10 6 10v22h14v-18h10v18h10v-30l8-14 8 14v30h12v-12h14v12h30v-0z" fill="#12385a"/>
-<path d="M650 116c0-10 8-14 8-22 0-6-4-8-8-12 4-2 12 0 12 10 0 8 4 10 4 16z" fill="#ff9140" opacity=".8"/>
-<circle cx="710" cy="62" r="11" fill="#ffd9a8" opacity=".8"/></g>
-<!-- светильники -->
-<g><path d="M120 0v34M360 0v34M600 0v34" stroke="#0a1a2b" stroke-width="3"/>
-<path d="M96 34h48l-8 12h-32zM336 34h48l-8 12h-32zM576 34h48l-8 12h-32z" fill="#0a1a2b"/>
-<path d="M100 46h40l30 150h-100zM340 46h40l30 150h-100zM580 46h40l30 150h-100z" fill="url(#hg-l)" opacity=".16"/></g>
-<!-- стеллажи -->
-<g>
-<g transform="translate(14,92)">
-<rect x="0" y="0" width="6" height="190" fill="#ff7a1a"/><rect x="214" y="0" width="6" height="190" fill="#ff7a1a"/>
-<rect x="0" y="60" width="220" height="7" fill="url(#hg-r)"/><rect x="0" y="126" width="220" height="7" fill="url(#hg-r)"/><rect x="0" y="182" width="220" height="7" fill="url(#hg-r)"/>
-<rect x="12" y="18" width="46" height="42" rx="3" fill="url(#hg-c)"/><rect x="12" y="18" width="46" height="8" fill="#a8693a" opacity=".5"/><rect x="62" y="28" width="52" height="32" rx="3" fill="url(#hg-c)"/><rect x="120" y="14" width="44" height="46" rx="3" fill="url(#hg-c)"/><rect x="170" y="30" width="38" height="30" rx="3" fill="url(#hg-c)"/>
-<g><rect x="14" y="86" width="50" height="40" rx="14" fill="url(#hg-b)"/><rect x="26" y="96" width="14" height="14" fill="#0c1b2b"/><path d="M28 98h4v4h-4zM34 104h4v4h-4z" fill="#fff"/>
-<rect x="72" y="92" width="52" height="34" rx="14" fill="url(#hg-b)"/><rect x="84" y="99" width="12" height="12" fill="#0c1b2b"/><path d="M86 101h3v3h-3z" fill="#fff"/>
-<rect x="134" y="84" width="48" height="42" rx="14" fill="url(#hg-b)"/><rect x="146" y="94" width="13" height="13" fill="#0c1b2b"/><path d="M148 96h3v3h-3z" fill="#fff"/></g>
-<rect x="14" y="146" width="56" height="36" rx="3" fill="url(#hg-c)"/><rect x="78" y="152" width="48" height="30" rx="3" fill="url(#hg-c)"/><rect x="132" y="140" width="60" height="42" rx="3" fill="url(#hg-c)"/>
-</g>
-<g transform="translate(566,92)">
-<rect x="0" y="0" width="6" height="190" fill="#ff7a1a"/><rect x="214" y="0" width="6" height="190" fill="#ff7a1a"/>
-<rect x="0" y="60" width="220" height="7" fill="url(#hg-r)"/><rect x="0" y="126" width="220" height="7" fill="url(#hg-r)"/><rect x="0" y="182" width="220" height="7" fill="url(#hg-r)"/>
-<rect x="14" y="22" width="52" height="38" rx="3" fill="url(#hg-c)"/><rect x="74" y="12" width="46" height="48" rx="3" fill="url(#hg-c)"/><rect x="128" y="26" width="76" height="34" rx="3" fill="url(#hg-c)"/>
-<g><rect x="14" y="88" width="54" height="38" rx="14" fill="url(#hg-b)"/><rect x="28" y="97" width="13" height="13" fill="#0c1b2b"/><path d="M30 99h3v3h-3z" fill="#fff"/>
-<rect x="76" y="84" width="50" height="42" rx="14" fill="url(#hg-b)"/><rect x="88" y="95" width="13" height="13" fill="#0c1b2b"/><path d="M90 97h3v3h-3z" fill="#fff"/>
-<rect x="134" y="94" width="66" height="32" rx="14" fill="url(#hg-b)"/><rect x="150" y="100" width="12" height="12" fill="#0c1b2b"/></g>
-<rect x="12" y="140" w="0" height="0"/><rect x="16" y="148" width="64" height="34" rx="3" fill="url(#hg-c)"/><rect x="88" y="142" width="54" height="40" rx="3" fill="url(#hg-c)"/><rect x="150" y="152" width="52" height="30" rx="3" fill="url(#hg-c)"/>
-</g></g>
-<!-- пол -->
-<rect y="282" width="800" height="78" fill="#0a1a2b"/><rect y="282" width="800" height="78" fill="url(#hg-f)"/>
-<path d="M0 300h800" stroke="#f2b01e" stroke-width="3" stroke-dasharray="26 16" opacity=".7"/>
-<path d="M0 282h800" stroke="#1e4a70" stroke-width="2"/>
-<!-- паллета с коробками по центру -->
-<g transform="translate(300,236)"><rect x="0" y="40" width="130" height="10" fill="#8a5a2e"/><rect x="8" y="50" width="16" height="8" fill="#6d4623"/><rect x="57" y="50" width="16" height="8" fill="#6d4623"/><rect x="106" y="50" width="16" height="8" fill="#6d4623"/>
-<rect x="4" y="2" width="58" height="38" rx="3" fill="url(#hg-c)"/><rect x="66" y="8" width="60" height="32" rx="3" fill="url(#hg-c)"/><path d="M4 12h58M66 18h60" stroke="#a8693a" stroke-width="3" opacity=".6"/>
-<rect x="30" y="-22" width="64" height="26" rx="9" fill="url(#hg-b)"/><rect x="44" y="-16" width="11" height="11" fill="#0c1b2b"/><path d="M46 -14h3v3h-3z" fill="#fff"/></g>
-<!-- сотрудник со сканером-пистолетом -->
-<g transform="translate(232,170)">
-<ellipse cx="38" cy="116" rx="40" ry="6" fill="#000" opacity=".25"/>
-<path d="M22 112l-4-46h42l-2 46z" fill="#15314d"/>
-<path d="M14 66l-4-40a22 22 0 0 1 22-18h12a22 22 0 0 1 22 18l-4 40z" fill="#ff7a1a"/>
-<path d="M22 30h4v34h-4zM50 30h4v34h-4z" fill="#ffe27a" opacity=".85"/>
-<circle cx="38" cy="-4" r="14" fill="#f1c9a5"/><path d="M24 -6a14 14 0 0 1 28 0v-3a14 14 0 0 0-28 0z" fill="#ffd23f"/><rect x="22" y="-10" width="32" height="6" rx="3" fill="#f2b01e"/>
-<path d="M58 34l32 -6" stroke="#ff7a1a" stroke-width="10" stroke-linecap="round"/><circle cx="92" cy="27" r="6" fill="#f1c9a5"/>
-<g transform="translate(90,14) rotate(-8)"><rect x="0" y="0" width="30" height="16" rx="5" fill="#243b53"/><rect x="24" y="3" width="10" height="10" rx="2" fill="#ff3b3b"/><rect x="6" y="14" width="10" height="16" rx="4" fill="#243b53"/></g>
-<path d="M124 22L180 44" stroke="#ff3b3b" stroke-width="2.2" opacity=".9"/><path d="M124 22L180 44" stroke="#ff9a9a" stroke-width="6" opacity=".25"/>
-<path d="M26 112v10M50 112v10" stroke="#0a1a2b" stroke-width="8" stroke-linecap="round"/>
-</g>
-<!-- второй сотрудник с коробкой -->
-<g transform="translate(494,184)">
-<ellipse cx="30" cy="104" rx="36" ry="6" fill="#000" opacity=".25"/>
-<path d="M14 100l-2-38h36l-2 38z" fill="#1a3a5b"/>
-<path d="M8 62l-3-34a18 18 0 0 1 18-14h12a18 18 0 0 1 18 14l-3 34z" fill="#2f7de1"/>
-<circle cx="30" cy="2" r="13" fill="#e2b48e"/><path d="M17 0a13 13 0 0 1 26 0v-3a13 13 0 0 0-26 0z" fill="#3b2a20"/>
-<rect x="-8" y="32" width="62" height="38" rx="3" fill="url(#hg-c)"/><path d="M-8 46h62" stroke="#a8693a" stroke-width="4" opacity=".6"/><rect x="14" y="52" width="16" height="10" fill="#fff" opacity=".85"/>
-<path d="M12 100v10M38 100v10" stroke="#0a1a2b" stroke-width="8" stroke-linecap="round"/>
-</g>
-<!-- погрузчик -->
-<g transform="translate(640,214)" opacity=".95">
-<rect x="-6" y="-26" width="6" height="86" fill="#f2b01e"/><rect x="6" y="-26" width="6" height="86" fill="#f2b01e"/>
-<rect x="-30" y="52" width="40" height="6" fill="#c9d3dd"/>
-<rect x="10" y="22" width="78" height="32" rx="8" fill="#f2b01e"/><rect x="42" y="2" width="42" height="26" rx="4" fill="#f2b01e"/><path d="M48 6h30v16H48z" fill="#9ed0ff" opacity=".8"/>
-<circle cx="30" cy="58" r="12" fill="#0a1a2b"/><circle cx="30" cy="58" r="5" fill="#8fa3b7"/><circle cx="74" cy="58" r="12" fill="#0a1a2b"/><circle cx="74" cy="58" r="5" fill="#8fa3b7"/>
-<rect x="-34" y="26" width="30" height="26" rx="3" fill="url(#hg-c)"/>
-</g>
-<!-- карточка телефона/ТСД на переднем плане справа внизу -->
-<g transform="translate(700,250) rotate(8)"><rect width="70" height="98" rx="12" fill="#0a1a2b" stroke="#2b5a85" stroke-width="3"/><rect x="8" y="10" width="54" height="44" rx="6" fill="#16456b"/><path d="M16 20h30M16 28h38M16 36h24" stroke="#ff9140" stroke-width="4" stroke-linecap="round"/><rect x="14" y="62" width="42" height="12" rx="4" fill="#ff7a1a"/><circle cx="35" cy="86" r="5" fill="#2b5a85"/></g>
-</svg>`;
-}
-
-// ---------- запуск сканера клавиатурного режима ----------
-Scan.init();
+  minus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.
