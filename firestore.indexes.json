@@ -1,0 +1,13 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "msk_history",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "uid", "order": "ASCENDING" },
+        { "fieldPath": "ts", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
