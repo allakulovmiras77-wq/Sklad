@@ -1,0 +1,23 @@
+name: Deploy Moscow functions
+# Публикует ТОЛЬКО серверные функции склада Москвы (msk*). Старые функции швей не трогает.
+# Запуск вручную: Actions → Deploy Moscow functions → Run workflow.
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install --prefix functions
+      - run: npm install -g firebase-tools
+      - name: Deploy
+        env:
+          SA_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          printf '%s' "$SA_JSON" > "$RUNNER_TEMP/sa.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json"
+          firebase deploy --project lider-tekstil --non-interactive --force \
+            --only functions:mskClearWarehouse,functions:mskAdminCancelShip
