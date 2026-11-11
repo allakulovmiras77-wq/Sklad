@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a1836"><title>Склад Москва — Склад LT</title>
+<script>try{var t=localStorage.getItem('th');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<style>:root{--bg:#eef2fa;--bg2:#e3eaf7;--card:#fff;--card2:#f6f8fd;--tx:#0e1a33;--mu:#66748f;--ac:#2563eb;--ac2:#5b9bff;--acx:#fff;--bd:#e0e7f3;--rd:#e5473b;--rd2:#ffe9e6;--gr:#18a067;--gr2:#e2f7ec;--am:#e29a00;--am2:#fff4d6;--hd1:#0a1836;--hd2:#173f94;--sh:0 6px 24px rgba(20,45,100,.09);--sh2:0 14px 40px rgba(20,45,100,.16);--rad:20px;color-scheme:light}
+:root[data-theme=dark]{--bg:#060d1f;--bg2:#0a1630;--card:#0f1d3b;--card2:#13254a;--tx:#eaf1ff;--mu:#93a4c6;--ac:#4d8dff;--ac2:#8bb8ff;--acx:#04102a;--bd:#1b2e58;--rd:#ff7468;--rd2:#3a1a22;--gr:#3ccf8e;--gr2:#0f3a2c;--am:#ffc04d;--am2:#3b2f0c;--hd1:#07122b;--hd2:#12318a;--sh:0 6px 24px rgba(0,0,0,.38);--sh2:0 14px 40px rgba(0,0,0,.5);color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 -apple-system,"Segoe UI",system-ui,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.ic{flex:none;vertical-align:middle}h1{font-size:26px;margin:0 0 4px;letter-spacing:-.01em}h2{font-size:17px;margin:26px 2px 10px;display:flex;align-items:center;gap:8px}h3{margin:0 0 10px;font-size:16px}
+.mu{color:var(--mu)}.s{font-size:13px}.xs{font-size:12px}.pos{color:var(--gr)}.neg{color:var(--rd)}.er{color:var(--rd)}.sp{flex:1}.b{font-weight:700}.c{text-align:center}
+.app{min-height:100vh}.side{display:none}.mainw{min-width:0}
+/* верхняя панель */
+.top{position:sticky;top:0;z-index:30;color:#fff;background:radial-gradient(900px 220px at 85% -60%,rgba(106,163,255,.55),transparent 60%),linear-gradient(120deg,var(--hd1),var(--hd2));padding:calc(10px + env(safe-area-inset-top,0px)) 14px 12px;box-shadow:0 8px 28px rgba(8,20,60,.35)}
+.top .row1{display:flex;align-items:center;gap:12px;max-width:1280px;margin:0 auto}.top .logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#fff,#cfe0ff);color:#0f2a66;font-weight:900;display:grid;place-items:center;letter-spacing:1px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.top .tt{min-width:0}.top .tt b{display:block;font-size:18px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.top .tt span{font-size:12.500px;color:#b9c9ee;white-space:nowrap}
+.top .acts{display:flex;gap:8px;align-items:center;margin-left:auto}.tb{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;min-width:42px;padding:0 12px;border-radius:13px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.12);color:#fff;font-weight:700;backdrop-filter:blur(6px);cursor:pointer}.tb:hover{background:rgba(255,255,255,.2)}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(145deg,#6aa3ff,#2563eb);display:grid;place-items:center;font-weight:800;color:#fff;border:2px solid rgba(255,255,255,.5);cursor:pointer}
+.syncs{display:none;gap:8px;max-width:1280px;margin:10px auto 0;flex-wrap:wrap}.sy{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:99px;background:rgba(255,255,255,.12);font-size:12.500px;color:#fff}.sy i{width:8px;height:8px;border-radius:50%;background:#3ccf8e;box-shadow:0 0 0 3px rgba(60,207,142,.25)}.sy.w i{background:#ffc04d;box-shadow:0 0 0 3px rgba(255,192,77,.25)}.sy.e i{background:#ff7468;box-shadow:0 0 0 3px rgba(255,116,104,.3)}
+main.pg{max-width:1280px;margin:0 auto;padding:16px 14px 130px}
+/* карточки и кнопки */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--rad);padding:16px;margin:12px 0;box-shadow:var(--sh)}
+button,.btnl{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:14px;min-height:48px;padding:8px 16px;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:.15s transform,.15s box-shadow,.15s background}button:active{transform:scale(.97)}
+button.p,.btnl.p{background:linear-gradient(135deg,var(--ac),var(--ac2));color:var(--acx);border-color:transparent;box-shadow:0 8px 20px rgba(37,99,235,.32)}button.g{background:linear-gradient(135deg,#14915e,#3ccf8e);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(20,145,94,.3)}button.d{background:linear-gradient(135deg,#d63a2e,#ff7468);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(214,58,46,.28)}button.ghost{background:transparent}button.big{width:100%;min-height:58px;font-size:17px;margin-top:10px;border-radius:16px}button.sm{min-height:38px;padding:4px 12px;font-size:13.500px;border-radius:11px}button:disabled{opacity:.45;box-shadow:none}
+input,select{font:inherit;width:100%;min-height:50px;border-radius:14px;border:1px solid var(--bd);background:var(--card2);color:var(--tx);padding:8px 14px;margin:5px 0;outline:none}input:focus,select:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(77,141,255,.22)}input[type=checkbox]{width:22px;min-height:22px;margin:0;accent-color:var(--ac)}input.qty{max-width:112px;text-align:center;font-weight:700}input.scan{min-height:68px;font-size:22px;border:2px solid var(--ac);font-weight:700;letter-spacing:.5px;border-radius:18px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:5px 0}.row>input,.row>select{flex:1;min-width:90px}.seg{display:flex;gap:6px;padding:5px;background:var(--card2);border:1px solid var(--bd);border-radius:16px;margin:6px 0}.seg button{flex:1;min-width:0;border:0;background:transparent;min-height:44px;border-radius:12px;color:var(--mu);padding:4px 6px;font-size:13.5px;line-height:1.15;gap:5px;white-space:normal}@media(min-width:520px){.seg button{font-size:15px;padding:4px 12px;gap:8px}}.seg button.on{background:var(--card);color:var(--tx);box-shadow:var(--sh)}.seg.col button.on.add,.seg button.on.add{background:linear-gradient(135deg,#14915e,#3ccf8e);color:#fff}.seg button.on.out{background:linear-gradient(135deg,#d63a2e,#ff7468);color:#fff}.seg button.on.pri{background:linear-gradient(135deg,var(--ac),var(--ac2));color:var(--acx)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.fc{min-height:38px;padding:4px 14px;border-radius:99px;font-size:14px}.fc.on{background:var(--ac);color:var(--acx);border-color:var(--ac)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:99px;background:var(--card2);border:1px solid var(--bd);font-weight:800;font-size:14px}.lvr{background:var(--rd2);color:var(--rd);border-color:transparent}.lvy{background:var(--am2);color:var(--am);border-color:transparent}.lvg{background:var(--gr2);color:var(--gr);border-color:transparent}.chip.solid.lvr{background:var(--rd);color:#fff}.chip.solid.lvy{background:var(--am);color:#1c1300}.chip.solid.lvg{background:var(--gr);color:#fff}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}.kpi{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--bd);border-radius:var(--rad);padding:14px 16px;box-shadow:var(--sh)}.kpi .ki{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--card2);color:var(--ac)}.kpi span.l{display:block;color:var(--mu);font-size:13px;max-width:70%}.kpi b{font-size:30px;line-height:1.3;letter-spacing:-.02em}.kpi i{font-style:normal;color:var(--mu);margin-left:4px;font-size:14px}.kpi.tr .ki{color:var(--am);background:var(--am2)}.kpi.gn .ki{color:var(--gr);background:var(--gr2)}
+.hero{position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--sh2);margin:4px 0;border:1px solid var(--bd);background:#cfe0ff}.hero svg{display:block;width:100%;height:auto;aspect-ratio:960/420}.hero.sm svg{aspect-ratio:960/330}
+.homehead{display:grid;gap:14px}.greet{display:flex;flex-direction:column;gap:4px;padding:4px 4px 0}.greet b{font-size:24px}.greet span{color:var(--mu)}
+/* рейтинг FBS */
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}.lg{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:99px;font-size:13px;font-weight:700}.lg i{width:10px;height:10px;border-radius:50%}.lg.r{background:var(--rd2);color:var(--rd)}.lg.r i{background:var(--rd)}.lg.y{background:var(--am2);color:var(--am)}.lg.y i{background:var(--am)}.lg.g{background:var(--gr2);color:var(--gr)}.lg.g i{background:var(--gr)}
+.fl{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}.fi{position:relative;background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px 14px 14px 20px;box-shadow:var(--sh);overflow:hidden}.fi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--gr)}.fi.r::before{background:var(--rd)}.fi.y::before{background:var(--am)}.fi.r{background:linear-gradient(90deg,var(--rd2),var(--card) 38%)}.fi.y{background:linear-gradient(90deg,var(--am2),var(--card) 38%)}
+.fi .h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.fi .h b{font-size:17px}.mt{margin-top:10px}.meter{display:grid;grid-template-columns:62px 1fr 38px;align-items:center;gap:8px;margin:6px 0;font-size:13px}.meter .bar{height:10px;border-radius:99px;background:var(--bd);overflow:hidden}.meter .bar i{display:block;height:100%;border-radius:99px;background:var(--gr)}.meter .bar.r i{background:var(--rd)}.meter .bar.y i{background:var(--am)}.meter b{text-align:right}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.tag{display:inline-flex;gap:5px;align-items:center;padding:3px 10px;border-radius:10px;background:var(--card2);border:1px solid var(--bd);font-size:12.500px;font-weight:700}.tag.send{background:var(--ac);color:var(--acx);border-color:transparent}.tag.warn{background:var(--rd2);color:var(--rd);border-color:transparent}
+.sizes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.sz{display:flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid var(--bd);border-radius:14px;background:var(--card2)}.sz i.tr{font-style:normal;color:var(--am);font-size:12px}
+.ag{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}.sr{display:grid;grid-template-columns:50px 1fr auto auto;gap:8px;align-items:center;padding:7px 0;border-top:1px dashed var(--bd)}.sr:first-of-type{border-top:0}.sr .z{font-weight:800}
+table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:8px 9px;border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap}th{color:var(--mu);font-weight:600;font-size:13px}tr[data-detail]{cursor:pointer}tr[data-detail]:hover{background:var(--card2)}.sc{overflow-x:auto}
+.bar2{height:9px;border-radius:99px;background:var(--bd);margin:8px 0;overflow:hidden}.bar2 i{display:block;height:100%;background:linear-gradient(90deg,var(--gr),#7fe3b4)}
+.hl,.card.hl{outline:3px solid var(--ac)}.rl{border-top:1px dashed var(--bd);padding:8px 0}.curi{padding:12px;border-radius:14px;background:var(--card2);margin:8px 0}.ph{display:inline-grid;place-items:center;min-width:48px;min-height:48px;border:1px solid var(--bd);border-radius:14px;cursor:pointer;color:var(--ac)}
+.bl{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;max-height:320px;overflow:auto;margin-top:8px}.bg{display:flex;gap:8px;align-items:center;border:1px solid var(--bd);border-radius:14px;padding:9px;cursor:pointer}.bg.on{border-color:var(--ac);background:rgba(77,141,255,.12)}
+.tiles{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.tile{display:flex;align-items:center;gap:14px;text-align:left;width:100%;min-height:76px;padding:12px 14px;border-radius:18px;background:var(--card);box-shadow:var(--sh)}.tile .ti{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));flex:none}.tile .tx{flex:1;min-width:0}.tile .tx b{display:block;font-size:16px}.tile .tx span{font-size:12.500px;color:var(--mu);font-weight:500}.tile.d .ti{background:linear-gradient(135deg,#d63a2e,#ff7468)}.tile.t2 .ti{background:linear-gradient(135deg,#14915e,#3ccf8e)}.tile.t3 .ti{background:linear-gradient(135deg,#c27800,#ffc04d)}.tile.t4 .ti{background:linear-gradient(135deg,#6d3fd6,#a78bfa)}
+.how{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:8px}.how div{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:14px;background:var(--card2)}.how em{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--ac);color:var(--acx);display:grid;place-items:center;font-weight:800;flex:none}
+.ship .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:10px 0}.ship .g4{padding:9px 11px;border-radius:14px;background:var(--card2)}.ship .g4 span{display:block;font-size:12px;color:var(--mu)}.ship .g4 b{font-size:20px}.bagchips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.bagchip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:12px;background:var(--card2);border:1px solid var(--bd);font-weight:700;font-size:13px}.bagchip.ret{text-decoration:line-through;opacity:.65}
+.switch{position:relative;width:52px;height:30px;flex:none}.switch input{opacity:0;position:absolute;inset:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:2}.switch i{position:absolute;inset:0;border-radius:99px;background:var(--bd);transition:.2s}.switch i::after{content:"";position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 6px rgba(0,0,0,.3)}.switch input:checked+i{background:var(--ac)}.switch input:checked+i::after{transform:translateX(22px)}
+.setc{display:flex;align-items:center;gap:12px}.setc .ti{width:40px;height:40px;border-radius:12px;background:var(--card2);color:var(--ac);display:grid;place-items:center}.pavatar{width:68px;height:68px;border-radius:50%;background:linear-gradient(145deg,#6aa3ff,#2563eb);display:grid;place-items:center;color:#fff;font-weight:800;font-size:26px;box-shadow:var(--sh2)}
+.perms{display:grid;gap:8px;margin:8px 0}.perms label{display:flex;gap:10px;align-items:center}
+/* нижняя панель (телефон) */
+.bnav{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;justify-content:space-around;gap:2px;padding:8px 6px;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--bd);border-radius:26px;box-shadow:0 16px 44px rgba(10,25,70,.32)}
+.bn{flex:1;min-width:0;border:0;background:transparent;box-shadow:none;flex-direction:column;gap:3px;min-height:60px;padding:4px 2px;color:var(--mu);font-size:11px;font-weight:700;position:relative}.bn .bi{width:46px;height:34px;border-radius:14px;display:grid;place-items:center;transition:.2s}.bn.on{color:var(--ac)}.bn.on .bi{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;transform:translateY(-6px);box-shadow:0 10px 22px rgba(37,99,235,.45)}.bn.on span.lb{transform:translateY(-4px)}.bn .bdg{position:absolute;top:2px;right:18%;min-width:18px;height:18px;border-radius:9px;background:var(--rd);color:#fff;font-size:11px;display:grid;place-items:center;padding:0 4px}
+#toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%) translateY(20px);background:#10295c;color:#fff;padding:12px 18px;border-radius:16px;opacity:0;pointer-events:none;transition:.2s;z-index:80;max-width:92vw;text-align:center;font-weight:700;box-shadow:var(--sh2)}#toast.show{opacity:1;transform:translateX(-50%)}#toast.ok{background:#16794f}#toast.er{background:#b3261e}
+#modal{display:none;position:fixed;inset:0;background:rgba(3,10,30,.6);backdrop-filter:blur(4px);z-index:70;align-items:center;justify-content:center;padding:14px}#modal.show{display:flex}.mb{position:relative;background:var(--card);border-radius:24px;padding:22px;max-width:540px;width:100%;max-height:88vh;overflow:auto;box-shadow:var(--sh2)}.mx{position:absolute;right:12px;top:12px;min-height:38px;min-width:38px;padding:0;border-radius:12px}.pho{width:100%;border-radius:14px;margin-top:10px}
+.camov{position:fixed;inset:0;background:#000;z-index:90;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:10px}.camov button{background:#fff;color:#000}
+.bars{display:flex;align-items:flex-end;gap:5px;min-height:190px;padding-top:6px;overflow-x:auto}.bc{flex:1;min-width:14px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}.bc i{width:100%;max-width:44px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,var(--ac2),var(--ac));opacity:.72;display:block}.bc i.best{opacity:1;box-shadow:0 6px 16px rgba(37,99,235,.35)}.bv{font-size:11px;font-weight:800}.bl2{font-size:10.5px;color:var(--mu);height:14px}.bp{display:flex;align-items:flex-end;gap:2px;width:100%;justify-content:center}.bp i{max-width:20px}.bp i.in{background:linear-gradient(180deg,#7fe3b4,var(--gr))}.bp i.ot{background:linear-gradient(180deg,#ffa59d,var(--rd))}.filt input,.filt select{margin:4px 0}.empty{display:flex;flex-direction:column;align-items:center;gap:8px;padding:26px 10px;color:var(--mu);text-align:center}.empty .ic{opacity:.6}
+.loginw{max-width:600px;margin:0 auto;padding:14px}.lcard h1{margin:4px 0}.langs{display:flex;gap:8px;margin-top:12px}.langs button{flex:1}.langs .on{background:var(--ac);color:var(--acx);border-color:var(--ac)}.foot{display:flex;justify-content:center;padding:26px 0 8px}
+.crd{display:inline-block;padding:14px 36px;border-radius:99px;font-size:26px;font-weight:900;letter-spacing:1.500px;color:#fff;background:linear-gradient(120deg,#0a1836,#1d5fd1 45%,#6aa3ff 55%,#1d5fd1 65%,#0a1836);background-size:240% 100%;animation:shine 5s linear infinite;box-shadow:0 10px 30px rgba(29,95,209,.45);border:2px solid rgba(255,255,255,.28)}.loginw .crd{display:block;text-align:center;margin:16px auto;max-width:380px}
+@keyframes shine{to{background-position:-240% 0}}@keyframes drift{0%{transform:translateX(-40px)}100%{transform:translateX(60px)}}@keyframes laser{0%,100%{opacity:.35}50%{opacity:1}}@keyframes dust{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes pop{0%,100%{transform:translate(392px,268px) scale(1)}50%{transform:translate(392px,262px) scale(1.04)}}
+.cloud{animation:drift 26s ease-in-out infinite alternate}.cloud2{animation:drift 34s ease-in-out infinite alternate-reverse}.laser{animation:laser 1.3s ease-in-out infinite}.dust{animation:dust 5s ease-in-out infinite}.pop{animation:pop 3s ease-in-out infinite}
+:root[data-theme=dark] .sk1{stop-color:#0d1740}:root[data-theme=dark] .sk2{stop-color:#352a73}:root[data-theme=dark] .sk3{stop-color:#ff9566}:root[data-theme=dark] .w1{stop-color:#243457}:root[data-theme=dark] .w2{stop-color:#18233f}:root[data-theme=dark] .f1{stop-color:#2a3756}:root[data-theme=dark] .f2{stop-color:#161f38}:root[data-theme=dark] .sun1{stop-color:#fff0c0}
+:root[data-theme=dark] .ceil{fill:#141c34}:root[data-theme=dark] .ceil2{fill:#0d1429}:root[data-theme=dark] .far{fill:#2e4272}:root[data-theme=dark] .yard{fill:#222c47}:root[data-theme=dark] .cone{opacity:.55}:root[data-theme=dark] .hero{background:#0d1740}
+@media (prefers-reduced-motion:reduce){.cloud,.cloud2,.laser,.dust,.pop,.crd{animation:none}}
+/* ПК: боковое меню */
+@media (min-width:1000px){
+ .app{display:grid;grid-template-columns:276px minmax(0,1fr)}.bnav{display:none}main.pg{padding:26px 34px 60px}
+ .side{display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;padding:20px 16px;background:linear-gradient(180deg,var(--hd1),#0c2150 60%,#0a1b45);color:#dfe8ff;overflow:auto}
+ .side .brand{display:flex;align-items:center;gap:12px;padding:4px 6px 18px;color:#fff}.side .brand .logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(145deg,#fff,#cfe0ff);color:#0f2a66;font-weight:900;display:grid;place-items:center}.side .brand b{font-size:19px;display:block;line-height:1.1}.side .brand span{font-size:12px;color:#9db3e6}
+ .side .sh{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7f95c9;margin:14px 10px 4px}
+ .nv{width:100%;justify-content:flex-start;text-align:left;gap:13px;min-height:48px;border:0;background:transparent;color:#c9d7fb;box-shadow:none;border-radius:14px;padding:6px 12px;font-weight:600}.nv:hover{background:rgba(255,255,255,.08)}.nv.on{background:linear-gradient(135deg,#2563eb,#5b9bff);color:#fff;box-shadow:0 10px 24px rgba(37,99,235,.45)}.nv .ni{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.08)}.nv.on .ni{background:rgba(255,255,255,.2)}
+ .side .me{margin-top:auto;padding:12px;border-radius:16px;background:rgba(255,255,255,.07);display:flex;gap:10px;align-items:center}.side .me b{display:block;color:#fff;font-size:14px}.side .me span{font-size:12px;color:#9db3e6}
+ .top{padding:14px 34px 14px}.top .syncs{display:flex}.top .tt b{font-size:21px}.top .logo{display:none}.kpis{grid-template-columns:repeat(5,1fr)}
+ .homehead{grid-template-columns:minmax(0,2fr) minmax(300px,1fr);align-items:stretch}.homehead .hero svg{height:100%;min-height:340px;aspect-ratio:auto}.homeside{display:flex;flex-direction:column;gap:12px}
+ .hero svg{height:clamp(280px,32vw,430px);aspect-ratio:auto}
+}
+@media print{.top,.bnav,.side,#toast{display:none}}
+</style>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head><body>
+<div id="root"></div><div id="toast"></div><div id="modal"></div>
+<script type="text/html" id="heroTpl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-label="Склад Москва" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk1" stop-color="#5aa7ff"/><stop offset=".55" class="sk2" stop-color="#bfe0ff"/><stop offset="1" class="sk3" stop-color="#ffd9a6"/></linearGradient>
+<linearGradient id="wallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="w1" stop-color="#e9eff9"/><stop offset="1" class="w2" stop-color="#cdd8ea"/></linearGradient>
+<linearGradient id="floorG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="f1" stop-color="#b9c4d8"/><stop offset="1" class="f2" stop-color="#8e9bb4"/></linearGradient>
+<radialGradient id="vigG" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#0b1a3a" stop-opacity="0"/><stop offset="1" stop-color="#0b1a3a" stop-opacity=".45"/></radialGradient>
+<linearGradient id="spillG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe7a8" stop-opacity=".55"/><stop offset="1" stop-color="#ffe7a8" stop-opacity="0"/></linearGradient>
+<linearGradient id="glowG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6c8" stop-opacity=".85"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff3b3b" stop-opacity=".95"/><stop offset="1" stop-color="#ff3b3b" stop-opacity=".05"/></linearGradient>
+<linearGradient id="domeR" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b3261e"/><stop offset=".5" stop-color="#ef5350"/><stop offset="1" stop-color="#8e1b15"/></linearGradient>
+<linearGradient id="domeG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1b7a4a"/><stop offset=".5" stop-color="#3fbf7f"/><stop offset="1" stop-color="#14583a"/></linearGradient>
+<linearGradient id="domeB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1f56c4"/><stop offset=".5" stop-color="#5b9bff"/><stop offset="1" stop-color="#163f93"/></linearGradient>
+<linearGradient id="domeY" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d89b0b"/><stop offset=".5" stop-color="#ffd54a"/><stop offset="1" stop-color="#a87400"/></linearGradient>
+<linearGradient id="brick" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b5412f"/><stop offset="1" stop-color="#8a2e20"/></linearGradient>
+<linearGradient id="box1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2b273"/><stop offset="1" stop-color="#c58f4d"/></linearGradient>
+<linearGradient id="box2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9a05a"/><stop offset="1" stop-color="#b27a38"/></linearGradient>
+<linearGradient id="bag" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e9eefb"/><stop offset=".5" stop-color="#ffffff"/><stop offset="1" stop-color="#cfd9ee"/></linearGradient>
+<linearGradient id="truckG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#dfe6f2"/><stop offset=".5" stop-color="#ffffff"/><stop offset="1" stop-color="#c4cfe3"/></linearGradient>
+<radialGradient id="lampG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fffbe0"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialGradient>
+<radialGradient id="sunG" cx=".5" cy=".5" r=".5"><stop offset="0" class="sun1" stop-color="#fff3b0"/><stop offset="1" class="sun2" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+<clipPath id="doorClip"><rect x="560" y="70" width="330" height="250" rx="10"/></clipPath>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<rect width="960" height="420" fill="url(#wallG)"/>
+<rect x="0" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="80" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="160" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="240" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="320" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="400" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="480" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="560" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="640" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="720" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="800" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect x="880" y="0" width="2" height="300" class="panel" fill="#000" opacity=".05"/>
+<rect width="960" height="64" class="ceil" fill="#a9b6cf"/>
+<rect y="56" width="960" height="10" class="ceil2" fill="#8795b2"/>
+<rect x="40" y="0" width="14" height="66" class="ceil2" fill="#8795b2" opacity=".7"/>
+<rect x="160" y="0" width="14" height="66" class="ceil2" fill="#8795b2" opacity=".7"/>
+<rect x="280" y="0" width="14" height="66" class="ceil2" fill="#8795b2" opacity=".7"/>
+<rect x="400" y="0" width="14" height="66" class="ceil2" fill="#8795b2" opacity=".7"/>
+<rect x="520" y="0" width="14" height="66" class="ceil2" fill="#8795b2" opacity=".7"/>
+<rect x="640" y="0" width="14" height="66" class="ceil2" fill="#8795b2" opacity=".7"/>
+<rect x="760" y="0" width="14" height="66" class="ceil2" fill="#8795b2" opacity=".7"/>
+<rect x="880" y="0" width="14" height="66" class="ceil2" fill="#8795b2" opacity=".7"/>
+<g clip-path="url(#doorClip)">
+<rect x="560" y="70" width="330" height="250" fill="url(#skyG)"/>
+<circle cx="800" cy="205" r="90" fill="url(#sunG)"/>
+<g class="cloud" fill="#fff" opacity=".75"><ellipse cx="640" cy="112" rx="38" ry="11"/><ellipse cx="668" cy="104" rx="26" ry="11"/><ellipse cx="610" cy="106" rx="22" ry="8"/></g>
+<g class="cloud2" fill="#fff" opacity=".6"><ellipse cx="840" cy="130" rx="34" ry="9"/><ellipse cx="862" cy="123" rx="22" ry="9"/></g>
+<rect x="572" y="240" width="16" height="60" class="far" fill="#7d93b8" opacity=".75"/>
+<rect x="590" y="212" width="12" height="88" class="far" fill="#7d93b8" opacity=".75"/>
+<rect x="604" y="230" width="18" height="70" class="far" fill="#7d93b8" opacity=".75"/>
+<rect x="624" y="196" width="10" height="104" class="far" fill="#7d93b8" opacity=".75"/>
+<rect x="638" y="224" width="20" height="76" class="far" fill="#7d93b8" opacity=".75"/>
+<rect x="874" y="236" width="14" height="64" class="far" fill="#7d93b8" opacity=".75"/>
+<rect x="860" y="208" width="14" height="92" class="far" fill="#7d93b8" opacity=".75"/>
+<rect x="842" y="228" width="14" height="72" class="far" fill="#7d93b8" opacity=".75"/>
+<rect x="560" y="268" width="330" height="40" fill="url(#brick)"/>
+<path d="M560 268v-8h8v8z" fill="#9c3524"/>
+<path d="M574 268v-8h8v8z" fill="#9c3524"/>
+<path d="M588 268v-8h8v8z" fill="#9c3524"/>
+<path d="M602 268v-8h8v8z" fill="#9c3524"/>
+<path d="M616 268v-8h8v8z" fill="#9c3524"/>
+<path d="M630 268v-8h8v8z" fill="#9c3524"/>
+<path d="M644 268v-8h8v8z" fill="#9c3524"/>
+<path d="M658 268v-8h8v8z" fill="#9c3524"/>
+<path d="M672 268v-8h8v8z" fill="#9c3524"/>
+<path d="M686 268v-8h8v8z" fill="#9c3524"/>
+<path d="M700 268v-8h8v8z" fill="#9c3524"/>
+<path d="M714 268v-8h8v8z" fill="#9c3524"/>
+<path d="M728 268v-8h8v8z" fill="#9c3524"/>
+<path d="M742 268v-8h8v8z" fill="#9c3524"/>
+<path d="M756 268v-8h8v8z" fill="#9c3524"/>
+<path d="M770 268v-8h8v8z" fill="#9c3524"/>
+<path d="M784 268v-8h8v8z" fill="#9c3524"/>
+<path d="M798 268v-8h8v8z" fill="#9c3524"/>
+<path d="M812 268v-8h8v8z" fill="#9c3524"/>
+<path d="M826 268v-8h8v8z" fill="#9c3524"/>
+<path d="M840 268v-8h8v8z" fill="#9c3524"/>
+<path d="M854 268v-8h8v8z" fill="#9c3524"/>
+<path d="M868 268v-8h8v8z" fill="#9c3524"/>
+<path d="M882 268v-8h8v8z" fill="#9c3524"/>
+<rect x="566" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="594" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="622" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="650" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="678" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="706" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="734" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="762" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="790" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="818" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="846" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<rect x="874" y="278" width="5" height="10" rx="2.5" fill="#6d1f14" opacity=".55"/>
+<g transform="translate(675,0)">
+<rect x="-17" y="170" width="34" height="100" fill="url(#brick)"/>
+<rect x="-21" y="266" width="42" height="6" fill="#7e2a1c"/>
+<rect x="-14" y="150" width="28" height="22" fill="#c04a36"/>
+<circle cx="0" cy="186" r="9" fill="#fff6d6" stroke="#5b1a10" stroke-width="2"/><path d="M0 186v-6M0 186l4 2" stroke="#5b1a10" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M-14 150l14-44 14 44z" fill="#2c8f63"/><path d="M-14 150l14-44 0 44z" fill="#1f6f4c"/>
+<rect x="-11" y="126" width="22" height="3" fill="#e6c36a"/>
+<path d="M0 100l2.4 5 5.4.8-3.9 3.8.9 5.4L0 112.400l-4.800 2.600.9-5.400-3.900-3.800 5.400-.8z" fill="#ff3b30" stroke="#ffd54a" stroke-width="1.3"/>
+<path d="M0 85v15" stroke="#e6c36a" stroke-width="2"/>
+<rect x="-6" y="215" width="5" height="12" rx="2.5" fill="#6d1f14" opacity=".6"/><rect x="3" y="215" width="5" height="12" rx="2.5" fill="#6d1f14" opacity=".6"/>
+<rect x="-6" y="238" width="5" height="12" rx="2.5" fill="#6d1f14" opacity=".6"/><rect x="3" y="238" width="5" height="12" rx="2.5" fill="#6d1f14" opacity=".6"/>
+</g>
+<g transform="translate(795,0)">
+<rect x="-62" y="244" width="124" height="34" fill="#efe1c9"/><rect x="-62" y="244" width="124" height="4" fill="#d3bd98"/><rect x="-62" y="268" width="124" height="3" fill="#d3bd98"/>
+<rect x="-52" y="252" width="7" height="13" rx="3.5" fill="#8c5a3c" opacity=".5"/>
+<rect x="-36" y="252" width="7" height="13" rx="3.5" fill="#8c5a3c" opacity=".5"/>
+<rect x="-20" y="252" width="7" height="13" rx="3.5" fill="#8c5a3c" opacity=".5"/>
+<rect x="-4" y="252" width="7" height="13" rx="3.5" fill="#8c5a3c" opacity=".5"/>
+<rect x="12" y="252" width="7" height="13" rx="3.5" fill="#8c5a3c" opacity=".5"/>
+<rect x="28" y="252" width="7" height="13" rx="3.5" fill="#8c5a3c" opacity=".5"/>
+<rect x="44" y="252" width="7" height="13" rx="3.5" fill="#8c5a3c" opacity=".5"/>
+<rect x="-15" y="150" width="30" height="94" fill="#efe1c9"/><rect x="-15" y="150" width="30" height="4" fill="#d3bd98"/>
+<rect x="-4" y="172" width="8" height="16" rx="4" fill="#8c5a3c" opacity=".5"/>
+<rect x="-4" y="200" width="8" height="16" rx="4" fill="#8c5a3c" opacity=".5"/>
+<path d="M-17 150L0 92L17 150z" fill="#2c9a68"/><path d="M-17 150L0 92L0 150z" fill="#1f7a52"/>
+<path d="M-9 150L-1.3499999999999999 98" stroke="#fff" stroke-opacity=".55" stroke-width="1.6"/>
+<path d="M-3 150L-0.44999999999999996 98" stroke="#fff" stroke-opacity=".55" stroke-width="1.6"/>
+<path d="M3 150L0.44999999999999996 98" stroke="#fff" stroke-opacity=".55" stroke-width="1.6"/>
+<path d="M9 150L1.3499999999999999 98" stroke="#fff" stroke-opacity=".55" stroke-width="1.6"/>
+<path d="M-17 150h34" stroke="#d3bd98" stroke-width="3"/>
+<path d="M0 92v-8" stroke="#ffd54a" stroke-width="2.200"/><circle cx="0" cy="80" r="4.200" fill="#ffd54a"/><circle cx="0" cy="80" r="1.600" fill="#d89b0b"/>
+<rect x="-51.52" y="226" width="19.040000000000003" height="18" fill="#f6ead3"/><rect x="-51.52" y="226" width="19.040000000000003" height="3" fill="#d3bd98"/><rect x="-44.5" y="230" width="5" height="9" rx="2.5" fill="#8c5a3c" opacity=".55"/><path d="M-56.0 226c-1 -10.799999999999999 2.8000000000000003 -22.32 14.0 -36c11.200000000000001 13.68 14.280000000000001 25.2 14.0 36z" fill="url(#domeR)"/><path d="M-50.4 226c-2.1 -14.4 -1.008 -27.0 0 -35.28" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M-42.0 226c0.0 -14.4 0.0 -27.0 0 -35.28" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M-33.6 226c2.1 -14.4 1.008 -27.0 0 -35.28" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M-42 190v-7" stroke="#ffd54a" stroke-width="2.2"/><circle cx="-42" cy="181" r="2.6" fill="#ffd54a"/><path d="M-45 185h6" stroke="#ffd54a" stroke-width="1.6"/>
+<rect x="-32.84" y="218" width="17.68" height="18" fill="#f6ead3"/><rect x="-32.84" y="218" width="17.68" height="3" fill="#d3bd98"/><rect x="-26.5" y="222" width="5" height="9" rx="2.5" fill="#8c5a3c" opacity=".55"/><path d="M-37.0 218c-1 -10.2 2.6 -21.08 13.0 -34c10.4 12.92 13.26 23.799999999999997 13.0 34z" fill="url(#domeY)"/><path d="M-31.8 218c-1.95 -13.600000000000001 -0.9359999999999999 -25.5 0 -33.32" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M-24.0 218c0.0 -13.600000000000001 0.0 -25.5 0 -33.32" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M-16.2 218c1.95 -13.600000000000001 0.9359999999999999 -25.5 0 -33.32" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M-24 184v-7" stroke="#ffd54a" stroke-width="2.2"/><circle cx="-24" cy="175" r="2.6" fill="#ffd54a"/><path d="M-27 179h6" stroke="#ffd54a" stroke-width="1.6"/>
+<rect x="15.16" y="218" width="17.68" height="18" fill="#f6ead3"/><rect x="15.16" y="218" width="17.68" height="3" fill="#d3bd98"/><rect x="21.5" y="222" width="5" height="9" rx="2.5" fill="#8c5a3c" opacity=".55"/><path d="M11.0 218c-1 -10.2 2.6 -21.08 13.0 -34c10.4 12.92 13.26 23.799999999999997 13.0 34z" fill="url(#domeB)"/><path d="M16.2 218c-1.95 -13.600000000000001 -0.9359999999999999 -25.5 0 -33.32" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M24.0 218c0.0 -13.600000000000001 0.0 -25.5 0 -33.32" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M31.8 218c1.95 -13.600000000000001 0.9359999999999999 -25.5 0 -33.32" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M24 184v-7" stroke="#ffd54a" stroke-width="2.2"/><circle cx="24" cy="175" r="2.6" fill="#ffd54a"/><path d="M21 179h6" stroke="#ffd54a" stroke-width="1.6"/>
+<rect x="32.48" y="226" width="19.040000000000003" height="18" fill="#f6ead3"/><rect x="32.48" y="226" width="19.040000000000003" height="3" fill="#d3bd98"/><rect x="39.5" y="230" width="5" height="9" rx="2.5" fill="#8c5a3c" opacity=".55"/><path d="M28.0 226c-1 -10.799999999999999 2.8000000000000003 -22.32 14.0 -36c11.200000000000001 13.68 14.280000000000001 25.2 14.0 36z" fill="url(#domeG)"/><path d="M33.6 226c-2.1 -14.4 -1.008 -27.0 0 -35.28" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M42.0 226c0.0 -14.4 0.0 -27.0 0 -35.28" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M50.4 226c2.1 -14.4 1.008 -27.0 0 -35.28" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M42 190v-7" stroke="#ffd54a" stroke-width="2.2"/><circle cx="42" cy="181" r="2.6" fill="#ffd54a"/><path d="M39 185h6" stroke="#ffd54a" stroke-width="1.6"/>
+<rect x="-10.200000000000001" y="226" width="20.400000000000002" height="18" fill="#f6ead3"/><rect x="-10.200000000000001" y="226" width="20.400000000000002" height="3" fill="#d3bd98"/><rect x="-2.5" y="230" width="5" height="9" rx="2.5" fill="#8c5a3c" opacity=".55"/><path d="M-15.0 226c-1 -12.0 3.0 -24.8 15.0 -40c12.0 15.2 15.3 28.0 15.0 40z" fill="url(#domeR)"/><path d="M-9.0 226c-2.25 -16.0 -1.08 -30.0 0 -39.2" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M0.0 226c0.0 -16.0 0.0 -30.0 0 -39.2" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M9.0 226c2.25 -16.0 1.08 -30.0 0 -39.2" stroke="#fff" stroke-opacity=".32" stroke-width="2.4" fill="none"/><path d="M0 186v-7" stroke="#ffd54a" stroke-width="2.2"/><circle cx="0" cy="177" r="2.6" fill="#ffd54a"/><path d="M-3 181h6" stroke="#ffd54a" stroke-width="1.6"/>
+</g>
+<rect x="560" y="300" width="330" height="40" class="yard" fill="#9aa7bd"/>
+</g>
+<rect x="552" y="62" width="346" height="266" rx="14" fill="none" class="frame" stroke="#52627f" stroke-width="12"/>
+<rect x="552" y="62" width="346" height="18" rx="9" class="frame2" fill="#f6b73c"/>
+<path d="M558 62l13 18h-13z" fill="#2b3550"/>
+<path d="M584 62l13 18h-13z" fill="#2b3550"/>
+<path d="M610 62l13 18h-13z" fill="#2b3550"/>
+<path d="M636 62l13 18h-13z" fill="#2b3550"/>
+<path d="M662 62l13 18h-13z" fill="#2b3550"/>
+<path d="M688 62l13 18h-13z" fill="#2b3550"/>
+<path d="M714 62l13 18h-13z" fill="#2b3550"/>
+<path d="M740 62l13 18h-13z" fill="#2b3550"/>
+<path d="M766 62l13 18h-13z" fill="#2b3550"/>
+<path d="M792 62l13 18h-13z" fill="#2b3550"/>
+<path d="M818 62l13 18h-13z" fill="#2b3550"/>
+<path d="M844 62l13 18h-13z" fill="#2b3550"/>
+<path d="M870 62l13 18h-13z" fill="#2b3550"/>
+<g transform="translate(725,30)"><rect x="-118" y="-17" width="236" height="34" rx="11" fill="#10295c" stroke="#4d8dff" stroke-width="2.5"/><circle cx="-105" cy="0" r="4.5" fill="#ff3b30"/><circle cx="105" cy="0" r="4.5" fill="#ff3b30"/><text x="0" y="6.500" text-anchor="middle" font-family="system-ui,Segoe UI,Roboto,sans-serif" font-size="17" font-weight="800" letter-spacing="2" fill="#ffffff">СКЛАД МОСКВА</text></g>
+<rect y="296" width="552" height="22" fill="#2f6fed" opacity=".9"/><rect y="296" width="552" height="3" fill="#8fb4ff"/>
+<path d="M106 66h8v16h-8z" fill="#51607f"/><path d="M88 94h44l-8 -12h-28z" fill="#3b4866"/>
+<ellipse cx="110" cy="95" rx="22" ry="5" fill="#fffbe0"/>
+<path d="M88 95L40 330h140L132 95z" fill="url(#glowG)" opacity=".28" class="cone"/>
+<circle cx="110" cy="96" r="30" fill="url(#lampG)" opacity=".8"/>
+<path d="M326 66h8v16h-8z" fill="#51607f"/><path d="M308 94h44l-8 -12h-28z" fill="#3b4866"/>
+<ellipse cx="330" cy="95" rx="22" ry="5" fill="#fffbe0"/>
+<path d="M308 95L260 330h140L352 95z" fill="url(#glowG)" opacity=".28" class="cone"/>
+<circle cx="330" cy="96" r="30" fill="url(#lampG)" opacity=".8"/>
+<path d="M516 66h8v16h-8z" fill="#51607f"/><path d="M498 94h44l-8 -12h-28z" fill="#3b4866"/>
+<ellipse cx="520" cy="95" rx="22" ry="5" fill="#fffbe0"/>
+<path d="M498 95L450 330h140L542 95z" fill="url(#glowG)" opacity=".28" class="cone"/>
+<circle cx="520" cy="96" r="30" fill="url(#lampG)" opacity=".8"/>
+<path d="M756 66h8v16h-8z" fill="#51607f"/><path d="M738 94h44l-8 -12h-28z" fill="#3b4866"/>
+<ellipse cx="760" cy="95" rx="22" ry="5" fill="#fffbe0"/>
+<path d="M738 95L690 330h140L782 95z" fill="url(#glowG)" opacity=".28" class="cone"/>
+<circle cx="760" cy="96" r="30" fill="url(#lampG)" opacity=".8"/>
+<path d="M896 66h8v16h-8z" fill="#51607f"/><path d="M878 94h44l-8 -12h-28z" fill="#3b4866"/>
+<ellipse cx="900" cy="95" rx="22" ry="5" fill="#fffbe0"/>
+<path d="M878 95L830 330h140L922 95z" fill="url(#glowG)" opacity=".28" class="cone"/>
+<circle cx="900" cy="96" r="30" fill="url(#lampG)" opacity=".8"/>
+<rect y="318" width="960" height="102" fill="url(#floorG)"/>
+<rect y="316" width="960" height="6" fill="#7b88a3" opacity=".6"/>
+<path d="M0 372H960" stroke="#f6b73c" stroke-width="5"/>
+<path d="M-20 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M20 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M60 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M100 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M140 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M180 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M220 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M260 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M300 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M340 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M380 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M420 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M460 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M500 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M540 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M580 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M620 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M660 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M700 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M740 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M780 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M820 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M860 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M900 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<path d="M940 374l24 0l-12 16h-24z" fill="#2b3550" opacity=".55"/>
+<ellipse cx="110" cy="352" rx="70" ry="9" fill="#fff" opacity=".22" filter="url(#soft)"/>
+<ellipse cx="330" cy="352" rx="70" ry="9" fill="#fff" opacity=".22" filter="url(#soft)"/>
+<ellipse cx="520" cy="352" rx="70" ry="9" fill="#fff" opacity=".22" filter="url(#soft)"/>
+<ellipse cx="760" cy="352" rx="70" ry="9" fill="#fff" opacity=".22" filter="url(#soft)"/>
+<g><rect x="24" y="108" width="8" height="210" fill="#2f6fed"/><rect x="166" y="108" width="8" height="210" fill="#2f6fed"/><rect x="38" y="142.66666666666669" width="32" height="34" rx="2" fill="url(#box1)" stroke="#8a5a26" stroke-width="1"/><rect x="38" y="154.5666666666667" width="32" height="5" fill="#fff" opacity=".55"/><rect x="47.6" y="142.66666666666669" width="3.84" height="34" fill="#f2d7a8" opacity=".6"/><path d="M80 176.66666666666669v-36q-4 -6 0 -10h28q4 4 0 10v36z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="86.0" y="149.38666666666668" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="88.0" y="151.38666666666668" width="3" height="3" fill="#1d2b4a"/><rect x="92.0" y="159.38666666666668" width="3" height="3" fill="#1d2b4a"/><path d="M82 134.66666666666669h24" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><rect x="24" y="176.66666666666669" width="150" height="8" fill="#ff9b2f"/><rect x="24" y="182.66666666666669" width="150" height="2" fill="#c76f00"/><rect x="38" y="217.33333333333334" width="30" height="26" rx="2" fill="url(#box2)" stroke="#8a5a26" stroke-width="1"/><rect x="38" y="226.43333333333334" width="30" height="5" fill="#fff" opacity=".55"/><rect x="47.0" y="217.33333333333334" width="3.5999999999999996" height="26" fill="#f2d7a8" opacity=".6"/><path d="M78 243.33333333333334v-35q-4 -6 0 -10h28q4 4 0 10v35z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="84.0" y="216.67333333333335" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="86.0" y="218.67333333333335" width="3" height="3" fill="#1d2b4a"/><rect x="86.0" y="226.67333333333335" width="3" height="3" fill="#1d2b4a"/><rect x="90.0" y="222.67333333333335" width="3" height="3" fill="#1d2b4a"/><rect x="94.0" y="218.67333333333335" width="3" height="3" fill="#1d2b4a"/><rect x="94.0" y="226.67333333333335" width="3" height="3" fill="#1d2b4a"/><path d="M80 202.33333333333334h24" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><rect x="114" y="212.33333333333334" width="33" height="31" rx="2" fill="url(#box2)" stroke="#8a5a26" stroke-width="1"/><rect x="114" y="223.18333333333334" width="33" height="5" fill="#fff" opacity=".55"/><rect x="123.9" y="212.33333333333334" width="3.96" height="31" fill="#f2d7a8" opacity=".6"/><rect x="24" y="243.33333333333334" width="150" height="8" fill="#ff9b2f"/><rect x="24" y="249.33333333333334" width="150" height="2" fill="#c76f00"/><rect x="38" y="268.0" width="40" height="42" rx="2" fill="url(#box2)" stroke="#8a5a26" stroke-width="1"/><rect x="38" y="282.7" width="40" height="5" fill="#fff" opacity=".55"/><rect x="50.0" y="268.0" width="4.8" height="42" fill="#f2d7a8" opacity=".6"/><path d="M88 310.0v-27q-4 -6 0 -10h32q4 4 0 10v27z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="96.0" y="288.3" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="98.0" y="290.3" width="3" height="3" fill="#1d2b4a"/><rect x="98.0" y="294.3" width="3" height="3" fill="#1d2b4a"/><rect x="102.0" y="290.3" width="3" height="3" fill="#1d2b4a"/><rect x="102.0" y="298.3" width="3" height="3" fill="#1d2b4a"/><rect x="106.0" y="290.3" width="3" height="3" fill="#1d2b4a"/><path d="M90 277.0h28" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><path d="M135 310.0v-32q-4 -6 0 -10h27q4 4 0 10v32z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="140.5" y="285.2" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="142.5" y="291.2" width="3" height="3" fill="#1d2b4a"/><rect x="150.5" y="287.2" width="3" height="3" fill="#1d2b4a"/><rect x="150.5" y="291.2" width="3" height="3" fill="#1d2b4a"/><rect x="150.5" y="295.2" width="3" height="3" fill="#1d2b4a"/><path d="M137 272.0h23" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><rect x="24" y="310.0" width="150" height="8" fill="#ff9b2f"/><rect x="24" y="316.0" width="150" height="2" fill="#c76f00"/></g>
+<g><rect x="190" y="108" width="8" height="210" fill="#2f6fed"/><rect x="332" y="108" width="8" height="210" fill="#2f6fed"/><rect x="223" y="145.66666666666669" width="41" height="31" rx="2" fill="url(#box2)" stroke="#8a5a26" stroke-width="1"/><rect x="223" y="156.51666666666668" width="41" height="5" fill="#fff" opacity=".55"/><rect x="235.3" y="145.66666666666669" width="4.92" height="31" fill="#f2d7a8" opacity=".6"/><rect x="269" y="149.66666666666669" width="36" height="27" rx="2" fill="url(#box2)" stroke="#8a5a26" stroke-width="1"/><rect x="269" y="159.11666666666667" width="36" height="5" fill="#fff" opacity=".55"/><rect x="279.8" y="149.66666666666669" width="4.32" height="27" fill="#f2d7a8" opacity=".6"/><rect x="190" y="176.66666666666669" width="150" height="8" fill="#ff9b2f"/><rect x="190" y="182.66666666666669" width="150" height="2" fill="#c76f00"/><path d="M274 243.33333333333334v-24q-4 -6 0 -10h22q4 4 0 10v24z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="277.0" y="223.49333333333334" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="279.0" y="225.49333333333334" width="3" height="3" fill="#1d2b4a"/><rect x="279.0" y="229.49333333333334" width="3" height="3" fill="#1d2b4a"/><rect x="287.0" y="225.49333333333334" width="3" height="3" fill="#1d2b4a"/><rect x="287.0" y="233.49333333333334" width="3" height="3" fill="#1d2b4a"/><path d="M276 213.33333333333334h18" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><rect x="305" y="206.33333333333334" width="46" height="37" rx="2" fill="url(#box2)" stroke="#8a5a26" stroke-width="1"/><rect x="305" y="219.28333333333333" width="46" height="5" fill="#fff" opacity=".55"/><rect x="318.8" y="206.33333333333334" width="5.52" height="37" fill="#f2d7a8" opacity=".6"/><rect x="190" y="243.33333333333334" width="150" height="8" fill="#ff9b2f"/><rect x="190" y="249.33333333333334" width="150" height="2" fill="#c76f00"/><rect x="204" y="271.0" width="44" height="39" rx="2" fill="url(#box2)" stroke="#8a5a26" stroke-width="1"/><rect x="204" y="284.65" width="44" height="5" fill="#fff" opacity=".55"/><rect x="217.2" y="271.0" width="5.279999999999999" height="39" fill="#f2d7a8" opacity=".6"/><path d="M257 310.0v-29q-4 -6 0 -10h27q4 4 0 10v29z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="262.5" y="287.06" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="264.5" y="293.06" width="3" height="3" fill="#1d2b4a"/><rect x="264.5" y="297.06" width="3" height="3" fill="#1d2b4a"/><rect x="268.5" y="289.06" width="3" height="3" fill="#1d2b4a"/><path d="M259 275.0h23" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><path d="M300 310.0v-34q-4 -6 0 -10h27q4 4 0 10v34z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="305.5" y="283.96" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="307.5" y="289.96" width="3" height="3" fill="#1d2b4a"/><rect x="307.5" y="293.96" width="3" height="3" fill="#1d2b4a"/><rect x="311.5" y="285.96" width="3" height="3" fill="#1d2b4a"/><rect x="311.5" y="293.96" width="3" height="3" fill="#1d2b4a"/><rect x="315.5" y="285.96" width="3" height="3" fill="#1d2b4a"/><rect x="315.5" y="293.96" width="3" height="3" fill="#1d2b4a"/><path d="M302 270.0h23" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><rect x="190" y="310.0" width="150" height="8" fill="#ff9b2f"/><rect x="190" y="316.0" width="150" height="2" fill="#c76f00"/></g>
+<g><rect x="356" y="108" width="8" height="210" fill="#2f6fed"/><rect x="498" y="108" width="8" height="210" fill="#2f6fed"/><path d="M374 176.66666666666669v-36q-4 -6 0 -10h27q4 4 0 10v36z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="379.5" y="149.38666666666668" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="381.5" y="155.38666666666668" width="3" height="3" fill="#1d2b4a"/><rect x="385.5" y="151.38666666666668" width="3" height="3" fill="#1d2b4a"/><rect x="385.5" y="159.38666666666668" width="3" height="3" fill="#1d2b4a"/><rect x="389.5" y="151.38666666666668" width="3" height="3" fill="#1d2b4a"/><rect x="389.5" y="159.38666666666668" width="3" height="3" fill="#1d2b4a"/><path d="M376 134.66666666666669h23" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><path d="M415 176.66666666666669v-30q-4 -6 0 -10h25q4 4 0 10v30z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="419.5" y="153.10666666666668" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="421.5" y="159.10666666666668" width="3" height="3" fill="#1d2b4a"/><rect x="421.5" y="163.10666666666668" width="3" height="3" fill="#1d2b4a"/><rect x="425.5" y="159.10666666666668" width="3" height="3" fill="#1d2b4a"/><rect x="425.5" y="163.10666666666668" width="3" height="3" fill="#1d2b4a"/><path d="M417 140.66666666666669h21" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><path d="M453 176.66666666666669v-26q-4 -6 0 -10h29q4 4 0 10v26z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="459.5" y="155.5866666666667" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="461.5" y="157.5866666666667" width="3" height="3" fill="#1d2b4a"/><rect x="461.5" y="161.5866666666667" width="3" height="3" fill="#1d2b4a"/><rect x="461.5" y="165.5866666666667" width="3" height="3" fill="#1d2b4a"/><rect x="465.5" y="157.5866666666667" width="3" height="3" fill="#1d2b4a"/><rect x="469.5" y="157.5866666666667" width="3" height="3" fill="#1d2b4a"/><rect x="469.5" y="165.5866666666667" width="3" height="3" fill="#1d2b4a"/><path d="M455 144.66666666666669h25" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><rect x="356" y="176.66666666666669" width="150" height="8" fill="#ff9b2f"/><rect x="356" y="182.66666666666669" width="150" height="2" fill="#c76f00"/><rect x="370" y="205.33333333333334" width="36" height="38" rx="2" fill="url(#box1)" stroke="#8a5a26" stroke-width="1"/><rect x="370" y="218.63333333333335" width="36" height="5" fill="#fff" opacity=".55"/><rect x="380.8" y="205.33333333333334" width="4.32" height="38" fill="#f2d7a8" opacity=".6"/><rect x="411" y="209.33333333333334" width="34" height="34" rx="2" fill="url(#box1)" stroke="#8a5a26" stroke-width="1"/><rect x="411" y="221.23333333333335" width="34" height="5" fill="#fff" opacity=".55"/><rect x="421.2" y="209.33333333333334" width="4.08" height="34" fill="#f2d7a8" opacity=".6"/><path d="M472 243.33333333333334v-25q-4 -6 0 -10h27q4 4 0 10v25z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="477.5" y="222.87333333333333" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="479.5" y="224.87333333333333" width="3" height="3" fill="#1d2b4a"/><rect x="479.5" y="228.87333333333333" width="3" height="3" fill="#1d2b4a"/><rect x="479.5" y="232.87333333333333" width="3" height="3" fill="#1d2b4a"/><rect x="483.5" y="228.87333333333333" width="3" height="3" fill="#1d2b4a"/><rect x="483.5" y="232.87333333333333" width="3" height="3" fill="#1d2b4a"/><rect x="487.5" y="224.87333333333333" width="3" height="3" fill="#1d2b4a"/><rect x="487.5" y="228.87333333333333" width="3" height="3" fill="#1d2b4a"/><rect x="487.5" y="232.87333333333333" width="3" height="3" fill="#1d2b4a"/><path d="M474 212.33333333333334h23" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><rect x="356" y="243.33333333333334" width="150" height="8" fill="#ff9b2f"/><rect x="356" y="249.33333333333334" width="150" height="2" fill="#c76f00"/><path d="M392 310.0v-29q-4 -6 0 -10h28q4 4 0 10v29z" fill="url(#bag)" stroke="#9fb0d2" stroke-width="1.2"/><rect x="398.0" y="287.06" width="16" height="16" rx="2" fill="#fff" stroke="#1d2b4a" stroke-width="1"/><rect x="400.0" y="289.06" width="3" height="3" fill="#1d2b4a"/><rect x="400.0" y="293.06" width="3" height="3" fill="#1d2b4a"/><rect x="400.0" y="297.06" width="3" height="3" fill="#1d2b4a"/><rect x="404.0" y="289.06" width="3" height="3" fill="#1d2b4a"/><rect x="404.0" y="297.06" width="3" height="3" fill="#1d2b4a"/><rect x="408.0" y="289.06" width="3" height="3" fill="#1d2b4a"/><path d="M394 275.0h24" stroke="#4d8dff" stroke-width="3" stroke-linecap="round"/><rect x="431" y="268.0" width="41" height="42" rx="2" fill="url(#box1)" stroke="#8a5a26" stroke-width="1"/><rect x="431" y="282.7" width="41" height="5" fill="#fff" opacity=".55"/><rect x="443.3" y="268.0" width="4.92" height="42" fill="#f2d7a8" opacity=".6"/><rect x="478" y="275.0" width="41" height="35" rx="2" fill="url(#box1)" stroke="#8a5a26" stroke-width="1"/><rect x="478" y="287.25" width="41" height="5" fill="#fff" opacity=".55"/><rect x="490.3" y="275.0" width="4.92" height="35" fill="#f2d7a8" opacity=".6"/><rect x="356" y="310.0" width="150" height="8" fill="#ff9b2f"/><rect x="356" y="316.0" width="150" height="2" fill="#c76f00"/></g>
+<ellipse cx="99" cy="322" rx="78" ry="6" fill="#1d2b4a" opacity=".22"/>
+<ellipse cx="265" cy="322" rx="78" ry="6" fill="#1d2b4a" opacity=".22"/>
+<ellipse cx="431" cy="322" rx="78" ry="6" fill="#1d2b4a" opacity=".22"/>
+<polygon points="560,320 890,320 960,420 470,420" fill="url(#spillG)" class="spill"/>
+<ellipse cx="725" cy="334" rx="150" ry="10" fill="#fff3c4" opacity=".35" filter="url(#soft)"/>
+<g transform="translate(560,356)"><rect x="-46" y="-8" width="92" height="8" fill="#a9712f"/><rect x="-46" y="0" width="14" height="8" fill="#8a5a26"/><rect x="-7" y="0" width="14" height="8" fill="#8a5a26"/><rect x="32" y="0" width="14" height="8" fill="#8a5a26"/><rect x="-44" y="-46" width="44" height="38" rx="2" fill="url(#box1)" stroke="#8a5a26" stroke-width="1"/><rect x="-44" y="-34.6" width="44" height="5" fill="#fff" opacity=".5"/><rect x="0" y="-46" width="44" height="38" rx="2" fill="url(#box2)" stroke="#8a5a26" stroke-width="1"/><rect x="0" y="-34.6" width="44" height="5" fill="#fff" opacity=".5"/><rect x="-30" y="-86" width="56" height="40" rx="2" fill="url(#box1)" stroke="#8a5a26" stroke-width="1"/><rect x="-30" y="-74.0" width="56" height="5" fill="#fff" opacity=".5"/><path d="M-44 -48l88 0" stroke="#4d8dff" stroke-width="2" opacity=".0"/></g>
+<g transform="translate(470,362)"><rect x="-40" y="-6" width="70" height="7" rx="2" fill="#e24c2e"/><rect x="26" y="-6" width="8" height="12" fill="#b53a22"/><path d="M-36 -6l-6 -46" stroke="#2b3550" stroke-width="4" stroke-linecap="round"/><circle cx="-42" cy="-54" r="5" fill="#2b3550"/><circle cx="26" cy="6" r="5" fill="#2b3550"/></g>
+<g transform="translate(290,0)">
+<g transform="translate(0,386) scale(1,1)"><ellipse cx="0" cy="2" rx="26" ry="5" fill="#1d2b4a" opacity=".25"/><rect x="-13" y="-62" width="11" height="60" rx="5" fill="#27324f"/><rect x="2" y="-62" width="11" height="60" rx="5" fill="#2f3b5c"/><rect x="-16" y="-6" width="16" height="8" rx="4" fill="#111827"/><rect x="2" y="-6" width="16" height="8" rx="4" fill="#111827"/><path d="M-19 -66c0 -30 38 -30 38 0v10h-38z" fill="#2f6fed"/><path d="M-19 -96c0 -4 6 -8 12 -8h14c6 0 12 4 12 8l3 38h-44z" fill="#3b7bf5"/><path d="M-12 -104l6 44h-8l-6 -40z M12 -104l-6 44h8l6 -40z" fill="#ff7a1a"/><rect x="-19" y="-80" width="38" height="5" fill="#fff" opacity=".9"/><circle cx="0" cy="-118" r="14" fill="#f0c19b"/><path d="M-14 -120c0 -14 28 -14 28 0c-6 -6 -22 -6 -28 0z" fill="#3a2a22"/><path d="M-16 -122c0 -16 32 -16 32 0z" fill="#ffd54a"/><rect x="-18" y="-123" width="36" height="4" rx="2" fill="#e0a800"/><circle cx="-5" cy="-117" r="1.6" fill="#1b1b1b"/><circle cx="5" cy="-117" r="1.6" fill="#1b1b1b"/><path d="M-4 -111q4 3 8 0" stroke="#7a3b2a" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M16 -92l24 14" stroke="#3b7bf5" stroke-width="11" stroke-linecap="round"/><circle cx="42" cy="-77" r="6" fill="#f0c19b"/><g transform="translate(44,-92) rotate(-18)"><rect x="-6" y="-16" width="20" height="38" rx="5" fill="#1d2b4a"/><rect x="-3" y="-12" width="14" height="18" rx="2" fill="#7fe3ff"/><rect x="-3" y="9" width="14" height="9" rx="2" fill="#2f6fed"/><rect x="2" y="-21" width="9" height="7" rx="2" fill="#ff3b30"/></g><path d="M-16 -92l-8 30" stroke="#3b7bf5" stroke-width="11" stroke-linecap="round"/><circle cx="-24" cy="-60" r="6" fill="#f0c19b"/></g>
+</g>
+<path d="M334 296L388 332" stroke="url(#beamG)" stroke-width="3" stroke-linecap="round" class="laser"/>
+<path d="M334 296L388 332" stroke="#ff3b3b" stroke-width="9" stroke-linecap="round" opacity=".18" class="laser"/>
+<circle cx="390" cy="333" r="4" fill="#ff3b3b" class="laser"/><circle cx="390" cy="333" r="10" fill="#ff3b3b" opacity=".25" class="laser"/>
+<g transform="translate(640,388) scale(-1,1)"><ellipse cx="0" cy="2" rx="26" ry="5" fill="#1d2b4a" opacity=".25"/><rect x="-13" y="-62" width="11" height="60" rx="5" fill="#27324f"/><rect x="2" y="-62" width="11" height="60" rx="5" fill="#2f3b5c"/><rect x="-16" y="-6" width="16" height="8" rx="4" fill="#111827"/><rect x="2" y="-6" width="16" height="8" rx="4" fill="#111827"/><path d="M-19 -66c0 -30 38 -30 38 0v10h-38z" fill="#2f6fed"/><path d="M-19 -96c0 -4 6 -8 12 -8h14c6 0 12 4 12 8l3 38h-44z" fill="#3b7bf5"/><path d="M-12 -104l6 44h-8l-6 -40z M12 -104l-6 44h8l6 -40z" fill="#ffd54a"/><rect x="-19" y="-80" width="38" height="5" fill="#fff" opacity=".9"/><circle cx="0" cy="-118" r="14" fill="#d8a47f"/><path d="M-14 -120c0 -14 28 -14 28 0c-6 -6 -22 -6 -28 0z" fill="#1f1a17"/><circle cx="-5" cy="-117" r="1.6" fill="#1b1b1b"/><circle cx="5" cy="-117" r="1.6" fill="#1b1b1b"/><path d="M-4 -111q4 3 8 0" stroke="#7a3b2a" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M16 -92l18 18" stroke="#3b7bf5" stroke-width="11" stroke-linecap="round"/><path d="M-16 -92l-18 18" stroke="#3b7bf5" stroke-width="11" stroke-linecap="round"/><rect x="-34" y="-90" width="68" height="40" rx="3" fill="url(#box1)" stroke="#8a5a26" stroke-width="1.2"/><rect x="-34" y="-76" width="68" height="5" fill="#fff" opacity=".55"/><circle cx="34" cy="-74" r="6" fill="#d8a47f"/><circle cx="-34" cy="-74" r="6" fill="#d8a47f"/></g>
+<g transform="translate(196,396)"><rect x="-78" y="-14" width="156" height="26" rx="8" fill="#10295c" opacity=".92"/><text x="0" y="4.500" text-anchor="middle" font-family="system-ui,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="1" fill="#fff">ЗОНА ПРИЁМКИ</text></g>
+<g class="pop" transform="translate(392,268)"><rect x="-58" y="-22" width="116" height="34" rx="12" fill="#fff" stroke="#2f6fed" stroke-width="2"/><circle cx="-38" cy="-5" r="9" fill="#2bb673"/><path d="M-43 -5l4 4 7 -8" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="-22" y="0" font-family="system-ui,Segoe UI,sans-serif" font-size="13" font-weight="800" fill="#10295c">MONO-014</text></g>
+<circle cx="751" cy="253" r="1.6" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="780" cy="328" r="2.0" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="614" cy="315" r="2.0" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="842" cy="267" r="1.2" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="748" cy="187" r="1.2" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="795" cy="317" r="2.0" fill="#fff8d6" opacity="0.7" class="dust"/>
+<circle cx="541" cy="262" r="1.6" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="854" cy="299" r="2.0" fill="#fff8d6" opacity="0.7" class="dust"/>
+<circle cx="600" cy="269" r="1.2" fill="#fff8d6" opacity="0.7" class="dust"/>
+<circle cx="552" cy="125" r="1.2" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="643" cy="263" r="1.2" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="687" cy="222" r="2.0" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="785" cy="169" r="2.0" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="775" cy="111" r="2.0" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="754" cy="277" r="1.6" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="802" cy="325" r="1.2" fill="#fff8d6" opacity="0.7" class="dust"/>
+<circle cx="650" cy="190" r="1.2" fill="#fff8d6" opacity="0.7" class="dust"/>
+<circle cx="667" cy="117" r="1.2" fill="#fff8d6" opacity="0.7" class="dust"/>
+<circle cx="575" cy="212" r="1.2" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="717" cy="127" r="1.2" fill="#fff8d6" opacity="0.7" class="dust"/>
+<circle cx="520" cy="164" r="1.2" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="760" cy="206" r="2.0" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="734" cy="128" r="2.0" fill="#fff8d6" opacity="0.7" class="dust"/>
+<circle cx="621" cy="309" r="2.0" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="692" cy="132" r="1.6" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="527" cy="214" r="1.2" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="646" cy="290" r="1.2" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="550" cy="229" r="1.6" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="869" cy="253" r="1.2" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="780" cy="158" r="2.0" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="734" cy="274" r="1.6" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="722" cy="217" r="1.2" fill="#fff8d6" opacity="0.35" class="dust"/>
+<circle cx="658" cy="315" r="2.0" fill="#fff8d6" opacity="0.5" class="dust"/>
+<circle cx="530" cy="163" r="1.2" fill="#fff8d6" opacity="0.5" class="dust"/>
+<rect width="960" height="420" class="vig" fill="url(#vigG)" opacity=".55"/>
+</svg></script>
+<script type="module">
+import {initializeApp,getApps} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged,createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {getFirestore,collection,doc,getDoc,getDocs,setDoc,updateDoc,onSnapshot,runTransaction,writeBatch,query,orderBy,limit,where,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+/*PURE-START*/
+const MSK_TZ='Europe/Moscow';
+const LK={'Х':'X','М':'M','А':'A','С':'C','Е':'E','О':'O','Р':'P','Т':'T','В':'B','Н':'H','К':'K','Л':'L'};
+const nk=t=>String(t==null?'':t).trim().toUpperCase().replace(/[ХМАСЕОРТВНКЛ]/g,c=>LK[c]);
+const keyOf=(a,s)=>(nk(a)+'__'+nk(s)).replace(/[\/\\#?\[\]]/g,'_');
+const sanitCode=c=>String(c||'').trim().replace(/[^A-Za-z0-9_-]/g,'-').slice(0,80);
+const mskDay=(d=new Date())=>new Intl.DateTimeFormat('en-CA',{timeZone:MSK_TZ}).format(d);
+const fmtDT=ms=>{if(!ms)return '—';const p=new Intl.DateTimeFormat('ru-RU',{timeZone:MSK_TZ,day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(ms)).reduce((o,x)=>(o[x.type]=x.value,o),{});return `${p.day}.${p.month}.${p.year} ${p.hour}:${p.minute}`};
+const PERMS=['view','add','out','rcv','inv','hist','ana','exp','staff','hoj'];
+const ROLES={keeper:{view:1,add:1,out:1,inv:0,rcv:0,hist:0,ana:0,exp:0,staff:0,hoj:1},receiver:{view:1,add:0,out:0,rcv:1,inv:0,hist:0,ana:0,exp:0,staff:0,hoj:0},senior:{view:1,add:1,out:1,rcv:1,inv:1,hist:1,ana:1,exp:0,staff:0,hoj:1},analyst:{view:1,add:0,out:0,rcv:0,inv:0,hist:1,ana:1,exp:1,staff:0,hoj:1}};
+// Цвет остатка: красный — не больше r, жёлтый — не больше y, иначе зелёный. Порог из настроек, иначе общий.
+function lvl(q,thr){const r=thr&&Number.isFinite(+thr.r)?+thr.r:10,y=thr&&Number.isFinite(+thr.y)?+thr.y:20;return q<=r?'r':q<=y?'y':'g'}
+// Прогресс по строкам отправления: lines — состав, rcv — операции приёмки (type='receive')
+function shipProgress(ship,rcvOps){
+  const ret=new Set(ship.ret||[]),got={},bad={};for(const o of rcvOps){if(o.ship!==ship.id)continue;got[o.ln]=(got[o.ln]||0)+(+o.d||0);bad[o.ln]=(bad[o.ln]||0)+(+o.bad||0)}
+  const all=ship.lines.map((l,i)=>{const g=got[i]||0,b=bad[i]||0,returned=ret.has(l.bag),rem=returned?0:Math.max(0,l.q-g-b);return{i,...l,got:g,bad:b,rem,returned,short:ship.status==='closed'?rem:0,surplus:returned?0:Math.max(0,g+b-l.q)}});
+  const rows=all.filter(r=>!r.returned),tot=rows.reduce((n,r)=>n+r.q,0),done=rows.reduce((n,r)=>n+Math.min(r.q,r.got+r.bad),0);
+  const retQ=all.filter(r=>r.returned).reduce((n,r)=>n+r.q,0),gotQ=rows.reduce((n,r)=>n+r.got,0),badQ=rows.reduce((n,r)=>n+r.bad,0),shortQ=rows.reduce((n,r)=>n+r.short,0);
+  let state=ship.status==='cancelled'?'cancelled':ship.status==='closed'?(shortQ>0?'short':'received'):done===0?'transit':rows.every(r=>r.rem===0)?'received':'partial';
+  return{rows,all,tot,done,gotQ,badQ,shortQ,retQ,state}
+}
+// В пути по ключу (a|s): остаток не принятого по открытым отправлениям
+function inTransit(ships,rcvOps){const m={};for(const sh of ships){if(sh.status!=='open')continue;const p=shipProgress(sh,rcvOps);for(const r of p.rows){if(r.rem>0)m[r.k]=(m[r.k]||0)+r.rem}}return m}
+// --- CSV / импорт из 1С ---
+function parseCSV(text){
+  const t=String(text).replace(/^\uFEFF/,''),first=t.split(/\r?\n/)[0]||'';
+  const d=[';','\t',','].map(c=>[c,(first.split(c).length-1)]).sort((a,b)=>b[1]-a[1])[0][0];
+  const rows=[];let row=[],cur='',q=false;
+  for(let i=0;i<t.length;i++){const c=t[i];
+    if(q){if(c==='"'){if(t[i+1]==='"'){cur+='"';i++}else q=false}else cur+=c}
+    else if(c==='"')q=true;else if(c===d){row.push(cur);cur=''}
+    else if(c==='\n'){row.push(cur);rows.push(row);row=[];cur=''}else if(c!=='\r')cur+=c}
+  if(cur!==''||row.length){row.push(cur);rows.push(row)}
+  return rows.filter(r=>r.some(x=>String(x).trim()!==''))
+}
+const COLS=[['art',/артикул|^арт\b|sku|vendor/i],['size',/размер|характеристик|size/i],['code',/штрих|barcode|ean|баркод/i],['name',/наименов|номенклатур|название|name/i],['qty',/остаток|количеств|колич|qty|кол-во/i]];
+function guessColumns(header){const m={};header.forEach((h,i)=>{for(const [k,re] of COLS)if(m[k]===undefined&&re.test(String(h)))m[k]=i});return m}
+const num=v=>{const n=parseFloat(String(v==null?'':v).replace(/\s/g,'').replace(',','.'));return Number.isFinite(n)?n:NaN};
+// Строки импорта -> позиции {a,s,code,name,q}; невалидные пропускаются и считаются
+function buildImport(rows,map){
+  const out=[],bad=[];
+  for(const r of rows){const a=String(r[map.art]==null?'':r[map.art]).trim(),s=map.size>=0&&map.size!==undefined?String(r[map.size]==null?'':r[map.size]).trim():'';
+    if(!a){bad.push(r);continue}
+    const q=map.qty!==undefined&&map.qty>=0?num(r[map.qty]):NaN;
+    out.push({a,s,code:map.code!==undefined&&map.code>=0?String(r[map.code]||'').replace(/[^A-Za-z0-9_-]/g,''):'',name:map.name!==undefined&&map.name>=0?String(r[map.name]||'').trim():'',q:Number.isFinite(q)&&q>0?Math.floor(q):0})}
+  return{items:out,skipped:bad.length}
+}
+// --- Аналитика только из реальных операций ---
+function analytics(ops,stock,days){
+  const A={inQ:0,outQ:0,adjNet:0,n:ops.length,byDay:{},top:{},sizes:{},staff:{},disc:[],last:{}};
+  for(const o of ops){const d=+o.d||0,bd=A.byDay[o.day]||(A.byDay[o.day]={in:0,out:0});
+    if(o.type==='add'||o.type==='receive'||o.type==='import'){A.inQ+=d;bd.in+=d}
+    else if(o.type==='out'){A.outQ+=-d;bd.out+=-d;A.top[o.a]=(A.top[o.a]||0)+(-d);const sk=nk(o.s);A.sizes[sk]=(A.sizes[sk]||0)+(-d);A.last[o.k]=(A.last[o.k]||0)+(-d)}
+    else if(o.type==='adjust')A.adjNet+=d;
+    const st=A.staff[o.name]||(A.staff[o.name]={n:0,in:0,out:0});st.n++;if(d>0)st.in+=d;else if(d<0)st.out+=-d;
+    if(o.type==='receive'&&((+o.d||0)+(+o.bad||0))!==(+o.exp||0))A.disc.push(o)}
+  const fast=[],slow=[];
+  for(const k in stock){const q=stock[k].q,out=A.last[k]||0;if(out>0){const per=out/Math.max(1,days),left=q/per;if(left<=14)fast.push({k,a:stock[k].a,s:stock[k].s,q,out,left})}else if(q>0)slow.push({k,a:stock[k].a,s:stock[k].s,q})}
+  fast.sort((a,b)=>a.left-b.left);slow.sort((a,b)=>b.q-a.q);A.fast=fast;A.slow=slow;return A
+}
+
+// ===== Маркетплейсы (данные существующей синхронизации mp) =====
+const MP_COLS={oz_fbs:['ozon','fbs'],oz_fbo:['ozon','fbo'],wb_fbs:['wb','fbs'],wb_fbw:['wb','fbo']};
+const DEF_THR={r:10,y:20,t:30};
+const thrOf=(cfg,plat,k)=>{const it=cfg&&cfg.items&&cfg.items[plat+'|'+k],d=cfg&&cfg.def&&cfg.def[plat];return{...DEF_THR,...(d||{}),...(it||{})}};
+// stock rows -> {key:{a,s,oz_fbs,oz_fbo,wb_fbs,wb_fbw}}; поле отсутствует, если площадка не отдала данные
+function mpIndex(mp){const m={};if(!mp)return m;for(const [pk,[doc,fld]] of Object.entries(MP_COLS)){const d=mp[doc];if(!d||!d.rows)continue;for(const r of d.rows){const k=keyOf(r.a,r.s),x=m[k]||(m[k]={a:r.a,s:r.s});x[pk]=(x[pk]||0)+(+r[fld]||0)}}return m}
+const LV={r:0,y:1,g:2};
+function lvQ(q,t){return q<=t.r?'r':q<=t.y?'y':'g'}
+// Рейтинг пополнения FBS: самые «красные» первыми; need — сколько довезти до целевого запаса; send — не больше, чем есть в Москве
+function fbsRating(mpi,cfg,moscow,avg){
+  const rows=[];
+  for(const [k,x] of Object.entries(mpi)){
+    const cols=['oz_fbs','wb_fbs'].filter(p=>x[p]!==undefined);if(!cols.length)continue;
+    let worst='g',need=0,min=Infinity;const lv={};
+    for(const p of cols){const t=thrOf(cfg,p,k),l=lvQ(x[p],t);lv[p]=l;if(LV[l]<LV[worst])worst=l;if(l!=='g')need+=Math.max(0,t.t-x[p]);min=Math.min(min,x[p])}
+    const av=moscow[k]?moscow[k].q:0,daily=(avg&&avg[k])||0,fb=cols.reduce((n,p)=>n+x[p],0);
+    rows.push({k,a:x.a,s:x.s,oz:x.oz_fbs,wb:x.wb_fbs,lv,level:worst,need,avail:av,send:Math.min(av,need),short:Math.max(0,need-av),min,cover:daily>0?fb/daily:null,daily})
+  }
+  rows.sort((a,b)=>LV[a.level]-LV[b.level]||(a.cover==null?1e9:a.cover)-(b.cover==null?1e9:b.cover)||a.min-b.min);
+  return rows}
+// ===== Продажи: дни msk_sales {day, ozon:[[a,s,fs,fo,fu]], wb:[...]} =====
+function salesFromDocs(docs){const D={};for(const d of docs){const m=D[d.day]=D[d.day]||{};for(const pl of ['ozon','wb'])for(const r of (d[pl]||[])){const k=keyOf(r[0],r[1]),x=m[k]||(m[k]={a:r[0],s:r[1],oz:{fs:0,fo:0,fu:0},wb:{fs:0,fo:0,fu:0}});const t=x[pl==='ozon'?'oz':'wb'];t.fs+=+r[2]||0;t.fo+=+r[3]||0;t.fu+=+r[4]||0}}return D}
+// запасной вариант: существующие mp/sales_* (30 дней, FBS и FBO смешаны в q)
+function salesFromMp(mp){const D={};for(const [pl,key] of [['ozon','sales_ozon'],['wb','sales_wb']]){const d=mp&&mp[key];if(!d||!d.rows||!d.days)continue;for(const r of d.rows){const k=keyOf(r.a,r.s);(r.st||[]).forEach(st=>{const sp=st.fs!==undefined||st.fo!==undefined;(st.q||[]).forEach((q,i)=>{const day=d.days[i];if(!day)return;const m=D[day]=D[day]||{},x=m[k]||(m[k]={a:r.a,s:r.s,oz:{fs:0,fo:0,fu:0},wb:{fs:0,fo:0,fu:0}}),t=x[pl==='ozon'?'oz':'wb'];if(sp){t.fs+=(st.fs||[])[i]||0;t.fo+=(st.fo||[])[i]||0;t.fu+=(st.fu||[])[i]||0}else t.fu+=q})})}}return D}
+const chanQty=(x,ch,pl)=>{const p=pl==='ozon'?[x.oz]:pl==='wb'?[x.wb]:[x.oz,x.wb];return p.reduce((n,t)=>n+(ch==='fbs'?t.fs:ch==='fbo'?t.fo:t.fs+t.fo+t.fu),0)};
+function daysBetween(a,b){const out=[];for(let d=new Date(a+'T00:00:00Z');d<=new Date(b+'T00:00:00Z');d=new Date(d.getTime()+864e5))out.push(d.toISOString().slice(0,10));return out}
+// Итоги за период: канал fbs|fbo|all, площадка all|ozon|wb
+function salesReport(D,from,to,ch,pl){
+  const days=daysBetween(from,to).slice(0,400),byDay={},items={};let total=0,split=false,unk=0;
+  for(const d of days){let s=0;const m=D[d]||{};for(const [k,x] of Object.entries(m)){const q=chanQty(x,ch,pl);if(x.oz.fs||x.oz.fo||x.wb.fs||x.wb.fo)split=true;unk+=(x.oz.fu+x.wb.fu);if(!q)continue;s+=q;const it=items[k]||(items[k]={k,a:x.a,s:x.s,q:0,oz:0,wb:0});it.q+=q;it.oz+=chanQty(x,ch,'ozon');it.wb+=chanQty(x,ch,'wb')}byDay[d]=s;total+=s}
+  const n=Math.max(1,days.length),list=Object.values(items).sort((a,b)=>b.q-a.q);
+  return{days,byDay,total,avg:total/n,list,split,unk,has:Object.keys(D).some(d=>d>=from&&d<=to),best:days.reduce((b,d)=>byDay[d]>(byDay[b]||0)?d:b,days[0])}}
+const mskRangeFrom=n=>mskDay(new Date(Date.now()-(n-1)*864e5));
+/*PURE-END*/
+
+/*I18N-START*/
+const I18N={
+ru:{app:'Склад Москва',appSub:'Учёт товара в Москве',login:'Вход',loginHint:'Войдите логином и паролем, выданными владельцем',user:'Логин',pass:'Пароль',signin:'Войти',badLogin:'Неверный логин или пароль',logout:'Выйти',
+nav_home:'Главная',nav_stock:'Остатки',nav_add:'Приход',nav_out:'Списание',nav_recv:'Приёмка',nav_more:'Ещё',nav_moves:'Перемещения',nav_inv_old:'Инвентаризация',nav_hist:'История операций',nav_ana:'Аналитика',nav_prof:'Настройки профиля',nav_staff:'Сотрудники',nav_thr:'Минимальные остатки',nav_imp:'Импорт из 1С',
+noAccess:'Нет доступа к модулю «Склад Москва».',blocked:'Доступ закрыт. Обратитесь к владельцу.',backToApp:'Вернуться в Склад LT',
+welcome:'Добро пожаловать',fillName:'Заполните профиль',fillNameHint:'Введите имя и фамилию. Они будут записываться во все операции.',firstName:'Имя',lastName:'Фамилия',save:'Сохранить',cancel:'Отмена',close:'Закрыть',nameShort:'Введите имя и фамилию',
+kTotal:'Всего на складе',kSku:'Артикулов',kPos:'Позиций (артикул × размер)',kTransit:'В пути',kToday:'Принято сегодня',pcs:'шт.',
+quick:'Быстрые действия',lowTitle:'Нужно пополнить в первую очередь',lowNone:'Критически низких остатков нет',recent:'Последние операции',noOps:'Операций пока нет',
+search:'Поиск',stockEmpty:'На складе Москва пока нет товара. Добавьте приход, примите отправление или импортируйте остатки.',physical:'Физический склад Москва',transit:'В пути',marketplaces:'Маркетплейсы',mpNote:'Данные существующей синхронизации. Не суммируются с физическим складом.',mpNone:'нет данных',mpUpdated:'обновлено',
+article:'Артикул',size:'Размер',qty:'Количество',reason:'Причина',comment:'Комментарий',optional:'необязательно',
+scanHere:'Сканируйте штрихкод',scanHint:'Сканер работает как клавиатура: наведите и нажмите курок',modeSku:'По артикулу (количество)',modeUnit:'По единицам (уникальные коды)',unitFirst:'Сначала отсканируйте штрихкод артикула или выберите товар',curItem:'Текущий товар',notFound:'Штрихкод не найден',dupScan:'Этот код уже отсканирован',manual:'Вручную',pick:'Выберите',addToList:'В список',list:'Список',emptyList:'Список пуст',commit:'Провести',clear:'Очистить',processing:'Проводим…',done:'Готово',
+rsn_buy:'Закупка / поступление',rsn_ret:'Возврат',rsn_prod:'Из производства',rsn_other:'Другое',rsn_sale:'Продажа',rsn_defect:'Брак',rsn_lost:'Потеря',rsn_mp:'Отгрузка на маркетплейс',
+lowStock:'Недостаточно на складе',busy:'Подождите…',errPerm:'Нет прав на это действие или неверные дата и время на телефоне',errNet:'Нет связи. Повторите попытку',okOp:'Операция проведена',dupOp:'Эта операция уже проведена',
+shipments:'Отправления',newShip:'Новое отправление',shipTo:'Ходжейли → Москва',shipNo:'Номер',shipDate:'Дата',shipBy:'Создал',shipExp:'Ожидается',shipGot:'Принято',shipRem:'Осталось',st_transit:'В пути',st_partial:'Принято частично',st_received:'Принято полностью',st_closed:'Закрыто',noShips:'Отправлений нет',
+pickBags:'Выберите мешки',scanBag:'Код мешка (MONO-001)',addBag:'Добавить',bagsSel:'Выбрано мешков',sumTable:'Сводка по артикулам и размерам',total:'Итого',confirmShip:'Подтвердить отправление',shipWarn:'Товар будет списан из остатка Ходжейли и появится в «В пути». Остаток Москвы не изменится до приёмки.',shipDone:'Отправление создано',noBags:'Мешков с товаром нет',bagEmpty:'В мешке нет товара',bagsLimit:'Не более 40 мешков в одном отправлении',note:'Примечание',
+recvOpen:'Открыть приёмку',bag:'Мешок',expected:'Ожидается',got:'Получено',bad:'Повреждено',recvLine:'Принять',recvBag:'Принять мешок по ожиданию',recvClose:'Завершить приёмку',closeWarn:'Недостача по непринятым позициям будет зафиксирована, приёмка закроется. Продолжить?',photo:'Фото',shortage:'Недостача',surplus:'Излишек',damaged:'Повреждено',scanned:'Мешок отсканирован',wrongBag:'Мешка нет в этом отправлении',received:'Принято',
+invTitle:'Инвентаризация',invFact:'Факт',invDiff:'Расхождение',invApply:'Применить расхождения',invNone:'Расхождений нет',invReason:'Инвентаризация',invConfirm:'Будут созданы корректирующие операции: {0}. Продолжить?',
+hist:'История операций',hDate:'Дата и время',hStaff:'Сотрудник',hOp:'Операция',hArt:'Артикул',hSize:'Размер',hQty:'Количество',hFrom:'С',hTo:'По',hAll:'Все',hMine:'Показаны только ваши операции',hLoad:'Загрузить период',hMore:'Показаны последние 500 операций. Выберите период, чтобы загрузить больше.',details:'Подробности',export:'Экспорт CSV',
+op_add:'Добавил',op_out:'Списал',op_receive:'Принял',op_adjust:'Исправил',op_import:'Импорт',op_ship:'Создал отправление',
+anaTitle:'Аналитика',period:'Период',days:'дней',aIn:'Приход',aOut:'Расход',aAdj:'Корректировки',aOps:'Операций',aTop:'Чаще всего списывается',aSizes:'Популярные размеры',aFast:'Быстро заканчиваются (≤ 14 дней)',aSlow:'Медленно расходуются (нет списаний за период)',aDisc:'Расхождения при приёмке',aStaff:'Активность сотрудников',aDaily:'Движение по дням',aLeft:'хватит на, дн.',aNoData:'Нет данных за период',aReal:'Показатели считаются только по фактическим операциям склада Москва.',
+settings:'Настройки',language:'Язык',theme:'Тема',light:'Светлая',dark:'Тёмная',sound:'Настройки звука',soundOn:'Звук включён',volume:'Громкость в приложении',testSound:'Проверить звук',sndOk:'Сигнал успешного сканирования',sndEr:'Сигнал ошибки',soundNote:'Системную громкость устройства браузер изменить не может.',
+staff:'Сотрудники Москвы',addStaff:'Добавить сотрудника',login2:'Логин',tmpPass:'Временный пароль (от 8 символов)',role:'Роль',r_keeper:'Кладовщик',r_receiver:'Приёмщик',r_senior:'Старший смены',r_analyst:'Аналитик',createAcc:'Создать учётную запись',created:'Учётная запись создана. Передайте логин и временный пароль сотруднику.',active:'Активен',blockedS:'Заблокирован',block:'Заблокировать',unblock:'Разблокировать',perms:'Разрешения',savePerms:'Сохранить разрешения',noName:'имя ещё не заполнено',
+p_view:'Просмотр остатков',p_add:'Добавление товара',p_out:'Списание товара',p_rcv:'Приёмка отправлений',p_inv:'Инвентаризация',p_hist:'Просмотр истории всех',p_ana:'Просмотр аналитики',p_exp:'Экспорт отчётов',p_staff:'Просмотр сотрудников',
+thrTitle:'Минимальные остатки',thrNote:'Красный — не больше порога «красный», жёлтый — не больше порога «жёлтый». Пустое поле — общий порог.',thrDef:'Общий порог',thrR:'Красный',thrY:'Жёлтый',thrPlat:'Площадка',plat_phys:'Физический склад',plat_oz_fbs:'Ozon FBS',plat_oz_fbo:'Ozon FBO',plat_wb_fbs:'Wildberries FBS',plat_wb_fbw:'Wildberries FBW',saved:'Сохранено',
+impTitle:'Импорт из 1С:УНФ',impNote:'Только первоначальный импорт: номенклатура, артикулы, размеры, штрихкоды и начальные остатки. Загрузите файл Excel или CSV, выгруженный из 1С. Повторный импорт не перезаписывает фактические остатки.',impFile:'Файл (.xlsx / .csv)',impMap:'Соответствие колонок',impSkip:'не использовать',impPrev:'Предпросмотр',impRows:'строк',impGo:'Импортировать',impDone:'Импорт завершён',impStock:'Остатки: добавлено {0}, пропущено (уже есть) {1}',impCodes:'Штрихкодов сохранено: {0}',impBad:'Строк без артикула пропущено: {0}',impNeedArt:'Укажите колонку «Артикул»',
+created_by:'Created by Miras',ownerOnly:'Только для владельца','r_owner':'Владелец','thrT':'Довезти до','d_moves':'Отправления из Ходжейли: где товар, возврат мешка','d_inv':'Пересчитать товар и исправить остаток','d_hist':'Кто, что и когда сделал','d_ana':'Продажи FBS/FBO, склады, пополнение','d_staff':'Аккаунты и разрешения','d_thr':'Когда остаток красный и жёлтый','d_imp':'Первоначальная загрузка из 1С','d_prof':'ФИО, язык, тема, звук','d_stock':'Остатки','d_ops':'Операции','d_recv':'Приёмка','nav_ops':'Операции','nav_inv':'Пересчёт склада','nav_hoj':'Ходжейли','nav_sales':'Продажи','nav_wh':'Склады','hello':'Здравствуйте','today':'Сегодня','yesterday':'Вчера','syncTitle':'Данные маркетплейсов','ago':'{0} назад','justNow':'только что','min':'мин','hr':'ч','dy':'дн.','noSync':'нет данных','fbsTitle':'Что пополнить в FBS','fbsSub':'Рейтинг по остаткам на маркетплейсах: сначала то, чего меньше всего','lgRed':'Мало — срочно','lgYel':'Скоро закончится','lgGrn':'Достаточно','showAll':'Показать все','fbsEmpty':'Данные маркетплейсов ещё не загружены. Они обновляются автоматически.','allGood':'Все позиции в зелёной зоне','toSend':'Отправить','needQ':'Нужно','inMsk':'В Москве','mskShort':'Не хватает в Москве','coverD':'хватит на {0} дн.','sellDay':'{0} шт./день','st_msk':'Склад Москва','st_mp':'Маркетплейсы','st_hoj':'Ходжейли','chFbs':'FBS','chFbo':'FBO','chAll':'Все','plAll':'Все площадки','chNote':'FBS — товар на складе продавца. FBO — на складе маркетплейса (показывается по фильтру).','fbsStock':'Остаток FBS','fboStock':'Остаток FBO','noData':'Нет данных','opsTitle':'Приход и списание','opsAddHint':'Товар поступил на склад Москва','opsOutHint':'Товар ушёл со склада Москва','recvAll':'Принять всё','recvAllHint':'Принять всё отправление так, как указано в списке','recvAllConfirm':'Принять на склад Москва всё отправление {0}: {1} позиций, {2} шт.?','recvByBag':'Принять по мешкам','recvBagBtn':'Принять мешок','recvAllDone':'Всё принято','recvExpand':'Изменить количество','recvNothing':'Нечего принимать','mvWait':'Ожидают приёмки','mvDone':'Завершённые','mvCancel':'Отменённые','sent':'Отправлено','whereIs':'Где товар','whMsk':'Принято на склад Москва','whShort':'Недостача (не пришло)','whRet':'Возвращено в Ходжейли','whBad':'Повреждено','whWait':'Ещё в пути','retBag':'Вернуть в Ходжейли','retConfirm':'Мешок {0} ({1} шт.) вернётся на склад Ходжейли. Продолжить?','cancelShip':'Отменить отправление','cancelConfirm':'Все мешки отправления вернутся на склад Ходжейли. Продолжить?','retDone':'Возвращено в Ходжейли','retBlocked':'Нельзя вернуть: по мешку уже была приёмка','retNoRight':'Возврат доступен владельцу и тому, кто создаёт отправления','closeShort':'Закрыть с недостачей','closeHint2':'Не принятые {0} шт. будут записаны как недостача, отправление уйдёт в «Завершённые». Владелец может открыть его заново.','reopen':'Открыть заново','st_short':'Закрыто с недостачей','st_cancelled':'Отменено','st_rcvd':'Принято полностью','bagReturned':'вернули','invWhat':'Что это такое?','invHelp':'Раз в какое-то время нужно пересчитать товар на полках и проверить, совпадает ли он с цифрами в программе. Если не совпадает — здесь можно исправить остаток. Каждое исправление остаётся в истории.','invS1':'Пересчитайте товар','invS2':'Впишите, сколько есть на самом деле','invS3':'Нажмите «Исправить остаток»','invSystem':'В программе','invReal':'На самом деле','invFix':'Исправить остаток','invOk':'совпадает','fullName':'ФИО','changeName':'Изменить ФИО','nameSaved':'ФИО сохранено','nameHint2':'ФИО записывается во все ваши операции в истории','account':'Аккаунт','appearance':'Внешний вид','anSales':'Продажи','anWh':'Склады','anOps':'Операции','pToday':'Сегодня','pYest':'Вчера','p7':'7 дней','p14':'14 дней','p30':'30 дней','p90':'90 дней','dFrom':'С','dTo':'По','apply':'Показать','sold':'Продано','avgDay':'В среднем в день','bestDay':'Лучший день','topSell':'Что продаётся лучше всего','refill':'Что пополнить в FBS','srcDaily':'Источник: ежедневный архив продаж (FBS и FBO отдельно)','srcMp':'Источник: текущая синхронизация за 30 дней. Разделение FBS/FBO появится после обновления скрипта синхронизации — сейчас показаны все продажи вместе.','srcNone':'Данных о продажах за выбранный период нет.','unkNote':'Канал не определён у {0} шт.','fbsNow':'FBS сейчас','daily':'По дням','takeHoj':'Взять из Ходжейли','hojHas':'В Ходжейли','bagsN':'мешков','whMskT':'Склад Москва','whHojT':'Ходжейли — мешки и халаты','hojNoRight':'Нет права просмотра склада Ходжейли','hojEmpty':'В мешках Ходжейли товара нет','inBags':'в мешках','salesPerDay':'продаж в день','p_hoj':'Просмотр склада Ходжейли','menuStock':'Склад','menuWork':'Работа','menuControl':'Управление','menuMore':'Прочее','openRecv':'Открыть','done2':'Готово','undo':'Отменить','back':'Назад','all':'Все','copyInfo':'Подробнее','openApp':'Открыть Склад LT','syncOz':'Ozon','syncWb':'WB',loading:'Загрузка…',empty:'—',yes:'Да',no:'Нет',confirm:'Подтвердить',camera:'Камера',cameraFail:'Не удалось открыть камеру',
+alertRed:'Критически мало',alertYel:'Скоро пополнить',ok:'Достаточно',inTransitShort:'в пути',goMain:'На главную'},
+uz:{app:'Moskva ombori',appSub:'Moskvadagi tovar hisobi',login:'Kirish',loginHint:'Egasi bergan login va parol bilan kiring',user:'Login',pass:'Parol',signin:'Kirish',badLogin:"Login yoki parol noto'g'ri",logout:'Chiqish',
+nav_home:'Bosh sahifa',nav_stock:'Qoldiqlar',nav_add:'Kirim',nav_out:'Chiqim',nav_recv:'Qabul qilish',nav_more:'Yana',nav_moves:"Ko'chirishlar",nav_inv_old:'Inventarizatsiya',nav_hist:'Operatsiyalar tarixi',nav_ana:'Analitika',nav_prof:'Profil sozlamalari',nav_staff:'Xodimlar',nav_thr:'Minimal qoldiqlar',nav_imp:"1C dan import",
+noAccess:"«Moskva ombori» moduliga ruxsat yo'q.",blocked:"Kirish yopilgan. Egasiga murojaat qiling.",backToApp:'Sklad LT ga qaytish',
+welcome:'Xush kelibsiz',fillName:"Profilni to'ldiring",fillNameHint:"Ism va familiyangizni kiriting. Ular barcha operatsiyalarga yoziladi.",firstName:'Ism',lastName:'Familiya',save:'Saqlash',cancel:'Bekor qilish',close:'Yopish',nameShort:'Ism va familiyani kiriting',
+kTotal:'Omborda jami',kSku:'Artikullar',kPos:"Pozitsiyalar (artikul × o'lcham)",kTransit:"Yo'lda",kToday:'Bugun qabul qilindi',pcs:'dona',
+quick:'Tezkor amallar',lowTitle:"Birinchi navbatda to'ldirish kerak",lowNone:"Kritik darajada kam qoldiq yo'q",recent:"So'nggi operatsiyalar",noOps:"Hozircha operatsiyalar yo'q",
+search:'Qidirish',stockEmpty:"Moskva omborida hozircha tovar yo'q. Kirim qo'shing, jo'natmani qabul qiling yoki qoldiqlarni import qiling.",physical:'Moskva jismoniy ombori',transit:"Yo'lda",marketplaces:'Marketpleyslar',mpNote:"Mavjud sinxronizatsiya ma'lumotlari. Jismoniy ombor bilan qo'shilmaydi.",mpNone:"ma'lumot yo'q",mpUpdated:'yangilangan',
+article:'Artikul',size:"O'lcham",qty:'Miqdori',reason:'Sabab',comment:'Izoh',optional:'majburiy emas',
+scanHere:'Shtrixkodni skanerlang',scanHint:"Skaner klaviatura kabi ishlaydi: yo'naltiring va tugmani bosing",modeSku:'Artikul bo‘yicha (miqdor)',modeUnit:'Dona bo‘yicha (noyob kodlar)',unitFirst:"Avval artikul shtrixkodini skanerlang yoki tovarni tanlang",curItem:'Joriy tovar',notFound:'Shtrixkod topilmadi',dupScan:'Bu kod allaqachon skanerlangan',manual:"Qo'lda",pick:'Tanlang',addToList:"Ro'yxatga",list:"Ro'yxat",emptyList:"Ro'yxat bo'sh",commit:"O'tkazish",clear:'Tozalash',processing:"O'tkazilmoqda…",done:'Tayyor',
+rsn_buy:'Xarid / kelib tushish',rsn_ret:'Qaytarish',rsn_prod:'Ishlab chiqarishdan',rsn_other:'Boshqa',rsn_sale:'Sotuv',rsn_defect:'Brak',rsn_lost:"Yo'qotish",rsn_mp:"Marketpleysga jo'natish",
+lowStock:'Omborda yetarli emas',busy:'Kuting…',errPerm:"Bu amalga ruxsat yo'q yoki telefonda sana va vaqt noto'g'ri",errNet:"Aloqa yo'q. Qayta urinib ko'ring",okOp:"Operatsiya o'tkazildi",dupOp:"Bu operatsiya allaqachon o'tkazilgan",
+shipments:"Jo'natmalar",newShip:"Yangi jo'natma",shipTo:'Xo‘jayli → Moskva',shipNo:'Raqami',shipDate:'Sana',shipBy:'Yaratdi',shipExp:'Kutilmoqda',shipGot:'Qabul qilindi',shipRem:'Qoldi',st_transit:"Yo'lda",st_partial:'Qisman qabul qilindi',st_received:"To'liq qabul qilindi",st_closed:'Yopilgan',noShips:"Jo'natmalar yo'q",
+pickBags:'Qoplarni tanlang',scanBag:'Qop kodi (MONO-001)',addBag:"Qo'shish",bagsSel:'Tanlangan qoplar',sumTable:"Artikul va o'lchamlar bo'yicha xulosa",total:'Jami',confirmShip:"Jo'natmani tasdiqlash",shipWarn:"Tovar Xo‘jayli qoldig‘idan chiqariladi va «Yo'lda» bo'limiga o'tadi. Moskva qoldig'i qabul qilinguncha o'zgarmaydi.",shipDone:"Jo'natma yaratildi",noBags:"Tovarli qoplar yo'q",bagEmpty:"Qopda tovar yo'q",bagsLimit:"Bitta jo'natmada 40 tadan ortiq qop bo'lmaydi",note:'Izoh',
+recvOpen:'Qabulni ochish',bag:'Qop',expected:'Kutilmoqda',got:'Qabul qilindi',bad:'Shikastlangan',recvLine:'Qabul qilish',recvBag:'Qopni kutilgan miqdorda qabul qilish',recvClose:'Qabulni yakunlash',closeWarn:"Qabul qilinmagan pozitsiyalar kamomad sifatida qayd etiladi va qabul yopiladi. Davom etasizmi?",photo:'Rasm',shortage:'Kamomad',surplus:'Ortiqcha',damaged:'Shikastlangan',scanned:'Qop skanerlandi',wrongBag:"Bu qop ushbu jo'natmada yo'q",received:'Qabul qilindi',
+invTitle:'Inventarizatsiya',invFact:'Fakt',invDiff:'Farq',invApply:"Farqlarni qo'llash",invNone:"Farq yo'q",invReason:'Inventarizatsiya',invConfirm:"Tuzatish operatsiyalari yaratiladi: {0}. Davom etasizmi?",
+hist:'Operatsiyalar tarixi',hDate:'Sana va vaqt',hStaff:'Xodim',hOp:'Operatsiya',hArt:'Artikul',hSize:"O'lcham",hQty:'Miqdori',hFrom:'Dan',hTo:'Gacha',hAll:'Hammasi',hMine:"Faqat sizning operatsiyalaringiz ko'rsatilgan",hLoad:'Davrni yuklash',hMore:"So'nggi 500 ta operatsiya ko'rsatilgan. Ko'proq yuklash uchun davrni tanlang.",details:"Batafsil",export:'CSV eksport',
+op_add:"Qo'shdi",op_out:'Chiqim qildi',op_receive:'Qabul qildi',op_adjust:'Tuzatdi',op_import:'Import',op_ship:"Jo'natma yaratdi",
+anaTitle:'Analitika',period:'Davr',days:'kun',aIn:'Kirim',aOut:'Chiqim',aAdj:'Tuzatishlar',aOps:'Operatsiyalar',aTop:'Eng ko‘p chiqim qilinadi',aSizes:"Ommabop o'lchamlar",aFast:'Tez tugaydi (≤ 14 kun)',aSlow:"Sekin sarflanadi (davr ichida chiqim yo'q)",aDisc:'Qabuldagi farqlar',aStaff:'Xodimlar faolligi',aDaily:'Kunlar bo‘yicha harakat',aLeft:'yetadi, kun',aNoData:"Davr uchun ma'lumot yo'q",aReal:"Ko'rsatkichlar faqat Moskva omborining haqiqiy operatsiyalari bo'yicha hisoblanadi.",
+settings:'Sozlamalar',language:'Til',theme:'Mavzu',light:'Yorug‘',dark:"Qorong'i",sound:'Ovoz sozlamalari',soundOn:'Ovoz yoqilgan',volume:'Ilovadagi ovoz balandligi',testSound:'Ovozni tekshirish',sndOk:'Muvaffaqiyatli skanerlash signali',sndEr:'Xato signali',soundNote:"Qurilmaning tizim ovozini brauzer o'zgartira olmaydi.",
+staff:'Moskva xodimlari',addStaff:"Xodim qo'shish",login2:'Login',tmpPass:"Vaqtinchalik parol (kamida 8 belgi)",role:'Rol',r_keeper:'Omborchi',r_receiver:'Qabul qiluvchi',r_senior:'Smena boshlig‘i',r_analyst:'Analitik',createAcc:'Hisob yaratish',created:"Hisob yaratildi. Login va vaqtinchalik parolni xodimga bering.",active:'Faol',blockedS:'Bloklangan',block:'Bloklash',unblock:'Blokdan chiqarish',perms:'Ruxsatlar',savePerms:'Ruxsatlarni saqlash',noName:"ism hali to'ldirilmagan",
+p_view:"Qoldiqlarni ko'rish",p_add:"Tovar qo'shish",p_out:'Tovarni chiqim qilish',p_rcv:"Jo'natmalarni qabul qilish",p_inv:'Inventarizatsiya',p_hist:"Hammaning tarixini ko'rish",p_ana:"Analitikani ko'rish",p_exp:'Hisobotlarni eksport qilish',p_staff:"Xodimlarni ko'rish",
+thrTitle:'Minimal qoldiqlar',thrNote:"Qizil — «qizil» chegaradan oshmasa, sariq — «sariq» chegaradan oshmasa. Bo'sh maydon — umumiy chegara.",thrDef:'Umumiy chegara',thrR:'Qizil',thrY:'Sariq',thrPlat:'Maydon',plat_phys:'Jismoniy ombor',plat_oz_fbs:'Ozon FBS',plat_oz_fbo:'Ozon FBO',plat_wb_fbs:'Wildberries FBS',plat_wb_fbw:'Wildberries FBW',saved:'Saqlandi',
+impTitle:"1C:UNF dan import",impNote:"Faqat dastlabki import: nomenklatura, artikullar, o'lchamlar, shtrixkodlar va boshlang'ich qoldiqlar. 1C dan yuklangan Excel yoki CSV faylni yuklang. Qayta import haqiqiy qoldiqlarni qayta yozmaydi.",impFile:'Fayl (.xlsx / .csv)',impMap:'Ustunlar mosligi',impSkip:'ishlatilmasin',impPrev:"Oldindan ko'rish",impRows:'qator',impGo:'Import qilish',impDone:'Import yakunlandi',impStock:"Qoldiqlar: qo'shildi {0}, o'tkazib yuborildi (mavjud) {1}",impCodes:'Saqlangan shtrixkodlar: {0}',impBad:"Artikulsiz qatorlar o'tkazib yuborildi: {0}",impNeedArt:'«Artikul» ustunini ko‘rsating',
+created_by:'Created by Miras',ownerOnly:'Faqat egasi uchun','r_owner':'Egasi','thrT':'Gacha to‘ldirish','d_moves':'Xo‘jaylidan jo‘natmalar: tovar qayerda, qopni qaytarish','d_inv':'Tovarni sanab, qoldiqni to‘g‘rilash','d_hist':'Kim, nima va qachon qildi','d_ana':'FBS/FBO sotuvlar, omborlar, to‘ldirish','d_staff':'Akkauntlar va ruxsatlar','d_thr':'Qoldiq qachon qizil va sariq bo‘ladi','d_imp':'1C dan dastlabki yuklash','d_prof':'F.I.Sh., til, mavzu, ovoz','d_stock':'Qoldiqlar','d_ops':'Amallar','d_recv':'Qabul','nav_ops':'Amallar','nav_inv':'Ombor qayta hisobi','nav_hoj':'Xo‘jayli','nav_sales':'Sotuvlar','nav_wh':'Omborlar','hello':'Assalomu alaykum','today':'Bugun','yesterday':'Kecha','syncTitle':'Marketpleys ma’lumotlari','ago':'{0} oldin','justNow':'hozirgina','min':'daq','hr':'soat','dy':'kun','noSync':'ma’lumot yo‘q','fbsTitle':'FBS ni nima bilan to‘ldirish','fbsSub':'Marketpleyslardagi qoldiq reytingi: avval eng kami','lgRed':'Kam — shoshilinch','lgYel':'Tez orada tugaydi','lgGrn':'Yetarli','showAll':'Hammasini ko‘rsatish','fbsEmpty':'Marketpleys ma’lumotlari hali yuklanmagan. Ular avtomatik yangilanadi.','allGood':'Barcha pozitsiyalar yashil zonada','toSend':'Jo‘natish','needQ':'Kerak','inMsk':'Moskvada','mskShort':'Moskvada yetishmaydi','coverD':'{0} kunga yetadi','sellDay':'kuniga {0} dona','st_msk':'Moskva ombori','st_mp':'Marketpleyslar','st_hoj':'Xo‘jayli','chFbs':'FBS','chFbo':'FBO','chAll':'Hammasi','plAll':'Barcha maydonlar','chNote':'FBS — sotuvchi omboridagi tovar. FBO — marketpleys omborida (filtr bo‘yicha ko‘rsatiladi).','fbsStock':'FBS qoldig‘i','fboStock':'FBO qoldig‘i','noData':'Ma’lumot yo‘q','opsTitle':'Kirim va chiqim','opsAddHint':'Tovar Moskva omboriga keldi','opsOutHint':'Tovar Moskva omboridan chiqdi','recvAll':'Hammasini qabul qilish','recvAllHint':'Jo‘natmani ro‘yxatdagidek to‘liq qabul qilish','recvAllConfirm':'{0} jo‘natmasini Moskva omboriga to‘liq qabul qilasizmi: {1} pozitsiya, {2} dona?','recvByBag':'Qoplar bo‘yicha qabul qilish','recvBagBtn':'Qopni qabul qilish','recvAllDone':'Hammasi qabul qilindi','recvExpand':'Miqdorni o‘zgartirish','recvNothing':'Qabul qilinadigan narsa yo‘q','mvWait':'Qabul kutilmoqda','mvDone':'Yakunlangan','mvCancel':'Bekor qilingan','sent':'Jo‘natildi','whereIs':'Tovar qayerda','whMsk':'Moskva omboriga qabul qilindi','whShort':'Kamomad (kelmadi)','whRet':'Xo‘jayliga qaytarildi','whBad':'Shikastlangan','whWait':'Hali yo‘lda','retBag':'Xo‘jayliga qaytarish','retConfirm':'{0} qopi ({1} dona) Xo‘jayli omboriga qaytariladi. Davom etasizmi?','cancelShip':'Jo‘natmani bekor qilish','cancelConfirm':'Jo‘natmadagi barcha qoplar Xo‘jayli omboriga qaytariladi. Davom etasizmi?','retDone':'Xo‘jayliga qaytarildi','retBlocked':'Qaytarib bo‘lmaydi: qop bo‘yicha qabul allaqachon bo‘lgan','retNoRight':'Qaytarish egasi va jo‘natma yaratuvchisi uchun mavjud','closeShort':'Kamomad bilan yopish','closeHint2':'Qabul qilinmagan {0} dona kamomad sifatida yoziladi, jo‘natma «Yakunlangan» ga o‘tadi. Egasi uni qayta ochishi mumkin.','reopen':'Qayta ochish','st_short':'Kamomad bilan yopilgan','st_cancelled':'Bekor qilingan','st_rcvd':'To‘liq qabul qilindi','bagReturned':'qaytarildi','invWhat':'Bu nima?','invHelp':'Vaqti-vaqti bilan javondagi tovarni sanab, dasturdagi raqamlarga mos kelishini tekshirish kerak. Mos kelmasa, shu yerda qoldiqni to‘g‘rilash mumkin. Har bir tuzatish tarixda qoladi.','invS1':'Tovarni sanang','invS2':'Haqiqiy sonini yozing','invS3':'«Qoldiqni to‘g‘rilash» ni bosing','invSystem':'Dasturda','invReal':'Haqiqatda','invFix':'Qoldiqni to‘g‘rilash','invOk':'mos keladi','fullName':'F.I.Sh.','changeName':'F.I.Sh. ni o‘zgartirish','nameSaved':'F.I.Sh. saqlandi','nameHint2':'F.I.Sh. tarixdagi barcha amallaringizga yoziladi','account':'Akkaunt','appearance':'Ko‘rinish','anSales':'Sotuvlar','anWh':'Omborlar','anOps':'Amallar','pToday':'Bugun','pYest':'Kecha','p7':'7 kun','p14':'14 kun','p30':'30 kun','p90':'90 kun','dFrom':'Dan','dTo':'Gacha','apply':'Ko‘rsatish','sold':'Sotildi','avgDay':'Kuniga o‘rtacha','bestDay':'Eng yaxshi kun','topSell':'Eng ko‘p sotiladigan tovarlar','refill':'FBS ni nima bilan to‘ldirish','srcDaily':'Manba: kunlik sotuv arxivi (FBS va FBO alohida)','srcMp':'Manba: joriy sinxronizatsiya, 30 kun. FBS/FBO ajratish sinxronizatsiya skripti yangilangach paydo bo‘ladi — hozir barcha sotuvlar birga ko‘rsatilgan.','srcNone':'Tanlangan davr uchun sotuv ma’lumotlari yo‘q.','unkNote':'{0} dona uchun kanal aniqlanmagan','fbsNow':'Hozir FBS','daily':'Kunlar bo‘yicha','takeHoj':'Xo‘jaylidan olish','hojHas':'Xo‘jaylida','bagsN':'qop','whMskT':'Moskva ombori','whHojT':'Xo‘jayli — qoplar va xalatlar','hojNoRight':'Xo‘jayli omborini ko‘rishga ruxsat yo‘q','hojEmpty':'Xo‘jayli qoplarida tovar yo‘q','inBags':'qoplarda','salesPerDay':'kuniga sotuv','p_hoj':'Xo‘jayli omborini ko‘rish','menuStock':'Ombor','menuWork':'Ish','menuControl':'Boshqaruv','menuMore':'Boshqa','openRecv':'Ochish','done2':'Tayyor','undo':'Bekor qilish','back':'Orqaga','all':'Hammasi','copyInfo':'Batafsil','openApp':'Sklad LT ni ochish','syncOz':'Ozon','syncWb':'WB',loading:'Yuklanmoqda…',empty:'—',yes:'Ha',no:"Yo'q",confirm:'Tasdiqlash',camera:'Kamera',cameraFail:"Kamerani ochib bo'lmadi",
+alertRed:'Juda kam',alertYel:"Tez orada to'ldirish",ok:'Yetarli',inTransitShort:"yo'lda",goMain:'Bosh sahifaga'}
+};
+/*I18N-END*/
+
+/*ICONS-START*/
+const ICONS={
+home:'<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5.5h4V20"/>',
+box:'<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
+swap:'<path d="M7 20V5M7 5 3.5 8.5M7 5l3.5 3.5"/><path d="M17 4v15M17 19l-3.5-3.5M17 19l3.5-3.5"/>',
+inbox:'<path d="M3.5 13.5 6 5h12l2.5 8.5V19a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1z"/><path d="M3.5 13.5H8l1.2 2.5h5.6l1.2-2.5h4.5"/>',
+grid:'<rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/>',
+truck:'<path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 9.5h4l3 3.2v3.8h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>',
+recount:'<rect x="5.5" y="4" width="13" height="17" rx="2.5"/><path d="M9 4V3h6v1M9 10l1.8 1.8L15 8M9 16h6"/>',
+history:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 4v4.5H8M12 8v4.5l3 1.8"/>',
+chart:'<path d="M4 20V11M10 20V4M16 20v-7M21 20H3"/>',
+users:'<circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c.4-3.5 3-5.5 6.2-5.5s5.8 2 6.2 5.5"/><path d="M16 5a3.2 3.2 0 0 1 0 6.2M18 14.8c1.9.7 3.2 2.4 3.4 5.2"/>',
+sliders:'<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/>',
+upload:'<path d="M12 16V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v4.5h16V15"/>',
+gear:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
+logout:'<path d="M9.5 4.5H5.5v15h4M14.5 8l4 4-4 4M18.5 12h-9"/>',
+camera:'<path d="M4 8h3.2l1.6-2.5h6.4L16.8 8H20v11H4z"/><circle cx="12" cy="13.5" r="3.4"/>',
+search:'<circle cx="11" cy="11" r="6.5"/><path d="M20.5 20.5 16 16"/>',
+plus:'<path d="M12 5v14M5 12h14"/>',minus:'<path d="M5 12h14"/>',
+scan:'<path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16M7.5 12h9"/>',
+check:'<path d="M5 12.5 10 17.5 19 7"/>',x:'<path d="M6 6l12 12M18 6 6 18"/>',
+alert:'<path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.2v.3"/>',
+sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/>',
+moon:'<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>',
+globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4 5.6 4 9s-1.2 6.4-4 9c-2.8-2.6-4-5.6-4-9s1.2-6.4 4-9z"/>',
+bag:'<path d="M6 8h12l1 12.5H5z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
+warehouse:'<path d="M3 21V9.5L12 4l9 5.5V21"/><path d="M7 21v-7h10v7M7 17.5h10"/>',
+filter:'<path d="M3.5 5h17l-6.5 8v6l-4-2v-4z"/>',
+calendar:'<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+download:'<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/><path d="M4 16v4h16v-4"/>',
+undo:'<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>',
+trend:'<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+bell:'<path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15z"/><path d="M10 21h4"/>',
+user:'<circle cx="12" cy="8" r="4"/><path d="M4 20c.5-4 3.7-6 8-6s7.5 2 8 6"/>',
+edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
+volume:'<path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>',
+shield:'<path d="M12 3 4.5 6v6c0 4.5 3 7.5 7.5 9 4.5-1.5 7.5-4.5 7.5-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/>',
+star:'<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z"/>',
+flame:'<path d="M12 21a6.500 6.500 0 0 0 6.500-6.500c0-3.200-2-5.200-3.500-7-.5 1.600-1.300 2.500-2.500 3C12.800 8.200 12 5.800 10 3c-.5 3-5 5.400-5 11.500A6.500 6.500 0 0 0 12 21z"/><path d="M12 21a2.800 2.800 0 0 1-2.800-2.800c0-1.800 1.600-2.600 2.800-4.200 1.200 1.600 2.800 2.400 2.800 4.200A2.800 2.800 0 0 1 12 21z"/>',
+pkgcheck:'<path d="M21 8 12 3 3 8v8l9 5 4-2.2"/><path d="M3 8l9 5 9-5M12 13v8"/><path d="M16.5 18l2 2 3.5-4"/>',
+info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.3"/>',
+chevron:'<path d="M9 5l7 7-7 7"/>',
+refresh:'<path d="M20 11a8 8 0 0 0-14.5-3.5L4 9"/><path d="M4 4v5h5M4 13a8 8 0 0 0 14.5 3.5L20 15"/><path d="M20 20v-5h-5"/>',
+dollar:'<circle cx="12" cy="12" r="9"/><path d="M14.5 9.5c-.4-1-1.400-1.500-2.600-1.500-1.500 0-2.600.8-2.600 2 0 3 5.400 1.200 5.400 4.200 0 1.200-1.100 2-2.800 2-1.300 0-2.400-.6-2.800-1.700M12 6.500V8M12 16v1.500"/>'
+};
+const ic=(n,sz=22,cls='')=>`<svg class="ic ${cls}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]||''}</svg>`;
+/*ICONS-END*/
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ADMIN='lidertekstil10@gmail.com';
+const firebaseConfig={apiKey:'AIzaSyCf8-kD-Grk20GnJKIINPyAKSpnoJ6H3pI',authDomain:'lider-tekstil.firebaseapp.com',projectId:'lider-tekstil',storageBucket:'lider-tekstil.firebasestorage.app',messagingSenderId:'44919046709',appId:'1:44919046709:web:6dd5c7d217b4bb983ce77c'};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const newSess=k=>({kind:k,mode:'sku',items:[],cur:null,reason:REASONS[k][0],cmt:''});
+const S={user:null,email:'',mode:'',prof:null,tab:'home',lang:'ru',theme:'light',snd:{on:true,vol:.7,ok:'beep',er:'buzz'},stock:{},ships:{},ops:[],opsX:[],rcvOps:[],thr:{def:{},items:{}},codes:null,prods:null,mp:{},bags:null,profiles:{},unsubs:[],busy:false,
+ opk:'add',sess:null,recv:null,newShip:null,mvTab:'wait',hf:{q:'',type:'',art:'',size:'',from:'',to:''},an:{tab:'sales',preset:7,from:'',to:'',ch:'fbs',pl:'all',docs:null,loading:false,key:'',opsDocs:null,opsDays:30},stockView:'msk',mpCh:'fbs',mpPl:'all',q:'',inv:{},imp:null,fbsAll:false,whq:'',ownerName:''};
+const t=(k,...a)=>{let s=(I18N[S.lang]&&I18N[S.lang][k])??I18N.ru[k]??k;a.forEach((v,i)=>s=s.replace('{'+i+'}',v));return s};
+const can=k=>S.mode==='owner'||(S.mode==='msk'&&S.prof&&S.prof.active!==false&&!!(S.prof.p&&S.prof.p[k]));
+const canShip=()=>S.mode==='owner'||S.mode==='khoj';
+const meName=()=>S.mode==='owner'?(S.ownerName||'Владелец'):S.mode==='khoj'?(S.ownerName||S.email):((S.prof&&S.prof.name)||'');
+const initials=n=>String(n||'?').trim().split(/\s+/).slice(0,2).map(x=>x[0]||'').join('').toUpperCase()||'?';
+const rand=()=>Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4);
+const num0=v=>{const n=parseInt(v,10);return Number.isFinite(n)?n:0};
+const arr=o=>Object.values(o);
+const REASONS_PLACEHOLDER=0;
+
+/* ---------- звук ---------- */
+let AC=null;const ac=()=>{try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}};
+const SND={ok:{beep:[[1000,0,.12]],chime:[[880,0,.1],[1320,.1,.16]],ding:[[1568,0,.2]]},er:{buzz:[[220,0,.3]],low:[[300,0,.15],[300,.2,.15]],double:[[200,0,.12],[150,.16,.22]]},done:[[660,0,.1],[880,.1,.1],[1320,.2,.2]],warn:[[600,0,.14],[600,.2,.14],[600,.4,.14]]};
+function play(kind,force){if(!S.snd.on&&!force)return;const c=ac();if(!c)return;const seq=kind==='ok'?SND.ok[S.snd.ok]||SND.ok.beep:kind==='er'?SND.er[S.snd.er]||SND.er.buzz:SND[kind];if(!seq)return;
+ for(const [f,st,d] of seq){const o=c.createOscillator(),g=c.createGain();o.type=kind==='er'?'sawtooth':'sine';o.frequency.value=f;const v=Math.max(.02,(+S.snd.vol||.7)*.5);g.gain.setValueAtTime(v,c.currentTime+st);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+st+d);o.connect(g);g.connect(c.destination);o.start(c.currentTime+st);o.stop(c.currentTime+st+d+.02)}
+ try{if(navigator.vibrate)navigator.vibrate(kind==='er'?[200,80,200]:60)}catch(e){}}
+function toast(m,k){const e=$('#toast');e.textContent=m;e.className='show '+(k||'');clearTimeout(toast.t);toast.t=setTimeout(()=>e.className='',2800)}
+const ok=m=>{play('ok');toast(m,'ok')},bad=m=>{play('er');toast(m,'er')};
+
+/* ---------- предпочтения ---------- */
+function applyPrefs(){document.documentElement.dataset.theme=S.theme;document.documentElement.lang=S.lang==='uz'?'uz':'ru'}
+function loadLocal(){try{S.lang=localStorage.getItem('msk_lang')==='uz'?'uz':'ru';S.theme=localStorage.getItem('th')==='dark'?'dark':'light';S.ownerName=localStorage.getItem('msk_name')||'';const s=JSON.parse(localStorage.getItem('msk_snd')||'null');if(s)S.snd={...S.snd,...s}}catch(e){}applyPrefs()}
+function fromProfile(){const p=S.prof||{};S.lang=p.lang==='uz'?'uz':'ru';S.theme=p.theme==='dark'?'dark':'light';if(p.snd)S.snd={...S.snd,...p.snd};applyPrefs()}
+async function savePrefs(){try{if(S.mode==='msk'&&S.user){await updateDoc(doc(db,'msk_profiles',S.user.uid),{lang:S.lang,theme:S.theme,snd:S.snd})}else{localStorage.setItem('msk_lang',S.lang);localStorage.setItem('th',S.theme);localStorage.setItem('msk_snd',JSON.stringify(S.snd))}}catch(e){}}
+
+/* ---------- вход ---------- */
+const HERO=document.getElementById('heroTpl').innerHTML;
+const crd=()=>`<div class="crd"><span>Created by Miras</span></div>`;
+function showLogin(){stopAll();$('#root').innerHTML=`<div class="loginw"><div class="hero">${HERO}</div><div class="card lcard"><h1>${t('app')}</h1><div class="mu">${t('loginHint')}</div><input id="le" autocomplete="username" autocapitalize="none" placeholder="${t('user')}"><input id="lp" type="password" autocomplete="current-password" placeholder="${t('pass')}"><button class="p big" data-act="login">${ic('shield',20)} ${t('signin')}</button><div id="lm" class="er"></div><div class="langs"><button data-lang="ru" class="${S.lang==='ru'?'on':''}">RU</button><button data-lang="uz" class="${S.lang==='uz'?'on':''}">UZ</button></div></div>${crd()}</div>`;const p=$('#lp');if(p)p.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()})}
+async function doLogin(){const v=$('#le').value.trim();try{await signInWithEmailAndPassword(auth,v.includes('@')?v:v.toLowerCase()+'@lt-sklad.uz',$('#lp').value)}catch(e){$('#lm').textContent=t('badLogin')}}
+function stopAll(){S.unsubs.forEach(f=>{try{f()}catch(e){}});S.unsubs=[]}
+function msgScreen(txt){$('#root').innerHTML=`<div class="loginw"><div class="hero">${HERO}</div><div class="card lcard"><h1>${t('app')}</h1><div class="er" style="margin:12px 0">${esc(txt)}</div><a class="btnl p" style="width:100%" href="index.html">${t('backToApp')}</a><button data-act="logout" style="margin-top:8px;width:100%">${ic('logout',18)} ${t('logout')}</button></div>${crd()}</div>`}
+onAuthStateChanged(auth,async u=>{stopAll();if(!u){S.user=null;S.mode='';S.prof=null;showLogin();return}
+ S.user=u;S.email=(u.email||'').toLowerCase();S.mode='none';S.prof=null;
+ try{if(S.email===ADMIN){S.mode='owner';loadLocal()}else{const p=await getDoc(doc(db,'msk_profiles',u.uid));
+   if(p.exists()){S.prof=p.data();S.mode=S.prof.active===false?'blocked':'msk';fromProfile()}else{const us=await getDoc(doc(db,'users',u.uid));if(us.exists()&&us.data().mskShip){S.mode='khoj';loadLocal()}}}}catch(e){S.mode='none'}
+ if(S.mode==='blocked'){msgScreen(t('blocked'));return}
+ if(S.mode==='none'){msgScreen(t('noAccess'));return}
+ if(S.mode==='msk'&&!(S.prof.name||'').trim()){nameForm();return}
+ startApp()});
+function nameForm(){$('#root').innerHTML=`<div class="loginw"><div class="hero">${HERO}</div><div class="card lcard"><h1>${t('fillName')}</h1><div class="mu">${t('fillNameHint')}</div><input id="fn" placeholder="${t('firstName')}"><input id="ln" placeholder="${t('lastName')}"><button class="p big" data-act="savename">${ic('check',20)} ${t('save')}</button><div id="lm" class="er"></div></div>${crd()}</div>`}
+async function saveName(){const a=$('#fn').value.trim(),b=$('#ln').value.trim();if(a.length<2||b.length<2){$('#lm').textContent=t('nameShort');return}
+ try{const name=(b+' '+a).slice(0,60);await updateDoc(doc(db,'msk_profiles',S.user.uid),{name,lang:S.lang,theme:S.theme});S.prof.name=name;startApp()}catch(e){$('#lm').textContent=t('errPerm')}}
+
+/* ---------- подписки ---------- */
+function startApp(){stopAll();const sub=(q,fn)=>S.unsubs.push(onSnapshot(q,fn,()=>{}));
+ S.sess={add:newSess('add'),out:newSess('out')};
+ if(can('view'))sub(collection(db,'msk_stock'),s=>{S.stock={};s.docs.forEach(d=>{S.stock[d.id]={...d.data(),id:d.id}});soft()});
+ if(can('view')||can('rcv')||canShip())sub(collection(db,'msk_ships'),s=>{S.ships={};s.docs.forEach(d=>{const v=d.data();S.ships[d.id]={...v,id:d.id,tms:v.ts&&v.ts.toMillis?v.ts.toMillis():0}});soft()});
+ if(can('rcv')||S.mode==='owner')sub(query(collection(db,'msk_ops'),where('type','==','receive')),s=>{S.rcvOps=s.docs.map(d=>({...d.data(),id:d.id}));soft()});
+ const opq=(can('hist')||S.mode==='owner')?query(collection(db,'msk_ops'),orderBy('ts','desc'),limit(500)):query(collection(db,'msk_ops'),where('uid','==',S.user.uid));
+ if(S.mode!=='khoj')sub(opq,s=>{S.ops=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,tms:v.ts&&v.ts.toMillis?v.ts.toMillis():0}}).sort((a,b)=>b.tms-a.tms);soft()});
+ sub(doc(db,'msk_cfg','thr'),s=>{S.thr=s.exists()?{def:{},items:{},...s.data()}:{def:{},items:{}};soft()});
+ if(can('view')||S.mode==='owner')sub(collection(db,'mp'),s=>{S.mp={};s.docs.forEach(d=>S.mp[d.id]=d.data());soft()});
+ if(can('hoj')||canShip())sub(collection(db,'bags'),s=>{S.bags={};s.docs.forEach(d=>{const v=d.data();const it=(v.items||[]).filter(i=>i.q>0);if(it.length)S.bags[d.id]={id:d.id,items:it}});soft()});
+ if(S.mode==='owner')sub(collection(db,'msk_profiles'),s=>{S.profiles={};s.docs.forEach(d=>S.profiles[d.id]={...d.data(),id:d.id});soft()});
+ S.tab=S.mode==='khoj'?'moves':'home';shell()}
+const PASSIVE=['home','stock','moves','hist','more','staff','ana'];
+function soft(){if(PASSIVE.includes(S.tab)&&!S.recv&&!S.newShip&&!document.activeElement.matches?.('input,select,textarea')){clearTimeout(soft.t);soft.t=setTimeout(render,120)}}
+
+/* ---------- каркас: шапка, боковое меню (ПК), нижняя панель (телефон) ---------- */
+const NAV=()=>{const n=[];n.push(['home','home',t('nav_home'),1,'menuWork']);
+ if(S.mode!=='khoj'){if(can('view'))n.push(['stock','box',t('nav_stock'),1,'menuWork']);if(can('add')||can('out'))n.push(['ops','swap',t('nav_ops'),1,'menuWork']);if(can('rcv'))n.push(['recv','inbox',t('nav_recv'),1,'menuWork'])}
+ if(can('view')||canShip()||can('rcv'))n.push(['moves','truck',t('nav_moves'),0,'menuWork']);
+ if(can('inv'))n.push(['inv','recount',t('nav_inv'),0,'menuWork']);
+ if(S.mode!=='khoj')n.push(['hist','history',t('nav_hist'),0,'menuControl']);
+ if(can('ana'))n.push(['ana','chart',t('nav_ana'),0,'menuControl']);
+ if(S.mode==='owner'){n.push(['staff','users',t('nav_staff'),0,'menuControl']);n.push(['thr','sliders',t('nav_thr'),0,'menuControl']);n.push(['imp','upload',t('nav_imp'),0,'menuControl'])}
+ n.push(['prof','gear',t('nav_prof'),0,'menuMore']);return n};
+const TITLES=()=>{const m={};NAV().forEach(x=>m[x[0]]=x[2]);m.more=t('nav_more');return m};
+const ago=ms=>{if(!ms)return t('noSync');const d=Date.now()-ms,m=Math.round(d/6e4);return m<2?t('justNow'):m<60?t('ago',m+' '+t('min')):m<1440?t('ago',Math.round(m/60)+' '+t('hr')):t('ago',Math.round(m/1440)+' '+t('dy'))};
+function syncChips(){return [['ozon','Ozon'],['wb','WB']].map(([k,n])=>{const u=S.mp[k]&&S.mp[k].updated,age=u?Date.now()-u:Infinity,c=age<4*36e5?'':age<30*36e5?'w':'e';return `<span class="sy ${c}"><i></i>${n}: ${esc(ago(u))}</span>`}).join('')}
+function shell(){const nav=NAV();
+ const side=['menuWork','menuControl','menuMore'].map(g=>{const items=nav.filter(x=>x[4]===g);return items.length?`<div class="sh">${t(g)}</div>`+items.map(([k,i,l])=>`<button class="nv ${S.tab===k?'on':''}" data-tab="${k}"><span class="ni">${ic(i,20)}</span>${esc(l)}</button>`).join(''):''}).join('');
+ $('#root').innerHTML=`<div class="app"><aside class="side"><div class="brand"><div class="logo">LT</div><div><b>${t('app')}</b><span>Lider Tekstil</span></div></div>${side}<div class="me"><div class="avatar" data-tab="prof">${esc(initials(meName()))}</div><div><b>${esc(meName())}</b><span>${S.mode==='owner'?t('r_owner'):esc(S.email)}</span></div></div></aside>
+ <div class="mainw"><header class="top"><div class="row1"><div class="logo">LT</div><div class="tt"><b id="ttl">${t('app')}</b><span id="tsub"></span></div><div class="acts"><button class="tb" data-act="langtog" title="${t('language')}">${ic('globe',18)}${S.lang==='ru'?'UZ':'RU'}</button><button class="tb" data-act="theme" title="${t('theme')}">${ic(S.theme==='dark'?'sun':'moon',20)}</button><div class="avatar" data-tab="prof" title="${esc(meName())}">${esc(initials(meName()))}</div></div></div><div class="syncs" id="syncs"></div></header>
+ <main class="pg" id="main"></main></div></div><nav class="bnav" id="nav"></nav>`;render()}
+function render(){if(!$('#main'))return;const nav=NAV(),T=TITLES();
+ const bn=nav.filter(x=>x[3]).slice(0,4).map(x=>x);const inMore=!bn.some(x=>x[0]===S.tab);
+ $('#nav').innerHTML=bn.map(([k,i,l])=>`<button class="bn ${S.tab===k?'on':''}" data-tab="${k}"><span class="bi">${ic(i,22)}</span><span class="lb">${esc(l)}</span></button>`).join('')+`<button class="bn ${inMore?'on':''}" data-tab="more"><span class="bi">${ic('grid',22)}</span><span class="lb">${t('nav_more')}</span></button>`;
+ document.querySelectorAll('.side .nv').forEach(b=>b.classList.toggle('on',b.dataset.tab===S.tab));
+ $('#ttl').textContent=S.tab==='home'?t('app'):(T[S.tab]||t('app'));
+ $('#tsub').textContent=S.tab==='home'?new Intl.DateTimeFormat(S.lang==='uz'?'uz-UZ':'ru-RU',{timeZone:MSK_TZ,weekday:'long',day:'numeric',month:'long'}).format(new Date()):t('app');
+ $('#syncs').innerHTML=can('view')||S.mode==='owner'?`<span class="sy" style="background:none;padding-left:0;opacity:.8">${t('syncTitle')}:</span>`+syncChips():'';
+ const V={home:vHome,stock:vStock,ops:vOps,recv:vRecv,moves:vMoves,inv:vInv,hist:vHist,ana:vAna,prof:vProf,more:vMore,staff:vStaff,thr:vThr,imp:vImp}[S.tab]||vHome;
+ $('#main').innerHTML=V()+`<div class="foot">${crd()}</div>`;after()}
+function after(){const sc=$('#scan');if(sc){sc.focus();sc.onblur=()=>setTimeout(()=>{const a=document.activeElement;if((S.tab==='ops'||S.tab==='recv'||(S.tab==='moves'&&S.newShip))&&(!a||a===document.body))sc.focus()},120)}}
+function go(tab){S.tab=tab;S.recv=null;S.newShip=null;render();window.scrollTo(0,0)}
+const empty=(icn,txt)=>`<div class="empty">${ic(icn,40)}<div>${txt}</div></div>`;
+const secT=(icn,txt,extra)=>`<h2>${ic(icn,20)}${txt}${extra||''}</h2>`;
+
+/* ---------- данные ---------- */
+const stockList=()=>arr(S.stock).sort((a,b)=>String(a.a).localeCompare(String(b.a),'ru',{numeric:true})||String(a.s).localeCompare(String(b.s),'ru',{numeric:true}));
+const shipsArr=()=>arr(S.ships).sort((a,b)=>b.tms-a.tms);
+const transitMap=()=>inTransit(shipsArr(),S.rcvOps);
+const mpi=()=>mpIndex(S.mp);
+const hojIndex=()=>{const m={};if(!S.bags)return m;for(const b of arr(S.bags))for(const i of b.items){const k=keyOf(i.a,i.s),x=m[k]||(m[k]={a:i.a,s:i.s,q:0,bags:[]});x.q+=i.q;x.bags.push(b.id+' ('+i.q+')')}return m};
+function avgFbs(days=14){const D=salesFromMp(S.mp),to=mskDay(),from=mskDay(new Date(Date.now()-(days-1)*864e5)),ch=Object.values(D).some(m=>Object.values(m).some(x=>x.oz.fs||x.oz.fo||x.wb.fs||x.wb.fo))?'fbs':'all',rep=salesReport(D,from,to,ch,'all'),m={};rep.list.forEach(x=>m[x.k]=x.q/days);return m}
+const opName=o=>t('op_'+o.type);
+const allOps=()=>{const m={};[...S.ops,...S.opsX].forEach(o=>m[o.id]=o);return arr(m)};
+const hist=()=>{const ops=allOps().map(o=>({...o,tms:o.tms||(o.ts&&o.ts.toMillis?o.ts.toMillis():0)}));
+ if(can('hist')||S.mode==='owner')shipsArr().forEach(s=>ops.push({id:'S'+s.id,type:'ship',name:s.byName,a:s.no,s:'',d:s.tot,tms:s.tms,day:s.day,k:'',reason:t('shipTo'),cmt:s.note||''}));
+ return ops.sort((a,b)=>b.tms-a.tms)};
+function dl(name,rows){const csv='\uFEFF'+rows.map(r=>r.map(c=>`"${String(c==null?'':c).replace(/"/g,'""')}"`).join(';')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function modal(h){const m=$('#modal');m.innerHTML=`<div class="mb"><button class="mx" data-act="mclose">${ic('x',18)}</button>${h}</div>`;m.className='show'}
+const closeModal=()=>{$('#modal').className=''};
+function confirmBox(title,body,okLabel,cls){return new Promise(res=>{modal(`<h3>${esc(title)}</h3><div class="mu" style="margin:6px 0 16px">${body}</div><div class="row"><button data-cf="0" class="ghost">${t('cancel')}</button><button data-cf="1" class="${cls||'p'}">${esc(okLabel||t('confirm'))}</button></div>`);const h=e=>{const b=e.target.closest('[data-cf]');if(!b){if(e.target.closest('[data-act=mclose]')){document.removeEventListener('click',h,true);res(false)}return}document.removeEventListener('click',h,true);closeModal();res(b.dataset.cf==='1')};document.addEventListener('click',h,true)})}
+
+/* ---------- атомарная операция: остаток + история одной транзакцией ---------- */
+async function applyOp(o){
+ const k=keyOf(o.a,o.s),id=o.id||'o'+rand(),sref=doc(db,'msk_stock',k),oref=doc(db,'msk_ops',id);
+ try{return await runTransaction(db,async tx=>{
+  const [ss,os]=await Promise.all([tx.get(sref),tx.get(oref)]);
+  if(os.exists())return {dup:true};
+  const before=ss.exists()?ss.data().q:0,q=before+o.d;
+  if(q<0)throw {low:true,have:before};
+  const op={type:o.type,k,a:o.a,s:o.s,d:o.d,q,uid:S.user.uid,name:meName(),ts:serverTimestamp(),day:mskDay()};
+  for(const f of ['reason','cmt','ship','ln','n','exp','bad','uc'])if(o[f]!==undefined&&o[f]!=='')op[f]=o[f];
+  tx.set(oref,op);tx.set(sref,{a:o.a,s:o.s,q,lo:id,lt:serverTimestamp()});return {ok:true,q,id}})}
+ catch(e){if(e&&e.low)throw e;if(e&&e.code==='permission-denied')throw {perm:true};throw {net:true}}}
+const errMsg=e=>e&&e.low?t('lowStock')+' ('+e.have+')':e&&e.perm?t('errPerm'):t('errNet');
+async function ensureCodes(){if(S.codes)return;S.codes={};S.prods={};try{(await getDocs(collection(db,'msk_codes'))).docs.forEach(d=>S.codes[d.id]=d.data())}catch(e){}try{(await getDocs(collection(db,'prods'))).docs.forEach(d=>{const v=d.data();if(v.a)S.prods[d.id]={a:v.a,s:v.s||''}})}catch(e){}}
+const resolveCode=c=>{const k=c.trim(),k2=k.replace(/[^A-Za-z0-9_-]/g,'');return S.codes[k]||S.codes[k2]||S.prods[k]||S.prods[k2]||null};
+
+/* ---------- ГЛАВНАЯ ---------- */
+const lvName=l=>l==='r'?t('alertRed'):l==='y'?t('alertYel'):t('ok');
+function fbsCard(x,cfg){const m=(p,lab,q)=>{if(q===undefined)return '';const th=thrOf(cfg,p,x.k),l=lvQ(q,th),w=Math.max(4,Math.min(100,q/Math.max(1,th.t)*100));return `<div class="meter"><span class="mu">${lab}</span><div class="bar ${l}"><i style="width:${w}%"></i></div><b class="${l==='r'?'neg':l==='y'?'':'pos'}">${q}</b></div>`};
+ return `<div class="fi ${x.level}"><div class="h"><b>${esc(x.a)}</b><span class="chip">${esc(x.s)}</span><div class="sp"></div><span class="chip solid lv${x.level}">${lvName(x.level)}</span></div>
+ <div class="mt">${m('oz_fbs','Ozon FBS',x.oz)}${m('wb_fbs','WB FBS',x.wb)}</div>
+ <div class="tags">${x.need>0?`<span class="tag">${t('needQ')}: <b>${x.need}</b></span>`:''}<span class="tag">${ic('box',13)} ${t('inMsk')}: <b>${x.avail}</b></span>${x.send>0?`<span class="tag send">${ic('truck',13)} ${t('toSend')}: <b>${x.send}</b></span>`:''}${x.short>0?`<span class="tag warn">${ic('alert',13)} ${t('mskShort')}: ${x.short}</span>`:''}${x.cover!=null?`<span class="tag">${ic('trend',13)} ${t('coverD',Math.max(0,Math.floor(x.cover)))}</span>`:''}</div></div>`}
+function fbsBlock(limitN){const rows=fbsRating(mpi(),S.thr,S.stock,avgFbs(14)),has=Object.keys(S.mp).length>0&&rows.length;
+ if(!has)return `<div class="card">${empty('refresh',t('fbsEmpty'))}</div>`;
+ const bad=rows.filter(r=>r.level!=='g'),show=(limitN?rows.slice(0,limitN):rows),cnt=l=>rows.filter(r=>r.level===l).length;
+ return `<div class="legend"><span class="lg r"><i></i>${t('lgRed')} · ${cnt('r')}</span><span class="lg y"><i></i>${t('lgYel')} · ${cnt('y')}</span><span class="lg g"><i></i>${t('lgGrn')} · ${cnt('g')}</span></div>`+(bad.length||!limitN?`<div class="fl">${show.map(x=>fbsCard(x,S.thr)).join('')}</div>`:`<div class="card">${empty('check',t('allGood'))}</div>`)}
+function vHome(){const st=stockList(),tot=st.reduce((n,x)=>n+x.q,0),skus=new Set(st.filter(x=>x.q>0).map(x=>nk(x.a))).size,pos=st.filter(x=>x.q>0).length,tm=transitMap(),tr=Object.values(tm).reduce((a,b)=>a+b,0);
+ const today=mskDay(),rc=S.rcvOps.filter(o=>o.day===today).reduce((n,o)=>n+(+o.d||0),0),rec=hist().slice(0,6);
+ const kp=(i,l,v,u,c)=>`<div class="kpi ${c||''}"><div class="ki">${ic(i,20)}</div><span class="l">${l}</span><b>${v}</b>${u?`<i>${u}</i>`:''}</div>`;
+ const fb=can('view')||S.mode==='owner';
+ return `<div class="homehead"><div class="hero">${HERO}</div><div class="homeside"><div class="greet"><b>${t('hello')}${meName()?', '+esc(meName().split(' ').slice(-1)[0]):''}</b><span>${t('appSub')}</span></div>${can('view')?`<div class="kpis" style="grid-template-columns:1fr 1fr;margin:0">${kp('box',t('kTotal'),tot,t('pcs'))}${kp('truck',t('kTransit'),tr,t('pcs'),'tr')}${kp('grid',t('kPos'),pos)}${kp('pkgcheck',t('kToday'),rc,t('pcs'),'gn')}</div>`:''}</div></div>
+ ${fb?secT('flame',t('fbsTitle'),`<span class="sp"></span><button class="sm" data-tab="stock" data-sv="mp">${t('showAll')} ${ic('chevron',15)}</button>`)+`<div class="mu s" style="margin:-4px 2px 6px">${t('fbsSub')}</div>`+fbsBlock(8):''}
+ ${secT('history',t('recent'))}<div class="card">${rec.length?rec.map(o=>opRow(o)).join(''):empty('history',t('noOps'))}</div>`}
+const opRow=o=>`<div class="row" data-detail="${esc(o.id)}" style="cursor:pointer"><span class="mu s" style="min-width:112px">${fmtDT(o.tms)}</span><b>${esc(o.name||'')}</b><span class="chip">${opName(o)}</span><span>${esc(o.a||'')} ${esc(o.s||'')}</span><div class="sp"></div><b class="${o.d>0?'pos':'neg'}">${o.d>0?'+':''}${o.d}</b></div>`;
+
+/* ---------- ОСТАТКИ ---------- */
+function vStock(){const tabs=[['msk',t('st_msk'),'box'],['mp',t('st_mp'),'chart']];if(can('hoj')||canShip())tabs.push(['hoj',t('st_hoj'),'warehouse']);
+ const seg=`<div class="seg">${tabs.map(([k,l,i])=>`<button data-sv="${k}" class="${S.stockView===k?'on pri':''}">${ic(i,18)}${l}</button>`).join('')}</div>`;
+ const srch=`<div style="position:relative"><input data-in="q" value="${esc(S.q)}" placeholder="${t('search')}" style="padding-left:44px"><span style="position:absolute;left:14px;top:18px;color:var(--mu)">${ic('search',20)}</span></div>`;
+ let body='';if(S.stockView==='mp')body=vMp();else if(S.stockView==='hoj')body=vHoj();else body=vMskStock();
+ return `<h1>${t('nav_stock')}</h1>${seg}${srch}${body}`}
+function vMskStock(){const q=nk(S.q),st=stockList().filter(x=>!q||nk(x.a).includes(q)||nk(x.s).includes(q)),tm=transitMap(),groups={};st.forEach(x=>(groups[x.a]=groups[x.a]||[]).push(x));
+ const tr=Object.entries(tm).filter(([k,v])=>v>0);
+ return (Object.keys(groups).length?`<div class="ag">${Object.entries(groups).map(([a,l])=>`<div class="card" style="margin:0"><div class="row"><b style="font-size:18px">${esc(a)}</b><div class="sp"></div><span class="chip solid lvg">${l.reduce((n,x)=>n+x.q,0)} ${t('pcs')}</span></div><div class="sizes">${l.map(x=>`<div class="sz"><span class="b">${esc(x.s||'—')}</span><span class="chip lv${lvl(x.q,thrOf(S.thr,'phys',x.id))}">${x.q}</span>${tm[x.id]?`<i class="tr">+${tm[x.id]} ${t('inTransitShort')}</i>`:''}</div>`).join('')}</div></div>`).join('')}</div>`:`<div class="card">${empty('box',t('stockEmpty'))}</div>`)+
+ (tr.length?secT('truck',t('transit'))+`<div class="card">${tr.map(([k,v])=>{const x=S.stock[k];const ln=shipsArr().flatMap(s=>s.lines).find(l=>l.k===k);return `<div class="row"><b>${esc(x?x.a:ln?ln.a:k)}</b><span class="chip">${esc(x?x.s:ln?ln.s:'')}</span><div class="sp"></div><span class="chip lvy">${v}</span></div>`}).join('')}</div>`:'')}
+function vMp(){const idx=mpi(),q=nk(S.q),ch=S.mpCh,pl=S.mpPl;
+ const chips=`<div class="chips"><button class="fc ${ch==='fbs'?'on':''}" data-mch="fbs">FBS</button><button class="fc ${ch==='fbo'?'on':''}" data-mch="fbo">FBO</button><button class="fc ${ch==='all'?'on':''}" data-mch="all">FBS + FBO</button><span class="sp"></span><button class="fc ${pl==='all'?'on':''}" data-mpl="all">${t('plAll')}</button><button class="fc ${pl==='ozon'?'on':''}" data-mpl="ozon">Ozon</button><button class="fc ${pl==='wb'?'on':''}" data-mpl="wb">WB</button></div><div class="mu s" style="margin:0 2px 8px">${t('chNote')}</div>`;
+ if(!Object.keys(idx).length)return chips+`<div class="card">${empty('refresh',t('fbsEmpty'))}</div>`;
+ const cols=[];if(pl!=='wb'){if(ch!=='fbo')cols.push(['oz_fbs','Ozon FBS']);if(ch!=='fbs')cols.push(['oz_fbo','Ozon FBO'])}if(pl!=='ozon'){if(ch!=='fbo')cols.push(['wb_fbs','WB FBS']);if(ch!=='fbs')cols.push(['wb_fbw','WB FBO'])}
+ const groups={};Object.entries(idx).forEach(([k,x])=>{if(q&&!nk(x.a).includes(q))return;if(!cols.some(([p])=>x[p]!==undefined))return;(groups[x.a]=groups[x.a]||[]).push([k,x])});
+ const names=Object.keys(groups).sort((a,b)=>a.localeCompare(b,'ru',{numeric:true}));
+ return chips+(names.length?`<div class="ag">${names.map(a=>{const l=groups[a].sort((x,y)=>String(x[1].s).localeCompare(String(y[1].s),'ru',{numeric:true}));const worst=l.reduce((w,[k,x])=>{cols.forEach(([p])=>{if(x[p]!==undefined){const lv=lvQ(x[p],thrOf(S.thr,p,k));if(LV[lv]<LV[w])w=lv}});return w},'g');
+  return `<div class="card" style="margin:0"><div class="row"><b style="font-size:18px">${esc(a)}</b><div class="sp"></div><span class="chip solid lv${worst}">${lvName(worst)}</span></div>${l.map(([k,x])=>`<div class="sr"><span class="z">${esc(x.s||'—')}</span><div class="row" style="padding:0;gap:6px">${cols.map(([p,lab])=>x[p]===undefined?'':`<span class="chip lv${lvQ(x[p],thrOf(S.thr,p,k))}" title="${lab}"><span class="xs" style="opacity:.8">${ch==='all'?lab.replace('WB FBS','WB·FBS').replace('Ozon ','Ozon·'):lab.split(' ')[0]}</span> ${x[p]}</span>`).join('')}</div><span class="mu xs">${S.stock[k]?ic('box',13)+' '+S.stock[k].q:''}</span><span></span></div>`).join('')}</div>`}).join('')}</div>`:`<div class="card">${empty('search',t('noData'))}</div>`)}
+function vHoj(){if(!(can('hoj')||canShip()))return `<div class="card">${empty('shield',t('hojNoRight'))}</div>`;if(!S.bags)return `<div class="card mu">${t('loading')}</div>`;
+ const H=hojIndex(),q=nk(S.q),groups={};Object.entries(H).forEach(([k,x])=>{if(q&&!nk(x.a).includes(q))return;(groups[x.a]=groups[x.a]||[]).push(x)});const names=Object.keys(groups).sort((a,b)=>a.localeCompare(b,'ru',{numeric:true})),tot=arr(H).reduce((n,x)=>n+x.q,0);
+ return `<div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))"><div class="kpi"><div class="ki">${ic('warehouse',20)}</div><span class="l">${t('whHojT')}</span><b>${tot}</b><i>${t('pcs')}</i></div><div class="kpi"><div class="ki">${ic('bag',20)}</div><span class="l">${t('bagsN')}</span><b>${arr(S.bags).length}</b></div></div>`+(names.length?`<div class="ag">${names.map(a=>`<div class="card" style="margin:0"><div class="row"><b style="font-size:18px">${esc(a)}</b><div class="sp"></div><span class="chip">${groups[a].reduce((n,x)=>n+x.q,0)} ${t('pcs')}</span></div><div class="sizes">${groups[a].sort((x,y)=>String(x.s).localeCompare(String(y.s),'ru',{numeric:true})).map(x=>`<div class="sz" title="${esc(x.bags.join(', '))}"><span class="b">${esc(x.s||'—')}</span><span class="chip">${x.q}</span></div>`).join('')}</div></div>`).join('')}</div>`:`<div class="card">${empty('bag',t('hojEmpty'))}</div>`)}
+
+/* ---------- ОПЕРАЦИИ: приход и списание в одном разделе ---------- */
+const REASONS={add:['rsn_buy','rsn_ret','rsn_prod','rsn_other'],out:['rsn_sale','rsn_defect','rsn_lost','rsn_mp','rsn_other']};
+function vOps(){const kind=(S.opk==='out'&&can('out'))||!can('add')?'out':'add';S.opk=kind;const se=S.sess[kind];ensureCodes();const arts=[...new Set(stockList().map(x=>x.a))];
+ const tabs=`<div class="seg">${can('add')?`<button data-opk="add" class="${kind==='add'?'on add':''}">${ic('plus',20)}${t('nav_add')}</button>`:''}${can('out')?`<button data-opk="out" class="${kind==='out'?'on out':''}">${ic('minus',20)}${t('nav_out')}</button>`:''}</div>`;
+ return `<h1>${t('opsTitle')}</h1><div class="mu s" style="margin:0 2px">${kind==='add'?t('opsAddHint'):t('opsOutHint')}</div>${tabs}
+ <div class="card"><div class="seg"><button data-sm="sku" class="${se.mode==='sku'?'on pri':''}">${t('modeSku')}</button><button data-sm="unit" class="${se.mode==='unit'?'on pri':''}">${t('modeUnit')}</button></div>
+ <label class="mu s">${t('scanHere')}</label><input id="scan" class="scan" inputmode="none" autocomplete="off" placeholder="${t('scanHere')}"><div class="mu s">${t('scanHint')}</div>
+ ${se.mode==='sku'?`<div class="row" style="margin-top:8px"><label class="mu">${t('qty')}</label><input id="qty" type="number" min="1" value="1" class="qty"></div>`:`<div class="curi">${se.cur?`<b>${t('curItem')}:</b> ${esc(se.cur.a)} ${esc(se.cur.s)}`:`<span class="mu">${t('unitFirst')}</span>`}</div>`}
+ <details><summary class="mu">${t('manual')}</summary><div class="row"><input id="ma" list="arts" placeholder="${t('article')}"><datalist id="arts">${arts.map(a=>`<option value="${esc(a)}">`).join('')}</datalist><input id="ms" placeholder="${t('size')}" style="max-width:110px"><button data-act="manadd">${ic('plus',18)}${t('addToList')}</button></div></details></div>
+ <div class="card"><h3>${t('list')}</h3>${se.items.length?se.items.map((it,i)=>`<div class="row"><b>${esc(it.a)}</b><span class="chip">${esc(it.s)}</span><div class="sp"></div><b>${it.units?it.units.length:it.q}</b><button class="sm" data-rm="${i}" title="${t('clear')}">${ic('x',16)}</button></div>`).join(''):empty('scan',t('emptyList'))}
+ <label class="mu s">${t('reason')}</label><select data-in="reason">${REASONS[kind].map(r=>`<option value="${r}" ${se.reason===r?'selected':''}>${t(r)}</option>`).join('')}</select>
+ <input data-in="cmt" value="${esc(se.cmt)}" placeholder="${t('comment')} (${t('optional')})" maxlength="400">
+ <div class="row"><button class="${kind==='add'?'g':'d'} big" style="flex:2" data-act="commit" ${se.items.length?'':'disabled'}>${ic(kind==='add'?'check':'minus',20)}${t('commit')}</button><button class="big" style="flex:1" data-act="clearlist">${t('clear')}</button></div></div>`}
+let lastScan={c:'',t:0};
+async function onScan(raw){const c=String(raw||'').trim();if(!c)return;const now=Date.now();if(c===lastScan.c&&now-lastScan.t<700)return;lastScan={c,t:now};
+ if(S.tab==='recv')return recvScan(c);if(S.tab==='moves'&&S.newShip)return addBagCode(c);
+ await ensureCodes();const se=S.sess[S.opk],hit=resolveCode(c);
+ if(se.mode==='unit'){if(hit){se.cur={a:hit.a,s:hit.s||''};ok(hit.a+' '+(hit.s||''));render();return}
+   if(!se.cur){bad(t('unitFirst'));return}
+   const uc=sanitCode(c);let it=se.items.find(i=>nk(i.a)===nk(se.cur.a)&&nk(i.s)===nk(se.cur.s)&&i.units);if(!it){it={a:se.cur.a,s:se.cur.s,units:[]};se.items.push(it)}
+   if(se.items.some(i=>i.units&&i.units.includes(uc))){bad(t('dupScan'));return}
+   it.units.push(uc);ok(it.a+' '+it.s+' ×'+it.units.length);render();return}
+ if(!hit){bad(t('notFound')+': '+c);return}
+ const n=Math.max(1,num0(($('#qty')||{}).value)||1);addItem(hit.a,hit.s||'',n);ok(hit.a+' '+(hit.s||'')+' ×'+n);render()}
+function addItem(a,s,q){const se=S.sess[S.opk];let it=se.items.find(i=>!i.units&&nk(i.a)===nk(a)&&nk(i.s)===nk(s));if(!it){it={a,s,q:0};se.items.push(it)}it.q+=q}
+async function commit(){const kind=S.opk,se=S.sess[kind];if(S.busy||!se.items.length)return;S.busy=true;toast(t('processing'));const sign=kind==='add'?1:-1,fails=[];
+ for(const it of [...se.items]){try{
+   if(it.units){for(const uc of [...it.units]){await applyOp({type:kind,a:it.a,s:it.s,d:sign,uc,reason:se.reason?t(se.reason):'',cmt:se.cmt,id:`u_${uc}_${sign>0?'in':'out'}`});it.units=it.units.filter(x=>x!==uc)}}
+   else{it.opId=it.opId||'o'+rand();await applyOp({type:kind,a:it.a,s:it.s,d:sign*it.q,reason:se.reason?t(se.reason):'',cmt:se.cmt,id:it.opId})}
+   se.items=se.items.filter(x=>x!==it)}catch(e){fails.push(it.a+' '+it.s+': '+errMsg(e))}}
+ S.busy=false;if(fails.length){bad(fails[0])}else{play('done');toast(t('okOp'),'ok')}render()}
+
+/* ---------- ПРИЁМКА: «Принять всё» ---------- */
+const addRcv=o=>{if(!S.rcvOps.some(x=>x.id===o.id))S.rcvOps.push(o)};
+const bagNorm=c=>{const m=/^(MIX|MONO|UZUM)-?(\d+)$/.exec(String(c).trim().toUpperCase());return m?m[1]+'-'+m[2].padStart(3,'0'):String(c).trim().toUpperCase()};
+const stLabel=st=>({transit:t('st_transit'),partial:t('st_partial'),received:t('st_rcvd'),short:t('st_short'),cancelled:t('st_cancelled')})[st]||st;
+const stCls=st=>st==='received'?'lvg':st==='short'||st==='cancelled'?'lvr':'lvy';
+function vRecv(){if(S.recv)return vRecvDetail();const ships=shipsArr().filter(s=>s.status==='open');
+ return `<h1>${t('nav_recv')}</h1>`+(ships.length?`<div class="ag">${ships.map(s=>{const P=shipProgress(s,S.rcvOps);return `<div class="card ship" style="margin:0"><div class="row"><b style="font-size:18px">${esc(s.no)}</b><span class="chip ${stCls(P.state)}">${stLabel(P.state)}</span><div class="sp"></div><span class="mu s">${fmtDT(s.tms)}</span></div>
+  <div class="mu s">${t('shipBy')}: ${esc(s.byName)} · ${s.bags.length-(s.ret||[]).length} ${t('bagsN')}</div><div class="grid4"><div class="g4"><span>${t('shipExp')}</span><b>${P.tot}</b></div><div class="g4"><span>${t('shipGot')}</span><b class="pos">${P.done}</b></div></div><div class="bar2"><i style="width:${P.tot?Math.min(100,P.done/P.tot*100):0}%"></i></div>
+  <button class="g big" data-recvall="${esc(s.id)}" ${P.rows.every(r=>r.rem===0)?'disabled':''}>${ic('pkgcheck',22)}${t('recvAll')}</button><div class="mu xs c" style="margin:6px 0 10px">${t('recvAllHint')}</div><button class="big" style="margin-top:0" data-recvopen="${esc(s.id)}">${ic('bag',20)}${t('recvByBag')}</button></div>`}).join('')}</div>`:`<div class="card">${empty('inbox',t('noShips'))}</div>`)}
+function vRecvDetail(){const sh=S.ships[S.recv.id];if(!sh){S.recv=null;return vRecv()}const P=shipProgress(sh,S.rcvOps),bagsL=sh.bags.filter(b=>!(sh.ret||[]).includes(b)),open=sh.status==='open';
+ return `<div class="row"><button class="sm" data-act="recvback">${ic('chevron',16,'')}</button><h1 style="margin:0">${esc(sh.no)}</h1><span class="chip ${stCls(P.state)}">${stLabel(P.state)}</span></div>
+ ${open?`<button class="g big" data-recvall="${esc(sh.id)}" ${P.rows.every(r=>r.rem===0)?'disabled':''}>${ic('pkgcheck',22)}${t('recvAll')} (${P.tot-P.done} ${t('pcs')})</button>`:''}
+ <div class="card"><label class="mu s">${t('scanBag')}</label><div class="row"><input id="scan" class="scan" placeholder="MONO-001" autocomplete="off" inputmode="none"><button data-act="camscan">${ic('camera',22)}</button></div><div class="mu s">${t('shipExp')}: ${P.tot} · ${t('shipGot')}: ${P.done}</div></div>
+ ${bagsL.map(b=>{const rows=P.rows.filter(r=>r.bag===b),sc=S.recv.scanned&&S.recv.scanned[b],rem=rows.reduce((n,r)=>n+r.rem,0);return `<div class="card ${S.recv.hl===b?'hl':''}"><div class="row"><b style="font-size:17px">${ic('bag',20)} ${esc(b)}</b>${sc?`<span class="chip lvg">${ic('check',14)} ${t('scanned')}</span>`:''}${rem===0?`<span class="chip lvg">${ic('check',14)} ${t('received')}</span>`:''}<div class="sp"></div>${open&&rem>0?`<button class="sm g" data-recvbag="${esc(b)}">${ic('check',16)}${t('recvBagBtn')}</button>`:''}</div>
+   ${rows.map(r=>`<div class="rl"><div class="row"><b>${esc(r.a)}</b><span class="chip">${esc(r.s)}</span><div class="sp"></div><span class="mu s">${t('shipExp')} <b>${r.q}</b> · ${t('shipGot')} <b>${r.got}</b>${r.bad?` · ${t('damaged')} <b>${r.bad}</b>`:''} · ${t('shipRem')} <b>${r.rem}</b>${r.surplus?` · <span class="pos">${t('surplus')} ${r.surplus}</span>`:''}${r.short?` · <span class="neg">${t('shortage')} ${r.short}</span>`:''}</span></div>
+   ${open&&r.rem>0?`<details><summary class="mu xs">${t('recvExpand')}</summary><div class="row"><input type="number" min="0" id="g_${r.i}" value="${r.rem}" class="qty" title="${t('got')}"><input type="number" min="0" id="b_${r.i}" value="0" class="qty" title="${t('bad')}" placeholder="${t('bad')}"><input id="c_${r.i}" placeholder="${t('comment')}"><label class="ph">${ic('camera',20)}<input type="file" accept="image/*" capture="environment" id="p_${r.i}" hidden></label><button class="p" data-recvline="${r.i}">${t('recvLine')}</button></div></details>`:''}</div>`).join('')}</div>`}).join('')}
+ ${open?`<div class="card"><button class="d big" style="margin-top:0" data-act="recvclose">${ic('alert',20)}${t('closeShort')}</button><div class="mu xs" style="margin-top:8px">${t('closeHint2',P.tot-P.done)}</div></div>`:''}`}
+function recvScan(c){if(!S.recv)return;const sh=S.ships[S.recv.id],b=bagNorm(c);if(!sh.bags.includes(b)){bad(t('wrongBag')+': '+b);return}S.recv.scanned=S.recv.scanned||{};S.recv.scanned[b]=1;S.recv.hl=b;ok(t('scanned')+': '+b);render();setTimeout(()=>{const e=document.querySelector('.card.hl');if(e)e.scrollIntoView({behavior:'smooth',block:'center'})},50)}
+async function compress(file){return new Promise((res,rej)=>{const img=new Image(),fr=new FileReader();fr.onload=()=>{img.onload=()=>{const sc=Math.min(1,900/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=img.width*sc;c.height=img.height*sc;c.getContext('2d').drawImage(img,0,0,c.width,c.height);let q=.6,d=c.toDataURL('image/jpeg',q);while(d.length>280000&&q>.2){q-=.1;d=c.toDataURL('image/jpeg',q)}res(d)};img.onerror=rej;img.src=fr.result};fr.onerror=rej;fr.readAsDataURL(file)})}
+async function maybeClose(shId){const sh=S.ships[shId];if(!sh||sh.status!=='open')return;const P=shipProgress(sh,S.rcvOps);if(P.rows.length&&P.rows.every(r=>r.rem===0)){try{await updateDoc(doc(db,'msk_ships',shId),{status:'closed',closedBy:S.user.uid,closedName:meName(),closedAt:serverTimestamp(),cnote:''})}catch(e){}}}
+async function recvOne(sh,r,got,bd,cmt,rsn){const n=S.rcvOps.filter(o=>o.ship===sh.id&&o.ln===r.i).length+1,id=`rcv_${sh.id}_${r.i}_${n}`;
+ const res=await applyOp({type:'receive',a:r.a,s:r.s,d:got,ship:sh.id,ln:r.i,n,exp:r.q,bad:bd,cmt,id,reason:rsn||''});if(!res.dup)addRcv({ship:sh.id,ln:r.i,d:got,bad:bd,id,type:'receive',day:mskDay()});return {res,id}}
+async function recvAll(shId){if(S.busy)return;const sh=S.ships[shId],P=shipProgress(sh,S.rcvOps),rows=P.rows.filter(r=>r.rem>0);if(!rows.length){toast(t('recvNothing'));return}
+ if(!await confirmBox(t('recvAll'),t('recvAllConfirm',esc(sh.no),rows.length,rows.reduce((n,r)=>n+r.rem,0)),t('recvAll'),'g'))return;
+ S.busy=true;toast(t('processing'));let n=0;try{for(const r of rows){await recvOne(sh,r,r.rem,0,'','');n++}play('done');toast(t('recvAllDone')+': '+sh.no,'ok')}catch(e){bad(errMsg(e))}
+ S.busy=false;await maybeClose(shId);render()}
+async function recvLine(i){if(S.busy)return;const sh=S.ships[S.recv.id],P=shipProgress(sh,S.rcvOps),r=P.rows.find(x=>x.i===i),got=num0($('#g_'+i).value),bd=num0($('#b_'+i).value),cmt=($('#c_'+i).value||'').trim();
+ if(got<0||bd<0||got+bd<=0){bad(t('qty'));return}
+ if(got+bd>r.rem&&!await confirmBox(t('surplus'),(got+bd-r.rem)+' '+t('pcs'),t('confirm')))return;
+ S.busy=true;try{const {res,id}=await recvOne(sh,r,got,bd,cmt,got+bd<r.rem?t('shortage'):got+bd>r.rem?t('surplus'):'');
+  if(res.dup)toast(t('dupOp'));else{ok(t('received')+': '+r.a+' '+r.s+' ×'+got);const f=$('#p_'+i);if(f&&f.files[0]){try{await setDoc(doc(db,'msk_photos',id),{op:id,ship:sh.id,uid:S.user.uid,ts:serverTimestamp(),data:await compress(f.files[0])})}catch(e){}}}}
+ catch(e){bad(errMsg(e))}S.busy=false;await maybeClose(sh.id);render()}
+async function recvBag(b){if(S.busy)return;const sh=S.ships[S.recv.id],P=shipProgress(sh,S.rcvOps),rows=P.rows.filter(r=>r.bag===b&&r.rem>0);if(!rows.length){toast(t('received'));return}
+ S.busy=true;let okc=0;try{for(const r of rows){await recvOne(sh,r,r.rem,0,'','');okc++}}catch(e){bad(errMsg(e))}
+ S.busy=false;if(okc){play('done');toast(t('received')+': '+b,'ok')}await maybeClose(sh.id);render()}
+async function recvClose(){const sh=S.ships[S.recv.id],P=shipProgress(sh,S.rcvOps),rem=P.rows.filter(r=>r.rem>0);
+ if(!await confirmBox(t('closeShort'),t('closeHint2',P.tot-P.done),t('closeShort'),'d'))return;const note=rem.map(r=>`${r.a} ${r.s}: -${r.rem}`).join('; ');
+ try{await updateDoc(doc(db,'msk_ships',sh.id),{status:'closed',closedBy:S.user.uid,closedName:meName(),closedAt:serverTimestamp(),cnote:note.slice(0,900)});ok(t('st_short'));S.recv=null;S.mvTab='done';S.tab='moves'}catch(e){bad(t('errPerm'))}render()}
+function camScan(cb){if(!window.Html5Qrcode){bad(t('cameraFail'));return}const o=document.createElement('div');o.className='camov';o.innerHTML=`<div id="camv"></div><button>${t('close')}</button>`;document.body.appendChild(o);const h=new Html5Qrcode('camv');let done=false;const stop=async()=>{try{await h.stop()}catch(e){}o.remove()};o.querySelector('button').onclick=stop;
+ h.start({facingMode:'environment'},{fps:10,qrbox:240},async x=>{if(done)return;done=true;await stop();cb(x)}).catch(()=>{o.remove();bad(t('cameraFail'))})}
+
+/* ---------- ПЕРЕМЕЩЕНИЯ: где товар, отмена, возврат мешка ---------- */
+const bagHasRcv=(sh,b)=>sh.lines.some((l,i)=>l.bag===b&&S.rcvOps.some(o=>o.ship===sh.id&&o.ln===i&&((+o.d||0)+(+o.bad||0))>0));
+function shipCard(sh){const P=shipProgress(sh,S.rcvOps),open=sh.status==='open',anyRcv=sh.bags.some(b=>bagHasRcv(sh,b)),ret=new Set(sh.ret||[]);
+ const tile=(l,v,c)=>`<div class="g4"><span>${l}</span><b class="${c||''}">${v}</b></div>`;
+ return `<div class="card ship"><div class="row"><b style="font-size:18px">${esc(sh.no)}</b><span class="chip ${stCls(P.state)}">${stLabel(P.state)}</span><div class="sp"></div><span class="mu s">${fmtDT(sh.tms)}</span></div>
+ <div class="mu s">${t('shipBy')}: ${esc(sh.byName)}${sh.note?' · '+esc(sh.note):''}</div>
+ <div class="mu xs" style="margin-top:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase">${t('whereIs')}</div>
+ <div class="grid4">${tile(t('sent'),sh.tot)}${tile(t('whMsk'),P.gotQ,'pos')}${open&&P.tot-P.done>0?tile(t('whWait'),P.tot-P.done):''}${P.badQ?tile(t('whBad'),P.badQ,'neg'):''}${P.shortQ?tile(t('whShort'),P.shortQ,'neg'):''}${P.retQ?tile(t('whRet'),P.retQ):''}</div>
+ <div class="bar2"><i style="width:${P.tot?Math.min(100,P.done/P.tot*100):0}%"></i></div>
+ <div class="bagchips">${sh.bags.map(b=>`<span class="bagchip ${ret.has(b)?'ret':''}">${ic('bag',14)}${esc(b)}${ret.has(b)?` <span class="xs">${t('bagReturned')}</span>`:(open&&canShip()&&!bagHasRcv(sh,b)?`<button class="sm" style="min-height:26px;padding:0 8px;border-radius:9px" data-retbag="${esc(sh.id)}|${esc(b)}" title="${t('retBag')}">${ic('undo',14)}</button>`:'')}</span>`).join('')}</div>
+ ${sh.cnote&&sh.status==='closed'?`<div class="mu xs">${t('shortage')}: ${esc(sh.cnote)}</div>`:''}
+ <div class="row">${open&&can('rcv')?`<button class="g" data-recvall="${esc(sh.id)}">${ic('pkgcheck',18)}${t('recvAll')}</button><button data-recvopen="${esc(sh.id)}">${ic('bag',18)}${t('recvByBag')}</button>`:''}${open&&canShip()&&!anyRcv?`<button class="d" data-retship="${esc(sh.id)}">${ic('undo',18)}${t('cancelShip')}</button>`:''}${sh.status==='closed'&&S.mode==='owner'?`<button data-reopen="${esc(sh.id)}">${ic('refresh',18)}${t('reopen')}</button>`:''}</div></div>`}
+function vMoves(){if(S.newShip)return vNewShip();const ships=shipsArr(),tabs=[['wait',t('mvWait'),s=>s.status==='open'],['done',t('mvDone'),s=>s.status==='closed'],['cancel',t('mvCancel'),s=>s.status==='cancelled']];
+ const cnt=f=>ships.filter(f).length,cur=tabs.find(x=>x[0]===S.mvTab)||tabs[0],list=ships.filter(cur[2]);
+ return `<div class="row"><div><h1>${t('nav_moves')}</h1><div class="mu s">${t('shipTo')}</div></div><div class="sp"></div>${canShip()?`<button class="p" data-act="newship">${ic('plus',20)}${t('newShip')}</button>`:''}</div>
+ <div class="seg">${tabs.map(([k,l,f])=>`<button data-mvtab="${k}" class="${cur[0]===k?'on pri':''}">${l}${cnt(f)?` <span class="chip" style="padding:0 8px">${cnt(f)}</span>`:''}</button>`).join('')}</div>`+(list.length?`<div class="ag" style="grid-template-columns:repeat(auto-fill,minmax(340px,1fr))">${list.map(sh=>shipCard(sh)).join('')}</div>`:`<div class="card">${empty('truck',t('noShips'))}</div>`)}
+function vNewShip(){const ns=S.newShip,bags=S.bags?arr(S.bags).filter(b=>!ns.q||b.id.includes(ns.q.toUpperCase())).sort((a,b)=>a.id.localeCompare(b.id,'ru',{numeric:true})):null,sel=[...ns.sel],sum={};
+ sel.forEach(id=>(S.bags&&S.bags[id]?S.bags[id].items:[]).forEach(i=>{const k=keyOf(i.a,i.s);(sum[k]=sum[k]||{a:i.a,s:i.s,q:0}).q+=i.q}));const tot=Object.values(sum).reduce((n,x)=>n+x.q,0);
+ return `<div class="row"><button class="sm" data-act="shipback">${ic('chevron',16)}</button><h1 style="margin:0">${t('newShip')}</h1></div>
+ <div class="card"><div class="row"><input id="scan" class="scan" placeholder="${t('scanBag')}" autocomplete="off" inputmode="none"><button data-act="camscan">${ic('camera',22)}</button></div><input data-in="nsq" value="${esc(ns.q)}" placeholder="${t('search')}">
+ <div class="bl">${bags?(bags.length?bags.map(b=>`<label class="bg ${ns.sel.has(b.id)?'on':''}"><input type="checkbox" data-bagsel="${esc(b.id)}" ${ns.sel.has(b.id)?'checked':''}><b>${esc(b.id)}</b><span class="mu s">${b.items.reduce((n,i)=>n+i.q,0)} ${t('pcs')}</span></label>`).join(''):`<div class="mu">${t('noBags')}</div>`):`<div class="mu">${t('loading')}</div>`}</div></div>
+ ${sel.length?`<div class="card"><h3>${t('sumTable')}</h3><div class="sc"><table><tr><th>${t('article')}</th><th>${t('size')}</th><th>${t('qty')}</th></tr>${Object.values(sum).sort((a,b)=>String(a.a).localeCompare(String(b.a),'ru',{numeric:true})).map(x=>`<tr><td>${esc(x.a)}</td><td>${esc(x.s)}</td><td><b>${x.q}</b></td></tr>`).join('')}<tr><td colspan="2"><b>${t('total')}</b> (${sel.length} ${t('bagsN')})</td><td><b>${tot}</b></td></tr></table></div><input data-in="nsn" value="${esc(ns.note)}" placeholder="${t('note')}" maxlength="300"><div class="mu s" style="margin:6px 0">${t('shipWarn')}</div><button class="p big" data-act="shipgo">${ic('truck',20)}${t('confirmShip')} (${tot} ${t('pcs')})</button></div>`:''}`}
+function addBagCode(v){const id=bagNorm(v);if(!S.bags){return}if(!S.bags[id]){bad(t('noBags')+': '+id);return}S.newShip.sel.add(id);ok(id);render()}
+async function createShip(){const ns=S.newShip;if(S.busy||!ns.sel.size)return;if(ns.sel.size>40){bad(t('bagsLimit'));return}S.busy=true;toast(t('processing'));
+ const ids=[...ns.sel],day=mskDay(),shipId='s'+rand(),no='MSK-'+day.replace(/-/g,'')+'-'+rand().slice(0,3).toUpperCase(),now=Date.now(),logs=[];
+ try{await runTransaction(db,async tx=>{const snaps=await Promise.all(ids.map(id=>tx.get(doc(db,'bags',id))));const lines=[];
+   snaps.forEach((sn,ix)=>{if(!sn.exists())throw {msg:t('noBags')};const items=(sn.data().items||[]).filter(i=>i.q>0);if(!items.length)throw {msg:ids[ix]+': '+t('bagEmpty')};items.forEach(i=>{lines.push({bag:ids[ix],a:i.a,s:i.s,q:i.q,k:keyOf(i.a,i.s)});logs.push({bag:ids[ix],type:'out',a:i.a,s:i.s,d:i.q,msk:shipId})})});
+   snaps.forEach((sn,ix)=>tx.update(doc(db,'bags',ids[ix]),{items:[],lu:S.email,lt:now}));
+   const tot=lines.reduce((n,l)=>n+l.q,0),sd={no,status:'open',lines,bags:ids,tot,by:S.user.uid,byName:meName()||S.email,ts:serverTimestamp(),day};if(ns.note)sd.note=ns.note;tx.set(doc(db,'msk_ships',shipId),sd)});
+  try{const b=writeBatch(db);logs.forEach(l=>b.set(doc(collection(db,'log')),{...l,ts:now,u:S.email}));await b.commit()}catch(e){}
+  play('done');toast(t('shipDone')+': '+no,'ok');S.newShip=null;S.mvTab='wait'}
+ catch(e){bad(e&&e.msg?e.msg:e&&e.code==='permission-denied'?t('errPerm')+' / '+t('bagsLimit'):t('errNet'))}S.busy=false;render()}
+// Возврат мешков в Ходжейли: содержимое возвращается в bags, мешок исключается из отправления
+async function returnBags(shId,bagIds){if(S.busy)return;const sh=S.ships[shId];if(!sh)return;
+ if(bagIds.some(b=>bagHasRcv(sh,b))){bad(t('retBlocked'));return}
+ S.busy=true;const logs=[];
+ try{await runTransaction(db,async tx=>{const sref=doc(db,'msk_ships',shId),ss=await tx.get(sref),cur=ss.data();if(!cur||cur.status!=='open')throw {msg:t('errPerm')};
+   const ret=new Set(cur.ret||[]),targets=bagIds.filter(b=>!ret.has(b)&&cur.bags.includes(b)),bs=await Promise.all(targets.map(b=>tx.get(doc(db,'bags',b))));
+   targets.forEach((b,ix)=>{const m=new Map();(bs[ix].exists()?(bs[ix].data().items||[]):[]).forEach(i=>m.set(keyOf(i.a,i.s),{...i}));
+     cur.lines.filter(l=>l.bag===b).forEach(l=>{const k=keyOf(l.a,l.s),e=m.get(k);if(e)e.q+=l.q;else m.set(k,{a:l.a,s:l.s,q:l.q});logs.push({bag:b,type:'in',a:l.a,s:l.s,d:l.q,msk:'return'})});
+     tx.set(doc(db,'bags',b),{items:[...m.values()],lu:S.email,lt:Date.now()},{merge:true})});
+   const all=new Set([...ret,...targets]),upd={ret:[...all]};if(cur.bags.every(b=>all.has(b)))upd.status='cancelled';tx.update(sref,upd)});
+  try{const b=writeBatch(db),now=Date.now();logs.forEach(l=>b.set(doc(collection(db,'log')),{...l,ts:now,u:S.email}));await b.commit()}catch(e){}
+  play('done');toast(t('retDone'),'ok')}
+ catch(e){bad(e&&e.msg?e.msg:e&&e.code==='permission-denied'?t('retNoRight'):t('errNet'))}S.busy=false;render()}
+
+/* ---------- ПЕРЕСЧЁТ СКЛАДА (инвентаризация) ---------- */
+function vInv(){const st=stockList().filter(x=>!S.q||nk(x.a).includes(nk(S.q)));let diffs=0;
+ const rows=st.map(x=>{const v=S.inv[x.id],d=v===undefined||v===''?0:num0(v)-x.q;if(d)diffs++;return `<div class="card" style="margin:8px 0;padding:12px 14px"><div class="row"><b style="font-size:17px">${esc(x.a)}</b><span class="chip">${esc(x.s)}</span><div class="sp"></div>${d?`<span class="chip solid ${d>0?'lvg':'lvr'}">${d>0?'+':''}${d}</span>`:(v!==undefined&&v!==''?`<span class="chip lvg">${ic('check',14)} ${t('invOk')}</span>`:'')}</div><div class="row"><span class="mu s">${t('invSystem')}: <b>${x.q}</b></span><div class="sp"></div><span class="mu s">${t('invReal')}:</span><button class="sm" data-invstep="${esc(x.id)}|-1">${ic('minus',16)}</button><input type="number" min="0" class="qty" data-inv="${esc(x.id)}" value="${v===undefined?'':esc(v)}" placeholder="${x.q}"><button class="sm" data-invstep="${esc(x.id)}|1">${ic('plus',16)}</button></div></div>`}).join('');
+ return `<h1>${t('nav_inv')}</h1><div class="card"><div class="setc"><div class="ti">${ic('info',22)}</div><div><b>${t('invWhat')}</b></div></div><div class="mu s" style="margin:8px 0">${t('invHelp')}</div><div class="how"><div><em>1</em>${t('invS1')}</div><div><em>2</em>${t('invS2')}</div><div><em>3</em>${t('invS3')}</div></div></div>
+ <div style="position:relative"><input data-in="q" value="${esc(S.q)}" placeholder="${t('search')}" style="padding-left:44px"><span style="position:absolute;left:14px;top:18px;color:var(--mu)">${ic('search',20)}</span></div>${rows||`<div class="card">${empty('box',t('aNoData'))}</div>`}
+ <button class="p big" data-act="invgo" ${diffs?'':'disabled'}>${ic('check',20)}${t('invFix')} (${diffs})</button>`}
+async function invApply(){const list=stockList().filter(x=>S.inv[x.id]!==undefined&&S.inv[x.id]!==''&&num0(S.inv[x.id])!==x.q);if(!list.length){toast(t('invNone'));return}if(!await confirmBox(t('invFix'),t('invConfirm',list.length),t('invFix')))return;S.busy=true;toast(t('processing'));const rsn=t('invReason')+' '+mskDay();let n=0;
+ for(const x of list){try{const res=await applyOp({type:'adjust',a:x.a,s:x.s,d:num0(S.inv[x.id])-x.q,reason:rsn,id:'o'+rand()});if(res.ok){n++;delete S.inv[x.id]}}catch(e){bad(x.a+' '+x.s+': '+errMsg(e));break}}
+ S.busy=false;if(n){play('done');toast(t('done')+': '+n,'ok')}render()}
+
+/* ---------- ИСТОРИЯ ---------- */
+function vHist(){const f=S.hf,all=hist(),ql=f.q.trim().toLowerCase(),rows=all.filter(o=>(!ql||String(o.name||'').toLowerCase().includes(ql))&&(!f.type||o.type===f.type)&&(!f.art||nk(o.a||'').includes(nk(f.art)))&&(!f.size||nk(o.s||'')===nk(f.size))&&(!f.from||o.day>=f.from)&&(!f.to||o.day<=f.to)).slice(0,600);
+ const types=['add','out','receive','adjust','import',...(can('hist')||S.mode==='owner'?['ship']:[])];
+ return `<div class="row"><h1 style="margin:0">${t('hist')}</h1><div class="sp"></div>${can('exp')?`<button data-act="histcsv">${ic('download',18)}${t('export')}</button>`:''}</div>${!can('hist')&&S.mode!=='owner'?`<div class="mu s" style="margin:4px 2px">${t('hMine')}</div>`:''}
+ <div class="card filt"><div class="row"><input data-hf="q" value="${esc(f.q)}" placeholder="${t('hStaff')}"><select data-hf="type"><option value="">${t('hOp')}: ${t('hAll')}</option>${types.map(x=>`<option value="${x}" ${f.type===x?'selected':''}>${t('op_'+x)}</option>`).join('')}</select></div><div class="row"><input data-hf="art" value="${esc(f.art)}" placeholder="${t('hArt')}"><input data-hf="size" value="${esc(f.size)}" placeholder="${t('hSize')}"></div><div class="row"><label class="mu s">${t('hFrom')}</label><input type="date" data-hf="from" value="${f.from}"><label class="mu s">${t('hTo')}</label><input type="date" data-hf="to" value="${f.to}"></div>${can('hist')||S.mode==='owner'?`<button data-act="histload">${ic('calendar',18)}${t('hLoad')}</button>`:''}</div>
+ <div class="card sc"><table><tr><th>${t('hDate')}</th><th>${t('hStaff')}</th><th>${t('hOp')}</th><th>${t('hArt')}</th><th>${t('hSize')}</th><th>${t('hQty')}</th></tr>${rows.map(o=>`<tr data-detail="${esc(o.id)}"><td>${fmtDT(o.tms)}</td><td>${esc(o.name||'')}</td><td><span class="chip">${opName(o)}</span></td><td>${esc(o.a||'')}</td><td>${esc(o.s||'')}</td><td class="${o.d>0?'pos':'neg'}"><b>${o.d>0?'+':''}${o.d}</b></td></tr>`).join('')||`<tr><td colspan="6">${empty('history',t('noOps'))}</td></tr>`}</table></div>${all.length>=500?`<div class="mu s">${t('hMore')}</div>`:''}`}
+async function histLoad(){const f=S.hf;if(!f.from&&!f.to){toast(t('hFrom')+' / '+t('hTo'));return}try{const s=await getDocs(query(collection(db,'msk_ops'),where('day','>=',f.from||'2000-01-01'),where('day','<=',f.to||'2999-12-31')));S.opsX=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,tms:v.ts&&v.ts.toMillis?v.ts.toMillis():0}});render()}catch(e){bad(t('errPerm'))}}
+function showDetail(id){const o=hist().find(x=>x.id===id);if(!o)return;const rows=[[t('hDate'),fmtDT(o.tms)],[t('hStaff'),o.name],[t('hOp'),opName(o)],[t('hArt'),o.a],[t('hSize'),o.s],[t('hQty'),(o.d>0?'+':'')+o.d],['→ '+t('qty'),o.q],[t('reason'),o.reason],[t('comment'),o.cmt],[t('shipNo'),o.ship||''],[t('shortage')+'/'+t('damaged'),o.bad||'']].filter(r=>r[1]!==undefined&&r[1]!==''&&r[1]!==0);
+ modal(`<h3>${t('details')}</h3><table>${rows.map(r=>`<tr><td class="mu">${esc(r[0])}</td><td><b>${esc(r[1])}</b></td></tr>`).join('')}</table><div id="ph"></div>`);
+ if(o.type==='receive'&&(can('rcv')||can('view')||S.mode==='owner'))getDoc(doc(db,'msk_photos',o.id)).then(s=>{if(s.exists()&&$('#ph'))$('#ph').innerHTML=`<img class="pho" src="${esc(s.data().data)}">`}).catch(()=>{})}
+
+/* ---------- АНАЛИТИКА: продажи Ozon/WB (FBS главное), склады, операции ---------- */
+function anInit(){const A=S.an;if(!A.from){setPreset(7,true)}}
+function setPreset(p,silent){const A=S.an,td=mskDay();A.preset=p;if(p==='today'){A.from=td;A.to=td}else if(p==='yest'){const y=mskDay(new Date(Date.now()-864e5));A.from=y;A.to=y}else{A.from=mskRangeFrom(p);A.to=td}A.key='';if(!silent)render()}
+async function loadAnaSales(){const A=S.an,key=A.from+'|'+A.to;if(A.loading||A.key===key)return;A.loading=true;
+ try{const s=await getDocs(query(collection(db,'msk_sales'),where('day','>=',A.from),where('day','<=',A.to)));A.docs=s.docs.map(d=>d.data())}catch(e){A.docs=[]}A.key=key;A.loading=false;if(S.tab==='ana')render()}
+async function loadAnaOps(){const A=S.an;if(A.opsDocs||A.opsLoading)return;A.opsLoading=true;try{const s=await getDocs(query(collection(db,'msk_ops'),where('day','>=',mskRangeFrom(A.opsDays))));A.opsDocs=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,tms:v.ts&&v.ts.toMillis?v.ts.toMillis():0}})}catch(e){A.opsDocs=[]}A.opsLoading=false;if(S.tab==='ana')render()}
+function vAna(){if(!can('ana'))return `<div class="card">${empty('shield',t('noAccess'))}</div>`;anInit();const A=S.an;
+ const tabs=`<div class="seg">${[['sales',t('anSales'),'trend'],['wh',t('anWh'),'warehouse'],['ops',t('anOps'),'swap']].map(([k,l,i])=>`<button data-antab="${k}" class="${A.tab===k?'on pri':''}">${ic(i,18)}${l}</button>`).join('')}</div>`;
+ let body='';if(A.tab==='sales')body=vAnaSales();else if(A.tab==='wh')body=`<div class="ag" style="grid-template-columns:repeat(auto-fit,minmax(340px,1fr))"><div>${secT('box',t('whMskT'))}${vMskStock()}</div><div>${secT('warehouse',t('whHojT'))}${vHoj()}</div></div>`;else body=vAnaOps();
+ return `<h1>${t('anaTitle')}</h1>${tabs}${body}`}
+function vAnaSales(){const A=S.an;loadAnaSales();
+ const pre=[['today',t('pToday')],['yest',t('pYest')],[7,t('p7')],[14,t('p14')],[30,t('p30')],[90,t('p90')]];
+ const ctl=`<div class="card"><div class="chips">${pre.map(([k,l])=>`<button class="fc ${A.preset===k?'on':''}" data-apre="${k}">${l}</button>`).join('')}</div><div class="row"><label class="mu s">${t('dFrom')}</label><input type="date" data-adate="from" value="${A.from}"><label class="mu s">${t('dTo')}</label><input type="date" data-adate="to" value="${A.to}"></div>
+ <div class="chips"><button class="fc ${A.ch==='fbs'?'on':''}" data-ach="fbs">FBS</button><button class="fc ${A.ch==='fbo'?'on':''}" data-ach="fbo">FBO</button><button class="fc ${A.ch==='all'?'on':''}" data-ach="all">FBS + FBO</button><span class="sp"></span><button class="fc ${A.pl==='all'?'on':''}" data-apl="all">${t('plAll')}</button><button class="fc ${A.pl==='ozon'?'on':''}" data-apl="ozon">Ozon</button><button class="fc ${A.pl==='wb'?'on':''}" data-apl="wb">WB</button></div></div>`;
+ if(A.loading||A.key!==A.from+'|'+A.to)return ctl+`<div class="card mu">${t('loading')}</div>`;
+ const daily=(A.docs||[]).length>0,D=daily?salesFromDocs(A.docs):salesFromMp(S.mp),splitOk=salesReport(D,A.from,A.to,'all','all').split,ch=(!splitOk&&A.ch!=='all')?'all':A.ch,rep=salesReport(D,A.from,A.to,ch,A.pl);
+ const note=daily?t('srcDaily'):(rep.has?t('srcMp'):t('srcNone')),days=rep.days.length||1;
+ if(!rep.has)return ctl+`<div class="card">${empty('chart',t('srcNone'))}<div class="mu xs c">${esc(note)}</div></div>`;
+ const mx=Math.max(1,...rep.days.map(d=>rep.byDay[d]||0));
+ const bars=`<div class="bars">${rep.days.map(d=>{const v=rep.byDay[d]||0;return `<div class="bc" title="${d}: ${v}"><span class="bv">${rep.days.length<=16?v:''}</span><i class="${d===rep.best?'best':''}" style="height:${Math.max(3,Math.round(v/mx*130))}px"></i><span class="bl2">${rep.days.length<=31?d.slice(8):''}</span></div>`}).join('')}</div>`;
+ const idx=mpi(),avg={};rep.list.forEach(x=>avg[x.k]=x.q/days);const H=hojIndex();
+ const top=rep.list.slice(0,12).map((x,i)=>{const m=idx[x.k]||{},fbsNow=(m.oz_fbs||0)+(m.wb_fbs||0),cov=x.q>0?fbsNow/(x.q/days):null,cl=cov==null?'':cov<3?'r':cov<7?'y':'g';
+  return `<div class="fi ${cl}"><div class="h"><span class="chip solid lvg" style="min-width:34px;justify-content:center">${i+1}</span><b>${esc(x.a)}</b><span class="chip">${esc(x.s)}</span><div class="sp"></div><b style="font-size:22px">${x.q}</b><span class="mu s">${t('pcs')}</span></div><div class="tags"><span class="tag">Ozon ${x.oz}</span><span class="tag">WB ${x.wb}</span><span class="tag">${t('sellDay',(x.q/days).toFixed(1))}</span>${m.oz_fbs!==undefined||m.wb_fbs!==undefined?`<span class="tag">${t('fbsNow')}: ${fbsNow}</span>`:''}${cov!=null?`<span class="tag ${cl==='r'?'warn':''}">${ic('trend',13)} ${t('coverD',Math.floor(cov))}</span>`:''}</div></div>`}).join('');
+ const rating=fbsRating(idx,S.thr,S.stock,avg).filter(r=>r.level!=='g'||(r.cover!=null&&r.cover<7)).slice(0,12);
+ const refill=rating.length?`<div class="fl">${rating.map(x=>{const h=H[x.k];return fbsCard(x,S.thr).replace('</div></div>',`${x.short>0&&h?`<span class="tag send">${ic('warehouse',13)} ${t('takeHoj')}: ${Math.min(h.q,x.short)} · ${t('hojHas')}: ${h.q}</span>`:''}</div></div>`)}).join('')}</div>`:`<div class="card">${empty('check',t('allGood'))}</div>`;
+ return ctl+`<div class="mu xs" style="margin:0 4px 6px">${esc(note)}${rep.unk?' · '+t('unkNote',rep.unk):''}${ch!==A.ch?' · FBS+FBO':''}</div>
+ <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))"><div class="kpi gn"><div class="ki">${ic('trend',20)}</div><span class="l">${t('sold')}${ch==='fbs'?' FBS':ch==='fbo'?' FBO':''}</span><b>${rep.total}</b><i>${t('pcs')}</i></div><div class="kpi"><div class="ki">${ic('calendar',20)}</div><span class="l">${t('avgDay')}</span><b>${rep.avg.toFixed(1)}</b></div><div class="kpi"><div class="ki">${ic('star',20)}</div><span class="l">${t('bestDay')}</span><b>${rep.best?rep.best.slice(5).split('-').reverse().join('.'):'—'}</b><i>${rep.byDay[rep.best]||0} ${t('pcs')}</i></div></div>
+ <div class="card"><h3>${t('daily')}</h3>${bars}</div>${secT('flame',t('topSell'))}${top?`<div class="fl">${top}</div>`:`<div class="card">${empty('chart',t('srcNone'))}</div>`}${secT('truck',t('refill'))}${refill}`}
+function vAnaOps(){const A=S.an;loadAnaOps();const sel=`<div class="seg">${[7,30,90].map(d=>`<button data-aod="${d}" class="${A.opsDays===d?'on pri':''}">${d} ${t('days')}</button>`).join('')}</div>`;if(!A.opsDocs)return sel+`<div class="card mu">${t('loading')}</div>`;
+ const R=analytics(A.opsDocs,S.stock,A.opsDays),top=Object.entries(R.top).sort((a,b)=>b[1]-a[1]).slice(0,10),sz=Object.entries(R.sizes).sort((a,b)=>b[1]-a[1]).slice(0,8),days=Object.keys(R.byDay).sort(),mx=Math.max(1,...days.map(d=>Math.max(R.byDay[d].in,R.byDay[d].out)));
+ const bars=days.length?`<div class="bars">${days.map(d=>`<div class="bc" title="${d}"><div class="bp"><i class="in" style="height:${Math.max(2,Math.round(R.byDay[d].in/mx*120))}px"></i><i class="ot" style="height:${Math.max(2,Math.round(R.byDay[d].out/mx*120))}px"></i></div><span class="bl2">${days.length<=31?d.slice(8):''}</span></div>`).join('')}</div>`:empty('chart',t('aNoData'));
+ const list=(arr2,fn)=>arr2.length?arr2.map(fn).join(''):`<div class="mu">${t('aNoData')}</div>`;
+ return sel+`<div class="mu xs" style="margin:0 4px 6px">${t('aReal')}</div><div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))"><div class="kpi gn"><div class="ki">${ic('plus',20)}</div><span class="l">${t('aIn')}</span><b>${R.inQ}</b></div><div class="kpi"><div class="ki" style="color:var(--rd)">${ic('minus',20)}</div><span class="l">${t('aOut')}</span><b>${R.outQ}</b></div><div class="kpi"><div class="ki">${ic('recount',20)}</div><span class="l">${t('aAdj')}</span><b>${R.adjNet}</b></div><div class="kpi"><div class="ki">${ic('swap',20)}</div><span class="l">${t('aOps')}</span><b>${R.n}</b></div></div>
+ <div class="card"><h3>${t('aDaily')}</h3>${bars}</div><div class="ag"><div class="card" style="margin:0"><h3>${t('aTop')}</h3>${list(top,([a,q])=>`<div class="row"><b>${esc(a)}</b><div class="sp"></div><b>${q}</b></div>`)}</div><div class="card" style="margin:0"><h3>${t('aSizes')}</h3>${list(sz,([s,q])=>`<div class="row"><b>${esc(s||'—')}</b><div class="sp"></div><b>${q}</b></div>`)}</div>
+ <div class="card" style="margin:0"><h3>${t('aFast')}</h3>${list(R.fast.slice(0,12),x=>`<div class="row"><b>${esc(x.a)}</b><span class="chip">${esc(x.s)}</span><div class="sp"></div><span class="mu s">${x.q} · ${t('aLeft')} ${Math.max(0,Math.floor(x.left))}</span></div>`)}</div><div class="card" style="margin:0"><h3>${t('aSlow')}</h3>${list(R.slow.slice(0,12),x=>`<div class="row"><b>${esc(x.a)}</b><span class="chip">${esc(x.s)}</span><div class="sp"></div><b>${x.q}</b></div>`)}</div>
+ <div class="card" style="margin:0"><h3>${t('aDisc')}</h3>${list(R.disc.slice(0,15),o=>`<div class="row"><span class="mu s">${fmtDT(o.tms)}</span><b>${esc(o.a)} ${esc(o.s)}</b><div class="sp"></div><span class="s">${t('shipExp')} ${o.exp} · ${t('got')} ${o.d}${o.bad?' · '+t('damaged')+' '+o.bad:''}</span></div>`)}</div><div class="card" style="margin:0"><h3>${t('aStaff')}</h3>${list(Object.entries(R.staff).sort((a,b)=>b[1].n-a[1].n),([n,v])=>`<div class="row"><b>${esc(n)}</b><div class="sp"></div><span class="mu s">${v.n} · +${v.in} / −${v.out}</span></div>`)}</div></div>`}
+
+/* ---------- ЕЩЁ (плитки) и ПРОФИЛЬ ---------- */
+function vMore(){const nav=NAV().filter(x=>!x[3]&&x[0]!=='prof'),cl=['','t2','t3','t4'],tile=(k,i,l,sub,c)=>`<button class="tile ${c||''}" data-tab="${k}"><span class="ti">${ic(i,24)}</span><span class="tx"><b>${esc(l)}</b><span>${esc(sub||'')}</span></span>${ic('chevron',18)}</button>`;
+ return `<h1>${t('nav_more')}</h1><div class="hero sm" style="margin:10px 0">${HERO}</div><div class="tiles">${nav.map((x,i)=>tile(x[0],x[1],x[2],t('d_'+x[0]),cl[i%4])).join('')}${tile('prof','gear',t('nav_prof'),t('d_prof'),'t2')}<button class="tile d" data-act="logout"><span class="ti">${ic('logout',24)}</span><span class="tx"><b>${t('logout')}</b><span>${esc(meName())}</span></span></button></div>`}
+function vProf(){const sn=S.snd,sw=(k,on)=>`<label class="switch"><input type="checkbox" data-snd="${k}" ${on?'checked':''}><i></i></label>`;
+ return `<h1>${t('nav_prof')}</h1><div class="card"><div class="row"><div class="pavatar">${esc(initials(meName()))}</div><div><b style="font-size:20px">${esc(meName())||'—'}</b><div class="mu s">${esc(S.email)}</div></div></div>
+ <label class="mu s" style="display:block;margin-top:14px">${t('fullName')}</label><input id="pn" value="${esc(meName())}" maxlength="60" placeholder="${t('fullName')}"><div class="mu xs">${t('nameHint2')}</div><button class="p big" data-act="savepn">${ic('check',20)}${t('changeName')}</button></div>
+ <div class="card"><div class="setc"><div class="ti">${ic('globe',20)}</div><b>${t('language')}</b></div><div class="seg"><button data-lang="ru" class="${S.lang==='ru'?'on pri':''}">Русский</button><button data-lang="uz" class="${S.lang==='uz'?'on pri':''}">Oʻzbekcha</button></div>
+ <div class="setc" style="margin-top:12px"><div class="ti">${ic(S.theme==='dark'?'moon':'sun',20)}</div><b>${t('theme')}</b></div><div class="seg"><button data-th="light" class="${S.theme==='light'?'on pri':''}">${ic('sun',18)}${t('light')}</button><button data-th="dark" class="${S.theme==='dark'?'on pri':''}">${ic('moon',18)}${t('dark')}</button></div></div>
+ <div class="card"><div class="setc"><div class="ti">${ic('volume',20)}</div><b>${t('sound')}</b><div class="sp"></div>${sw('on',sn.on)}</div><div class="mu s" style="margin:8px 0 2px">${t('volume')}</div><input type="range" min="0.1" max="1" step="0.1" data-snd="vol" value="${sn.vol}" style="padding:0"><label class="mu s">${t('sndOk')}</label><select data-snd="ok">${Object.keys(SND.ok).map(k=>`<option ${sn.ok===k?'selected':''}>${k}</option>`).join('')}</select><label class="mu s">${t('sndEr')}</label><select data-snd="er">${Object.keys(SND.er).map(k=>`<option ${sn.er===k?'selected':''}>${k}</option>`).join('')}</select>
+ <div class="row"><button class="g" data-play="ok">${ic('check',16)}OK</button><button class="d" data-play="er">${ic('x',16)}ERR</button><button data-play="done">${ic('pkgcheck',16)}${t('done2')}</button><button data-play="warn">${ic('alert',16)}!</button></div><div class="mu xs">${t('soundNote')}</div></div>
+ <button class="d big" data-act="logout">${ic('logout',20)}${t('logout')}</button>`}
+async function savePn(){const v=($('#pn').value||'').trim().slice(0,60);if(v.length<2){bad(t('nameShort'));return}
+ try{if(S.mode==='msk'){await updateDoc(doc(db,'msk_profiles',S.user.uid),{name:v});S.prof.name=v}else{S.ownerName=v;localStorage.setItem('msk_name',v)}ok(t('nameSaved'));shell()}catch(e){bad(t('errPerm'))}}
+
+/* ---------- СОТРУДНИКИ (владелец) ---------- */
+function vStaff(){const L=arr(S.profiles).sort((a,b)=>String(a.name||a.email).localeCompare(String(b.name||b.email),'ru'));
+ return `<h1>${t('staff')}</h1><div class="card"><div class="setc"><div class="ti">${ic('plus',20)}</div><b>${t('addStaff')}</b></div><input id="nl" autocapitalize="none" placeholder="${t('login2')}"><input id="np" type="text" autocomplete="off" placeholder="${t('tmpPass')}"><select id="nr">${Object.keys(ROLES).map(r=>`<option value="${r}">${t('r_'+r)}</option>`).join('')}</select><button class="p big" data-act="mkstaff">${ic('user',20)}${t('createAcc')}</button><div id="sm" class="mu s" style="margin-top:6px">${esc(S.smsg||'')}</div></div><div class="ag">`+
+ L.map(p=>`<div class="card" style="margin:0"><div class="row"><div class="avatar" style="width:44px;height:44px;cursor:default">${esc(initials(p.name||p.login))}</div><div><b>${esc(p.name||'—')}</b>${p.name?'':`<div class="mu xs">${t('noName')}</div>`}<div class="mu xs">${esc(p.login||p.email||'')}</div></div><div class="sp"></div><span class="chip ${p.active===false?'lvr':'lvg'}">${p.active===false?t('blockedS'):t('active')}</span></div>
+ <details><summary class="mu">${t('perms')}</summary><div class="perms">${PERMS.map(k=>`<label><input type="checkbox" data-pp="${esc(p.id)}|${k}" ${p.p&&p.p[k]?'checked':''}> ${t('p_'+k)}</label>`).join('')}</div><button data-saveperm="${esc(p.id)}">${ic('check',16)}${t('savePerms')}</button></details>
+ <button class="${p.active===false?'g':'d'}" data-toggle="${esc(p.id)}" style="width:100%;margin-top:8px">${p.active===false?t('unblock'):t('block')}</button></div>`).join('')+`</div>`}
+async function mkStaff(){const lg=$('#nl').value.trim(),pw=$('#np').value,role=$('#nr').value;const say=x=>{S.smsg=x;render()};if(!/^[a-z0-9._@-]{3,60}$/i.test(lg)){say(t('login2')+': a-z 0-9 . _ -');return}if(pw.length<8){say(t('tmpPass'));return}
+ const email=lg.includes('@')?lg.toLowerCase():lg.toLowerCase()+'@lt-sklad.uz';let sec=null;
+ try{sec=getApps().find(a=>a.name==='sec')||initializeApp(firebaseConfig,'sec');const a2=getAuth(sec),c=await createUserWithEmailAndPassword(a2,email,pw);const uid=c.user.uid;await signOut(a2);
+  const p={};PERMS.forEach(k=>p[k]=!!ROLES[role][k]);await setDoc(doc(db,'msk_profiles',uid),{active:true,p,email,login:lg,role,created:Date.now(),by:S.email,name:'',lang:'ru',theme:'light'});
+  say(t('created')+' ('+lg+')');play('done')}
+ catch(e){say(e.code==='auth/email-already-in-use'?'Login already exists':t('errPerm'))}}
+
+/* ---------- МИНИМАЛЬНЫЕ ОСТАТКИ (владелец) ---------- */
+const PLATS=['phys','oz_fbs','oz_fbo','wb_fbs','wb_fbw'];
+function vThr(){const P=S.thrP||'phys',keys=new Set(Object.keys(S.stock));if(P!=='phys')Object.entries(mpi()).forEach(([k,x])=>{if(x[P]!==undefined)keys.add(k)});
+ const lab=k=>S.stock[k]?S.stock[k].a+' '+S.stock[k].s:(mpi()[k]?mpi()[k].a+' '+mpi()[k].s:k.replace('__',' '));const d=(S.thr.def||{})[P]||{},it=S.thr.items||{};
+ return `<h1>${t('thrTitle')}</h1><div class="mu s" style="margin:4px 2px">${t('thrNote')}</div><div class="chips">${PLATS.map(p=>`<button class="fc ${P===p?'on':''}" data-thrp="${p}">${t('plat_'+p)}</button>`).join('')}</div>
+ <div class="card"><b>${t('thrDef')}</b><div class="row"><span class="lg r"><i></i>${t('thrR')}</span><input type="number" min="0" id="dr" class="qty" value="${d.r??''}" placeholder="10"><span class="lg y"><i></i>${t('thrY')}</span><input type="number" min="0" id="dy" class="qty" value="${d.y??''}" placeholder="20"><span class="lg g"><i></i>${t('thrT')}</span><input type="number" min="0" id="dt" class="qty" value="${d.t??''}" placeholder="30"></div></div>
+ <div class="card sc"><table><tr><th></th><th>${t('thrR')}</th><th>${t('thrY')}</th><th>${t('thrT')}</th></tr>${[...keys].sort().map(k=>{const v=it[P+'|'+k]||{};return `<tr><td>${esc(lab(k))}</td><td><input type="number" min="0" class="qty" data-tr="${esc(k)}" value="${v.r??''}"></td><td><input type="number" min="0" class="qty" data-ty="${esc(k)}" value="${v.y??''}"></td><td><input type="number" min="0" class="qty" data-tt="${esc(k)}" value="${v.t??''}"></td></tr>`}).join('')}</table></div><button class="p big" data-act="thrsave">${ic('check',20)}${t('save')}</button>`}
+async function thrSave(){const P=S.thrP||'phys',items={...(S.thr.items||{})},def={...(S.thr.def||{})};const g=id=>$('#'+id).value,n=v=>v===''?undefined:num0(v);
+ const dd={r:n(g('dr')),y:n(g('dy')),t:n(g('dt'))};Object.keys(dd).forEach(k=>dd[k]===undefined&&delete dd[k]);if(Object.keys(dd).length)def[P]=dd;else delete def[P];
+ document.querySelectorAll('[data-tr]').forEach(e=>{const k=e.dataset.tr,sel=x=>document.querySelector(`[${x}="${CSS.escape(k)}"]`).value,v={r:n(e.value),y:n(sel('data-ty')),t:n(sel('data-tt'))};Object.keys(v).forEach(z=>v[z]===undefined&&delete v[z]);if(Object.keys(v).length)items[P+'|'+k]=v;else delete items[P+'|'+k]});
+ try{await setDoc(doc(db,'msk_cfg','thr'),{def,items,upd:Date.now(),by:S.email});ok(t('saved'))}catch(e){bad(t('errPerm'))}}
+
+/* ---------- ИМПОРТ ИЗ 1С (владелец) ---------- */
+function vImp(){const im=S.imp;let h=`<h1>${t('impTitle')}</h1><div class="card"><div class="mu s">${t('impNote')}</div><label class="mu s">${t('impFile')}</label><input type="file" id="impf" accept=".xlsx,.xls,.csv,.txt"></div>`;
+ if(im&&im.rows){const hd=im.rows[0],opt=sel=>`<option value="-1">${t('impSkip')}</option>`+hd.map((x,i)=>`<option value="${i}" ${sel===i?'selected':''}>${esc(x)}</option>`).join('');
+  h+=`<div class="card"><h3>${t('impMap')}</h3>${[['art','article'],['size','size'],['code','Штрихкод / Barcode'],['name','Название'],['qty','qty']].map(([k,l])=>`<div class="row"><label style="min-width:110px">${t(l)==l?l:t(l)}</label><select data-imap="${k}">${opt(im.map[k])}</select></div>`).join('')}<div class="mu s">${im.rows.length-1} ${t('impRows')}</div></div>
+  <div class="card sc"><h3>${t('impPrev')}</h3><table>${im.rows.slice(0,8).map((r,i)=>`<tr>${r.map(c=>`<${i?'td':'th'}>${esc(c)}</${i?'td':'th'}>`).join('')}</tr>`).join('')}</table></div><button class="p big" data-act="impgo" ${im.busy?'disabled':''}>${ic('upload',20)}${t('impGo')}</button><div class="card mu s" style="white-space:pre-wrap">${esc(im.res||'')}</div>`}return h}
+function loadScript(src){return new Promise((res,rej)=>{if(document.querySelector(`script[src="${src}"]`))return res();const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s)})}
+async function impFile(f){let rows;if(/\.(xlsx|xls)$/i.test(f.name)){await loadScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js');const wb=XLSX.read(await f.arrayBuffer(),{type:'array'});rows=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,raw:false,defval:''})}else rows=parseCSV(await f.text());
+ rows=rows.filter(r=>r.some(c=>String(c).trim()!==''));S.imp={rows,map:guessColumns(rows[0]||[]),res:''};render()}
+async function impGo(){const im=S.imp;if(im.map.art===undefined||im.map.art<0){bad(t('impNeedArt'));return}im.busy=true;im.res=t('processing');render();
+ const {items,skipped}=buildImport(im.rows.slice(1),im.map);let codes=0,added=0,skip=0;
+ try{let b=writeBatch(db),n=0;for(const it of items){if(it.code){b.set(doc(db,'msk_codes',it.code),{a:it.a,s:it.s,nm:it.name||''});codes++;n++;if(n>=400){await b.commit();b=writeBatch(db);n=0}}}if(n)await b.commit();
+  const seen=new Set();for(const it of items){if(it.q<=0)continue;const k=keyOf(it.a,it.s);if(seen.has(k)){skip++;continue}seen.add(k);
+   try{const res=await applyOp({type:'import',a:it.a,s:it.s,d:it.q,reason:'1C',id:'imp_'+k});res.dup?skip++:added++}catch(e){skip++}}
+  im.res=t('impDone')+'\n'+t('impStock',added,skip)+'\n'+t('impCodes',codes)+'\n'+t('impBad',skipped);play('done')}catch(e){im.res=t('errPerm');play('er')}
+ im.busy=false;S.codes=null;render()}
+
+/* ---------- события ---------- */
+document.addEventListener('click',async e=>{const g=s=>e.target.closest(s);let el;
+ if((el=g('[data-lang]'))){S.lang=el.dataset.lang;applyPrefs();savePrefs();S.mode?shell():showLogin();return}
+ if((el=g('[data-th]'))){S.theme=el.dataset.th;applyPrefs();savePrefs();shell();return}
+ if((el=g('[data-tab]'))){ac();if(el.dataset.sv)S.stockView=el.dataset.sv;go(el.dataset.tab);return}
+ if((el=g('[data-sv]'))){S.stockView=el.dataset.sv;render();return}
+ if((el=g('[data-mch]'))){S.mpCh=el.dataset.mch;render();return}
+ if((el=g('[data-mpl]'))){S.mpPl=el.dataset.mpl;render();return}
+ if((el=g('[data-opk]'))){S.opk=el.dataset.opk;render();return}
+ if((el=g('[data-sm]'))){S.sess[S.opk].mode=el.dataset.sm;render();return}
+ if((el=g('[data-rm]'))){S.sess[S.opk].items.splice(+el.dataset.rm,1);render();return}
+ if((el=g('[data-detail]'))){showDetail(el.dataset.detail);return}
+ if((el=g('[data-recvopen]'))){S.recv={id:el.dataset.recvopen,scanned:{}};S.tab='recv';render();window.scrollTo(0,0);return}
+ if((el=g('[data-recvall]'))){recvAll(el.dataset.recvall);return}
+ if((el=g('[data-recvline]'))){recvLine(+el.dataset.recvline);return}
+ if((el=g('[data-recvbag]'))){recvBag(el.dataset.recvbag);return}
+ if((el=g('[data-mvtab]'))){S.mvTab=el.dataset.mvtab;render();return}
+ if((el=g('[data-retbag]'))){const [sid,b]=el.dataset.retbag.split('|'),sh=S.ships[sid],q=sh.lines.filter(l=>l.bag===b).reduce((n,l)=>n+l.q,0);if(await confirmBox(t('retBag'),t('retConfirm',esc(b),q),t('retBag'),'d'))returnBags(sid,[b]);return}
+ if((el=g('[data-retship]'))){const sh=S.ships[el.dataset.retship];if(await confirmBox(t('cancelShip'),t('cancelConfirm'),t('cancelShip'),'d'))returnBags(sh.id,sh.bags);return}
+ if((el=g('[data-reopen]'))){try{await updateDoc(doc(db,'msk_ships',el.dataset.reopen),{status:'open'});ok(t('reopen'))}catch(x){bad(t('errPerm'))}return}
+ if((el=g('[data-invstep]'))){const [k,d]=el.dataset.invstep.split('|'),cur=S.inv[k]===undefined||S.inv[k]===''?(S.stock[k]?S.stock[k].q:0):num0(S.inv[k]);S.inv[k]=String(Math.max(0,cur+(+d)));render();return}
+ if((el=g('[data-antab]'))){S.an.tab=el.dataset.antab;render();return}
+ if((el=g('[data-apre]'))){const v=el.dataset.apre;setPreset(isNaN(+v)?v:+v);return}
+ if((el=g('[data-ach]'))){S.an.ch=el.dataset.ach;render();return}
+ if((el=g('[data-apl]'))){S.an.pl=el.dataset.apl;render();return}
+ if((el=g('[data-aod]'))){S.an.opsDays=+el.dataset.aod;S.an.opsDocs=null;render();return}
+ if((el=g('[data-thrp]'))){S.thrP=el.dataset.thrp;render();return}
+ if((el=g('[data-play]'))){play(el.dataset.play,true);return}
+ if((el=g('[data-saveperm]'))){const id=el.dataset.saveperm,p={};document.querySelectorAll(`[data-pp^="${CSS.escape(id)}|"]`).forEach(c=>p[c.dataset.pp.split('|')[1]]=c.checked);try{await updateDoc(doc(db,'msk_profiles',id),{p});ok(t('saved'))}catch(x){bad(t('errPerm'))}return}
+ if((el=g('[data-toggle]'))){const id=el.dataset.toggle,p=S.profiles[id];try{await updateDoc(doc(db,'msk_profiles',id),{active:p.active===false})}catch(x){bad(t('errPerm'))}return}
+ const a=(g('[data-act]')||{dataset:{}}).dataset.act;if(!a)return;
+ if(a==='login')doLogin();else if(a==='logout')signOut(auth);else if(a==='savename')saveName();else if(a==='savepn')savePn();
+ else if(a==='theme'){S.theme=S.theme==='dark'?'light':'dark';applyPrefs();savePrefs();shell()}
+ else if(a==='langtog'){S.lang=S.lang==='ru'?'uz':'ru';applyPrefs();savePrefs();shell()}
+ else if(a==='commit')commit();else if(a==='clearlist'){S.sess[S.opk].items=[];render()}
+ else if(a==='manadd'){await ensureCodes();const A=($('#ma').value||'').trim(),Z=($('#ms').value||'').trim(),n=Math.max(1,num0(($('#qty')||{}).value)||1);if(!A){bad(t('article'));return}if(S.sess[S.opk].mode==='unit'){S.sess[S.opk].cur={a:A,s:Z};render()}else{addItem(A,Z,n);render()}}
+ else if(a==='recvback'){S.recv=null;render()}else if(a==='recvclose')recvClose();
+ else if(a==='camscan')camScan(c=>onScan(c));
+ else if(a==='newship'){S.newShip={sel:new Set(),q:'',note:''};render()}else if(a==='shipback'){S.newShip=null;render()}else if(a==='shipgo')createShip();
+ else if(a==='invgo')invApply();else if(a==='histload')histLoad();
+ else if(a==='histcsv')dl('msk_history.csv',[[t('hDate'),t('hStaff'),t('hOp'),t('hArt'),t('hSize'),t('hQty'),t('reason'),t('comment')],...hist().map(o=>[fmtDT(o.tms),o.name,opName(o),o.a,o.s,o.d,o.reason||'',o.cmt||''])]);
+ else if(a==='mkstaff')mkStaff();else if(a==='thrsave')thrSave();else if(a==='impgo')impGo();else if(a==='mclose')closeModal()});
+document.addEventListener('keydown',e=>{if(e.target.id==='scan'&&e.key==='Enter'){e.preventDefault();const v=e.target.value;e.target.value='';onScan(v)}});
+document.addEventListener('change',e=>{const el=e.target;
+ if(el.dataset.in==='reason'){S.sess[S.opk].reason=el.value}
+ if(el.dataset.bagsel){el.checked?S.newShip.sel.add(el.dataset.bagsel):S.newShip.sel.delete(el.dataset.bagsel);render()}
+ if(el.dataset.snd){const k=el.dataset.snd;S.snd[k]=el.type==='checkbox'?el.checked:k==='vol'?+el.value:el.value;savePrefs();if(k==='ok')play('ok');if(k==='er')play('er')}
+ if(el.dataset.imap){S.imp.map[el.dataset.imap]=+el.value}
+ if(el.dataset.adate){S.an[el.dataset.adate]=el.value;S.an.preset='custom';S.an.key='';if(S.an.from&&S.an.to&&S.an.from<=S.an.to)render()}
+ if(el.id==='impf'&&el.files[0])impFile(el.files[0]).catch(()=>bad(t('errNet')));
+ if(el.dataset.hf){S.hf[el.dataset.hf]=el.value;render()}});
+function dbn(key,fn){clearTimeout(dbn[key]);dbn[key]=setTimeout(fn,250)}
+document.addEventListener('input',e=>{const el=e.target,keep=sel=>{const p=el.selectionStart;render();const n=$(sel);if(n){n.focus();try{n.setSelectionRange(p,p)}catch(x){}}};
+ if(el.dataset.in==='q'){S.q=el.value;dbn('q',()=>keep('[data-in="q"]'))}
+ if(el.dataset.in==='cmt')S.sess[S.opk].cmt=el.value;
+ if(el.dataset.in==='nsq'){S.newShip.q=el.value;dbn('nsq',()=>keep('[data-in="nsq"]'))}
+ if(el.dataset.in==='nsn')S.newShip.note=el.value;
+ if(el.dataset.inv!==undefined){S.inv[el.dataset.inv]=el.value;dbn('inv',()=>{const k=el.dataset.inv,p=el.selectionStart;render();const n=document.querySelector(`[data-inv="${CSS.escape(k)}"]`);if(n){n.focus();try{n.setSelectionRange(p,p)}catch(x){}}})}});
+loadLocal();showLogin();
+
+</script></body></html>
