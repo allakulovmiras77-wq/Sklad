@@ -19,8 +19,8 @@ self.addEventListener('push', e => {
   try { d = e.data ? e.data.json() : {}; } catch (_) { d = { body: e.data ? e.data.text() : '' }; }
   e.waitUntil(self.registration.showNotification(d.title || 'LT Склад', {
     body: d.body || '',
-    icon: 'icon-192-1.png',
-    badge: 'icon-192-1.png',
+    icon: 'icon-192.png',
+    badge: 'icon-192.png',
     tag: d.tag || 'lt-qr',
     renotify: true,
     requireInteraction: false,
