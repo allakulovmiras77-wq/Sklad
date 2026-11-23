@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Проверка установки</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a1836">
+<style>
+body{font:16px system-ui,sans-serif;margin:0;padding:16px;background:#0a1836;color:#fff;line-height:1.35}
+h2{margin:6px 0 12px}
+#ins{display:block;width:100%;padding:16px;border:0;border-radius:14px;background:#22c55e;color:#04210f;font:800 18px system-ui;margin:0 0 14px}
+.r{display:flex;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.08);margin-bottom:8px}
+.r i{font-style:normal;flex:none}.r small{display:block;opacity:.7;font-size:12.5px;overflow-wrap:anywhere}
+.ok i:before{content:'✅'}.bad{background:rgba(239,68,68,.25)}.bad i:before{content:'❌'}.wn i:before{content:'⚠️'}
+</style></head><body>
+<h2>Проверка установки приложения</h2>
+<button id="ins" hidden>Установить приложение</button>
+<div id="out"></div>
+<script>
+const out=document.getElementById('out'),ins=document.getElementById('ins');
+const row=(ok,t,d)=>{const e=document.createElement('div');e.className='r '+(ok===true?'ok':ok===false?'bad':'wn');e.innerHTML='<i></i><div><b></b><small></small></div>';e.querySelector('b').textContent=t;e.querySelector('small').textContent=d||'';out.appendChild(e)};
+let deferred=null,fired=false;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;fired=true;ins.hidden=false;row(true,'Chrome разрешает установку','Нажмите зелёную кнопку вверху страницы')});
+window.addEventListener('appinstalled',()=>row(true,'Приложение установлено','Найдите его на экране телефона'));
+ins.onclick=async()=>{if(!deferred)return;deferred.prompt();const r=await deferred.userChoice;row(r.outcome==='accepted','Ваш выбор: '+(r.outcome==='accepted'?'установить':'отмена'));deferred=null;ins.hidden=true};
+const img=u=>new Promise(r=>{const i=new Image();i.onload=()=>r([i.naturalWidth,i.naturalHeight]);i.onerror=()=>r(null);i.src=u+(u.includes('?')?'&':'?')+'t='+Date.now()});
+(async()=>{
+ row(window.isSecureContext,'Защищённое соединение (HTTPS)',location.href);
+ const ua=navigator.userAgent,cm=/Chrome\/(\d+)/.exec(ua);
+ row(!!cm&&+cm[1]>=90,'Браузер: '+(cm?'Chrome '+cm[1]:'не Chrome'),ua);
+ const emb=/; wv\)|Telegram|FBAV|FB_IAB|Instagram|Line\/|MiuiBrowser|HeyTapBrowser|OPR\//.test(ua);
+ row(emb?false:true,emb?'Открыто не в обычном Chrome':'Открыто в обычном Chrome',emb?'Скопируйте ссылку и вставьте в адресную строку Chrome':'');
+ if(matchMedia('(display-mode: standalone)').matches)row(null,'Страница запущена как установленное приложение','Значит, оно уже установлено');
+ const link=document.querySelector('link[rel=manifest]');
+ try{
+  const r=await fetch(link.href,{cache:'no-store'});row(r.ok,'Манифест загружается: '+r.status,link.href);
+  const m=await r.json(),base=new URL(link.href);
+  row(!!(m.name||m.short_name),'Название: '+(m.name||'—'),'Короткое: '+(m.short_name||'—'));
+  const st=new URL(m.start_url||'./',base),sc=new URL(m.scope||'./',base);
+  row(st.pathname.startsWith(sc.pathname),'Стартовая страница внутри области приложения','start_url: '+st.pathname+' · scope: '+sc.pathname);
+  row(['standalone','fullscreen','minimal-ui'].includes(m.display),'Режим отображения: '+(m.display||'—'));
+  let has192=false,has512=false;
+  for(const ic of m.icons||[]){const u=new URL(ic.src,base).href,sz=await img(u),good=!!sz;
+   row(good,'Иконка '+ic.src+' ('+(ic.purpose||'any')+')',good?'Размер файла: '+sz[0]+'×'+sz[1]+(ic.sizes?' · в манифесте: '+ic.sizes:''):'Файл не открывается: '+u);
+   if(good&&/png|webp/.test(ic.type||'png')&&(ic.purpose||'any').includes('any')){if(sz[0]>=192&&sz[0]===sz[1])has192=true;if(sz[0]>=512&&sz[0]===sz[1])has512=true}}
+  row(has192&&has512,'Есть иконки 192 и 512 пикселей (purpose any)',has192&&has512?'':'Нужны квадратные PNG 192×192 и 512×512 с purpose "any"');
+ }catch(e){row(false,'Манифест не прочитан',String(e))}
+ try{
+  if(!('serviceWorker' in navigator))throw new Error('браузер не поддерживает');
+  const reg=await navigator.serviceWorker.register('sw.js');await navigator.serviceWorker.ready;
+  const t=await (await fetch('sw.js',{cache:'no-store'})).text();
+  row(true,'Сервис-воркер работает','Область: '+reg.scope);row(/addEventListener\(\s*['"]fetch/.test(t),'В сервис-воркере есть обработчик fetch');
+ }catch(e){row(false,'Сервис-воркер не запустился',String(e))}
+ setTimeout(()=>{if(!fired)row(null,'Chrome пока не предложил установку','Если все пункты выше зелёные: приложение уже установлено, либо Chrome временно скрыл предложение после отказа. Откройте меню ⋮ → «Установить приложение»')},6000);
+})();
+</script></body></html>
