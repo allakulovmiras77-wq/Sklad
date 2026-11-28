@@ -1,0 +1,25 @@
+name: Send broadcast
+# Отправляет push-уведомления из рассылок владельца (окно 🔔 → «Отправить» в программе).
+# Автоматически: каждые 10 минут с 07:00 до 20:50 по Ташкенту, пн–сб (если рассылок нет — заканчивается за несколько секунд).
+# Отправить СРАЗУ: Actions → Send broadcast → Run workflow.
+on:
+  schedule:
+    - cron: '*/10 2-15 * * 1-6'
+  workflow_dispatch:
+concurrency:
+  group: send-broadcast
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm install firebase-admin@12 web-push@3 --no-save
+      - name: Send
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+        run: node scripts/send-broadcast.cjs
